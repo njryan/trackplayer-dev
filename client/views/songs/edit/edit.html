@@ -1,0 +1,116 @@
+<template name="SongsEdit">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> SongsEditEditForm}}
+	</div>
+</template>
+
+<template name="SongsEditEditForm">
+	<div class="">
+		<h2 id="component-title">
+			Edit Song
+		</h2>
+		<form id="form" role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group ">
+				<label for="title">
+					Song Title
+				</label>
+				<div class="input-div">
+					<input type="text" name="title" value="{{song.title}}" class="form-control" autofocus="autofocus" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group ">
+				<label for="url">
+					Song URL
+				</label>
+				<div class="input-div">
+					<input type="text" name="url" value="{{song.url}}" class="form-control" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group ">
+				<label for="genre">
+					Genre
+				</label>
+				<div class="input-div">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="country" name="genre" data-type="array" {{itemIsChecked song.genre "country"}}>
+							Country
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="blues" name="genre" data-type="array" {{itemIsChecked song.genre "blues"}}>
+							Blues
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="rap_hip" name="genre" data-type="array" {{itemIsChecked song.genre "rap_hip"}}>
+							Rap/Hip hop
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="r_b" name="genre" data-type="array" {{itemIsChecked song.genre "r_b"}}>
+							R&B
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="jazz" name="genre" data-type="array" {{itemIsChecked song.genre "jazz"}}>
+							Jazz
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="latin" name="genre" data-type="array" {{itemIsChecked song.genre "latin"}}>
+							Latin
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group FIELD_GROUP_CLASS">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+
