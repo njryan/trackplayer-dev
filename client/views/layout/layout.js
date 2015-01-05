@@ -34,6 +34,7 @@ Template.AudioPlayer.events({
 
 Template.AudioPlayer.created = function(){
 	subscription = Meteor.subscribe('songs');
+	console.log(subscription);
 }
 
 Template.AudioPlayer.helpers ({

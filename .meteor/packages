@@ -25,9 +25,14 @@ aldeed:autoform
 aldeed:collection2
 aldeed:simple-schema
 yogiben:favorites
-yogiben:autoform-modals
 comerc:autoform-bs-more
 yogiben:autoform-file
 accounts-facebook
 accounts-google
 accounts-twitter
+cfs:standard-packages
+cfs:filesystem
+cfs:gridfs
+yogiben:autoform-modals
+mrt:accounts-ui-bootstrap-3
+bozhao:link-accounts

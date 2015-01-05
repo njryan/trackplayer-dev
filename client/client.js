@@ -2,7 +2,7 @@ this.App = {};
 this.Helpers = {};
 
 Meteor.startup(function() {
-	
+
 });
 
 App.logout = function() {
@@ -32,6 +32,8 @@ this.menuItemClass = function(routeName) {
 
 	return currentPath.indexOf(routePath) === 0 ? "active" : "";
 };
+
+
 
 Helpers.menuItemClass = function(routeName) {
 	return menuItemClass(routeName);
@@ -104,4 +106,3 @@ Helpers.integerToTrueFalse = function(i) {
 _.each(Helpers, function (helper, key) {
 	Handlebars.registerHelper(key, helper);
 });
-
