@@ -7,7 +7,20 @@
 @footer_height: 60px;
 
 
-// **** LAYOUT ****
+// Custom Evan Code
+
+// variables
+
+@gray_bg: rgba(255, 255, 255, 0.21);
+@green_font: #7FE540;
+
+// Layout
+
+html,
+body {
+  height: 100%;
+  background:url('/images/bg.png') center top;
+}
 
 .navbar.navbar-default {
   color: #7fe540;
@@ -16,7 +29,7 @@
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #7FE540;
+  color: @green_font;
 }
 
 // Custom Chahes
@@ -24,6 +37,9 @@
   margin-top: .6em;
   position: absolute;
   right: 0;
+  width: 100px;
+  height: 40px;
+  border: 1px solid white;
 }
 
 #logo {
@@ -40,9 +56,6 @@
 }
 
 // Content Background
-#content {
-  background:rgba(0, 110, 255, 0.44)
-}
 
 form#dataview-controls {
   margin-top:12px;
@@ -68,16 +81,37 @@ span.glyphicon {
 }
 
 
+// Rez Radio Page
+#rez_row h4 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color:white;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+#rez_row .col-block {
+  background:@gray_bg;
+}
+
+#rez_row ul.nav-stacked li a {
+  padding:5px 10px;
+  color: @green_font;
+}
+
+#rez_row .top-block{
+  min-height:110px;
+  margin-bottom:15px;
+}
+
+#rez_row .bottom-block {
+  min-height:275px;
+}
 
 
 
 
 
-html,
-body {
-  height: 100%;
-  background:url('/images/bg.png') center top;
- }
+
 
 /* Wrapper for page content to push down footer */
 #wrap {

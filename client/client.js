@@ -3,6 +3,10 @@ this.Helpers = {};
 
 Meteor.startup(function() {
 
+
+/* END THE TEST CODE */
+
+
 });
 
 App.logout = function() {

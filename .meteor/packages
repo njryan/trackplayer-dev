@@ -18,7 +18,6 @@ accounts-password
 mizzao:bootboxjs
 mrt:moment
 rajit:bootstrap3-datepicker
-wenape:soundmanager
 anti:fake
 bengott:avatar
 aldeed:autoform
@@ -36,3 +35,5 @@ cfs:gridfs
 yogiben:autoform-modals
 mrt:accounts-ui-bootstrap-3
 bozhao:link-accounts
+dandv:jquery-rateit
+joshowens:shareit

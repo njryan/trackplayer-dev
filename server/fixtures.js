@@ -5,7 +5,7 @@ if (Meteor.users.find().count() === 0) {
   // create two users
   var tomId = Meteor.users.insert({
     profile: { name: 'Tom' },
-    bio: 'Tommies Bio Tommies Bio Tommies Bio',
+    bio: Fake.paragraph(3),
     rating: 3,
     username: 'tommy',
     state: 'NY',
@@ -16,7 +16,7 @@ if (Meteor.users.find().count() === 0) {
 
   var sachaId = Meteor.users.insert({
     profile: { name: 'SachaG' },
-    bio: 'S Bio S Bio S Bio',
+    bio: Fake.word(1),
     rating: 2,
     username: 'Sacha',
     state: 'NY',
@@ -27,7 +27,7 @@ if (Meteor.users.find().count() === 0) {
 
   var moId = Meteor.users.insert({
     profile: { name: 'MOs' },
-    bio: 'M Bio S Bio M Bio',
+    bio: Fake.paragraph(3),
     rating: 5,
     username: 'moman',
     state: 'CT',
@@ -42,9 +42,10 @@ if (Meteor.users.find().count() === 0) {
       name: 'Test song #' + i,
       author: sacha.profile.name,
       ownerId: sacha._id,
-      url: '/music/song' + i + '.mp3',
+      audioFile: '/music/song' + i + '.mp3',
       submitted: now - i * 3600 * 1000,
       likes: i + 3,
+      coverImage: '/images/anon-img.png',
       genre: 'Rock'
     });
   }
@@ -55,7 +56,7 @@ if (Meteor.users.find().count() === 0) {
       author: moman.profile.name,
       ownerId: moman._id,
       upload:'/attachments/'+i,
-      description: "same message sample message sample mssage",
+      description: Fake.paragraph(3),
       subject: "It's saying Hi! " + i + " ",
       submitted: now - i * 600 * 1000,
     });
@@ -79,7 +80,7 @@ if (Meteor.users.find().count() === 0) {
       ownerId: tom._id,
       name: 'Test Ad #' + i,
       price: i + 12,
-      description: "it goes a little something like this!",
+      description: Fake.paragraph(2),
       submitted: now - i * 3600 * 1000,
       genre: 'Jazz'
     });

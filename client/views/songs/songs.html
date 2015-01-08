@@ -120,7 +120,10 @@
 					Total Likes
 				</th>
 				<th>
-					&nbsp;
+					Favorite
+				</th>
+				<th>
+					Share
 				</th>
 				<th>
 					&nbsp;
@@ -143,7 +146,7 @@
 		</td>
 		<td>
 				<audio controls>
-					<source src="{{url}}" type="audio/mp3">
+					<source src="{{audioFile}}" type="audio/mp3">
 				</audio>
 		</td>
 		<td>
@@ -154,6 +157,9 @@
 		</td>
 		<td>
 			{{> favoriteButton _id=_id}}
+		</td>
+		<td>
+			{{>shareit}}
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil" title="Edit">

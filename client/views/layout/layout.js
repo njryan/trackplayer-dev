@@ -24,6 +24,7 @@ Template.layout.rendered = function() {
 	});
 	/*TEMPLATE_RENDERED_CODE*/
 
+
 	// custom evan code to try to subscribe
 };
 
@@ -33,8 +34,34 @@ Template.AudioPlayer.events({
 });
 
 Template.AudioPlayer.created = function(){
-	subscription = Meteor.subscribe('songs');
-	console.log(subscription);
+
+}
+
+
+
+Template.AudioPlayer.rendered = function() {
+		// Jplayer Sample Code
+		$("#jquery_jplayer_1").jPlayer({
+			ready: function () {
+			return (	$(this).jPlayer("setMedia", {
+					title: "Song1",
+					mp3: "/music/song1.mp3",
+					oga: "/music/song1.ogg"
+				}) );
+			},
+			cssSelectorAncestor: "#jp_container_1",
+			swfPath: "/js",
+			supplied: "mp3, oga",
+			useStateClassSkin: true,
+			autoBlur: false,
+			smoothPlayBar: true,
+			keyEnabled: true,
+			remainingDuration: true,
+			toggleDuration: true,
+			keyEnabled: true
+		});
+
+
 }
 
 Template.AudioPlayer.helpers ({

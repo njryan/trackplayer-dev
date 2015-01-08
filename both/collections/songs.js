@@ -20,9 +20,9 @@ Songs.attachSchema(new SimpleSchema({
     optional: true
   },
   genre: {
-    type: String,
+    type: [String],
     label: "Genre",
-    allowedValues: ["Rap/Hip-Hop","Jazz","Country", "Pop", "Rock", "Reggae", "Classical", "EDM", "Country"],
+    allowedValues: ["Rap/Hip-Hop","jazz","Country", "Pop", "Rock", "Reggae", "Classical", "EDM", "Country"],
     autoform: {
       afFieldInput: {
         firstOption: "(Select a Genre)"
@@ -34,7 +34,7 @@ Songs.attachSchema(new SimpleSchema({
     label: "Likes"
   },
   coverImage: {
-    type: 'string',
+    type: String,
     autoform: {
       afFieldInput: {
         type: 'fileUpload',
