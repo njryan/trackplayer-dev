@@ -29,7 +29,7 @@ Template.layout.rendered = function() {
 };
 
 // Initiating Code for the Audio Player
-Template.AudioPlayer.events({
+Template.AudioPlayer.helpers({
 
 });
 
@@ -41,44 +41,82 @@ Template.AudioPlayer.created = function(){
 
 Template.AudioPlayer.rendered = function() {
 		// Jplayer Sample Code
-		$("#jquery_jplayer_1").jPlayer({
-			ready: function () {
-			return (	$(this).jPlayer("setMedia", {
-					title: "Song1",
-					mp3: "/music/song1.mp3",
-					oga: "/music/song1.ogg"
-				}) );
-			},
-			cssSelectorAncestor: "#jp_container_1",
-			swfPath: "/js",
-			supplied: "mp3, oga",
-			useStateClassSkin: true,
-			autoBlur: false,
-			smoothPlayBar: true,
-			keyEnabled: true,
-			remainingDuration: true,
-			toggleDuration: true,
-			keyEnabled: true
-		});
-
+	 /*myPlaylist = new jPlayerPlaylist({
+			jPlayer: "#jquery_jplayer_N",
+			cssSelectorAncestor: "#jp_container_N"
+		}, [
+	{
+		title:"Cro Magnon Man",
+		artist:"The Stark Palace",
+		mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+		oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+		poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+	}
+	], {
+		playlistOptions: {
+			enableRemoveControls: true
+		},
+		swfPath: "../../dist/jplayer",
+		supplied: "webmv, ogv, m4v, oga, mp3",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true,
+		audioFullScreen: true
+	});*/
 
 }
 
-Template.AudioPlayer.helpers ({
-	url: function () {
-		console.log(this);
-		if (subscription) {
-			//console.log('Sub is hot!');
-			return '/music/song1.mp3';
-// Right Here, Set Session Variables for Song stuff!!
-		}
+Template.AudioPlayer.events ({
+	// Template Helper to load in the first playlist
+	/*"click #playlist-setPlaylist-audio-mix" : function() {
+		myPlaylist.setPlaylist([
+		{
+			title:"Cro Magnon Man",
+			artist:"The Stark Palace",
+			mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+			poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+		},
+	{
+		title:"Your Face",
+		artist:"The Stark Palace",
+		mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+		oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
+		poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
 	},
-	/*srcURL: function () {
-		//var subscription = Meteor.subscribe('posts', limit)
-		if ( subscription.ready() ) {
-			return Songs.findOne().url;
-		}
-	}*/
+{
+	title:"Hidden",
+	artist:"Miaow",
+	free: true,
+	mp3:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3",
+	oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg",
+	poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
+},
+{
+	title:"Cyber Sonnet",
+	artist:"The Stark Palace",
+	mp3:"http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
+	oga:"http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg",
+	poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+},
+{
+	title:"Tempered Song",
+	artist:"Miaow",
+	mp3:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
+	oga:"http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg",
+	poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
+},
+{
+	title:"Lentement",
+	artist:"Miaow",
+	mp3:"http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3",
+	oga:"http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg",
+	poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
+}
+]);
+}*/
+
 });
 
 Template.PublicLayoutLeftMenu.rendered = function() {
