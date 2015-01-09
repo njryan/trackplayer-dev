@@ -1,3 +1,3 @@
-# insonic-dev
+# trackplayer development
 
-A network for musicians to share and collaborate, connected to a radio. 
+A network for musicians to share and listen to music, as well as collaborate on projects.  
