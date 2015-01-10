@@ -145,15 +145,15 @@
 			{{title}}
 		</td>
 		<td>
-				<audio controls>
-					<source src="{{audioFile}}" type="audio/mp3">
-				</audio>
+			{{#each imageItems}} <img src="{{this.url}}">   {{/each}}
+		  Image FS ID: {{coverImage}}
+			Audio FS ID: {{audioFile}}
 		</td>
 		<td>
 			{{genre}}
 		</td>
 		<td>
-			{{likes}}
+			{{#each audioItems}} <audio controls><source src="{{this.url}}" type="audio/mp3"></audio>   {{/each}}
 		</td>
 		<td>
 			{{> favoriteButton _id=_id}}

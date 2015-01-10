@@ -1,5 +1,6 @@
 <template name="layout">
 	{{#if currentUser}}
+	{{> autoformModals}}
 		{{> PrivateLayout}}
 	{{else}}
 		{{> PublicLayout}}
@@ -96,7 +97,7 @@
 		</div>
 		<div class="navbar-spacer">
 		</div>
-		{{> autoformModals}}
+
 		{{> yield}}
 	</div>
 	<div id="footer">
@@ -110,18 +111,18 @@
 		</div>
 	</div>
 
-	<div class="modal" id="newSong" tabindex="-1" role="dialog" aria-labelledby="newSongLabel" aria-hidden="true">
+	<!--<div class="modal" id="newSong" tabindex="-1" role="dialog" aria-labelledby="newSongLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<!--{{> quickForm collection="Songs" type="insert"}}-->
-				<!--{{#autoForm id="songModal" type='insert' collection="Songs"}}
+				{{> quickForm collection="Songs" type="insert"}}
+				{{#autoForm id="songModal" type='insert' collection="Songs"}}
 					{{> afFileUpload name="audioUpload" collection='Images'}}
 					<button type="submit" class="btn btn-primary">Submit</button>
-				{{ /autoForm }}-->
+				{{ /autoForm }}
 
 			</div>
 		</div>
-	</div><!-- /modal -->
+	</div>--><!-- /modal -->
 
 
 </template>

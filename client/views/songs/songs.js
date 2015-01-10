@@ -1,7 +1,7 @@
 var pageSession = new ReactiveDict();
 
 Template.Songs.rendered = function() {
-	
+
 };
 
 Template.Songs.events({
@@ -14,11 +14,11 @@ Template.Songs.events({
 		Router.go("", {});
 	}
 
-	
+
 });
 
 Template.Songs.helpers({
-	
+
 });
 
 var SongsViewItems = function(cursor) {
@@ -82,7 +82,7 @@ var SongsViewExport = function(cursor, fileType) {
 
 Template.SongsView.rendered = function() {
 	pageSession.set("SongsViewStyle", "table");
-	
+
 };
 
 Template.SongsView.events({
@@ -164,7 +164,7 @@ Template.SongsView.events({
 		SongsViewExport(this.all_songs, "json");
 	}
 
-	
+
 });
 
 Template.SongsView.helpers({
@@ -190,12 +190,12 @@ Template.SongsView.helpers({
 		return pageSession.get("SongsViewStyle") == "gallery";
 	}
 
-	
+
 });
 
 
 Template.SongsViewTable.rendered = function() {
-	
+
 };
 
 Template.SongsViewTable.events({
@@ -222,7 +222,7 @@ Template.SongsViewTable.helpers({
 
 
 Template.SongsViewTableItems.rendered = function() {
-	
+
 };
 
 Template.SongsViewTableItems.events({
@@ -263,5 +263,12 @@ Template.SongsViewTableItems.events({
 });
 
 Template.SongsViewTableItems.helpers({
-
+	"imageItems": function() {
+		//console.log(this);
+		return Images.find({},{limit:1});
+	},
+	"audioItems": function() {
+		//console.log(this);
+		return Audios.find({},{limit:1});
+	}
 });

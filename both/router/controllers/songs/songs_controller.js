@@ -19,7 +19,9 @@ this.SongsController = RouteController.extend({
 		var subs = [
 			Meteor.subscribe("songs"),
 			Meteor.subscribe("all_songs"),
-			Meteor.subscribe('favorites')
+			Meteor.subscribe('favorites'),
+			Meteor.subscribe('images'),
+			Meteor.subscribe('audios')
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
