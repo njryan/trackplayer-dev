@@ -24,7 +24,7 @@ Songs.attachSchema(new SimpleSchema({
   genre: {
     type: [String],
     label: "Genre",
-    allowedValues: ["Rap/Hip-Hop","jazz","country", "Pop", "Rock", "Reggae", "Classical", "EDM"],
+    allowedValues: ["rap-hiphop","jazz","country", "pop", "rock", "reggae", "classical", "EDM"],
     autoform: {
       afFieldInput: {
         firstOption: "(Select a Genre)"

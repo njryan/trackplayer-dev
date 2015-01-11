@@ -119,6 +119,9 @@ Template.AudioPlayer.events({
 ]);
 }*/
 
+  // Create event for clicking on song and updating the current url in player
+
+
 });
 
 Template.PublicLayoutLeftMenu.rendered = function() {

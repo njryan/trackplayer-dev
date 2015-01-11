@@ -8,7 +8,7 @@
 </template>
 
 <template name="PublicLayout">
-  <div id="wrap">
+	<div id="wrap">
     <div class="navbar navbar-fixed-top navbar-default" role="navigation">
       <div class="navbar-container container">
         <div class="navbar-header">
@@ -148,8 +148,8 @@
 				Songs  <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 			</a>
     </li>
-    <li id="menu-item-simple" class="{{menuItemClass 'messages'}}">
-      <a href="{{pathFor 'messages'}}">
+    <li id="menu-item-simple" class="{{menuItemClass 'new_messages'}}">
+      <a href="{{pathFor 'new_messages'}}">
 				Messages  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 			</a>
     </li>
@@ -161,7 +161,7 @@
 					{{> notificationsDropdown}}
     <li id="menu-item-dropdown" class="dropdown ">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				Add New
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	Add New
 				<b class="caret">
 				</b>
 			</a>
@@ -169,6 +169,9 @@
         <li class="active">
           {{#afModal class="btn btn-primary" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes"}} Song {{/afModal}}
         </li>
+		<li class="active">
+			{{#afModal class="btn btn-primary" collection="Ads" operation="insert" omitFields="ownerId,createdAt"}} Performance Ad {{/afModal}}
+		</li>
       </ul>
     </li>
 
