@@ -21,10 +21,9 @@ rajit:bootstrap3-datepicker
 anti:fake
 bengott:avatar
 aldeed:autoform
-aldeed:collection2
+aldeed:collection2@2.3.0
 aldeed:simple-schema
 yogiben:favorites
-comerc:autoform-bs-more
 yogiben:autoform-file
 accounts-facebook
 accounts-google
@@ -38,3 +37,9 @@ bozhao:link-accounts
 dandv:jquery-rateit
 joshowens:shareit
 wenape:soundmanager
+fastclick
+arsnebula:darwin
+msavin:sessioninspector
+cfs:ui
+reywood:publish-composite
+dburles:collection-helpers

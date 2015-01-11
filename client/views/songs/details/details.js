@@ -1,4 +1,4 @@
-var pageSession = new ReactiveDict();
+var pageSession = new ReactiveDict(); // jshint ignore:line // jshint ignore:line // jshint ignore:line
 
 Template.SongsDetails.rendered = function() {
 	

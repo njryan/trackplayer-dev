@@ -110,3 +110,8 @@ Accounts.onLogin(function (info) {
 Accounts.urls.resetPassword = function (token) {
 	return Meteor.absoluteUrl('reset_password/' + token);
 };
+
+
+
+//process.argv = _.without(process.argv, '--keepalive');
+//Meteor.startup(function () { console.log("LISTENING"); });

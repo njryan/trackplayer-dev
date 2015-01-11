@@ -58,7 +58,7 @@ if(Meteor.isClient) {
 		}
 
 		return grantedRoute;
-	}
+	};
 
 	// this function returns true if user is in role allowed to access given route
 	this.routeGranted = function(routeName) {
@@ -86,11 +86,9 @@ if(Meteor.isClient) {
 		// this page is restricted to some role(s), check if user is in one of allowedRoles
 		var allowedRoles = roleMapItem.roles;
 		var granted = _.intersection(allowedRoles, Meteor.user().roles);
-		if(!granted || granted.length === 0) {
-			return false;
-		}
+		return !(!granted || granted.length === 0);
 
-		return true;
+
 	};
 
 	Meteor.subscribe("current_user_data");
@@ -99,7 +97,7 @@ if(Meteor.isClient) {
 		if(!Meteor.user()) {
 			// user is not logged in - redirect to public home
 			this.redirect("home_public");
-			return;
+
 		} else {
 			// user is logged in - check role
 			if(!routeGranted(this.route.getName())) {

@@ -56,9 +56,9 @@
 .sm2-bar-ui.fixed {
  position: fixed;
  top: auto;
- bottom: 0px;
- left: 0px;
- border-radius: 0px;
+ bottom: 0;
+ left: 0;
+ border-radius: 0;
  /* so the absolutely-positioned playlist can show... */
  overflow: visible;
  /* and this should probably have a high z-index. tweak as needed. */
@@ -68,23 +68,23 @@
 .sm2-bar-ui.fixed .bd,
 .sm2-bar-ui.bottom .bd {
  /* display: table; */
- border-radius: 0px;
+ border-radius: 0;
  border-bottom: none;
 }
 
 .sm2-bar-ui.bottom {
  /* absolute bottom-aligned UI */
  top: auto;
- bottom: 0px;
- left: 0px;
- border-radius: 0px;
+ bottom: 0;
+ left: 0;
+ border-radius: 0;
  /* so the absolutely-positioned playlist can show... */
  overflow: visible;
 }
 
 .sm2-bar-ui.playlist-open .bd {
- border-bottom-left-radius: 0px;
- border-bottom-right-radius: 0px;
+ border-bottom-left-radius: 0;
+ border-bottom-right-radius: 0;
  border-bottom-color: transparent;
 }
 
@@ -100,8 +100,8 @@
 .sm2-bar-ui .sm2-inline-gradient {
  /* gradient */
  position: absolute;
- left: 0px;
- top: 0px;
+ left: 0;
+ top: 0;
  width: 100%;
  height: 100%;
  background-image: -moz-linear-gradient(to bottom, rgba(255,255,255,0.125) 5%, rgba(255,255,255,0.125) 45%, rgba(255,255,255,0.15) 52%, rgba(0,0,0,0.01) 51%, rgba(0,0,0,0.1) 95%); /* W3C */
@@ -124,8 +124,8 @@
 
 .sm2-bar-ui.textured .sm2-inline-texture {
  position: absolute;
- top: 0px;
- left: 0px;
+ top: 0;
+ left: 0;
  width: 100%;
  height: 100%;
  /* for example */
@@ -263,7 +263,7 @@
  position: relative;
  display: inline-block;
  vertical-align: middle;
- padding: 0px;
+ padding: 0;
  overflow: hidden;
 }
 
@@ -289,8 +289,8 @@
 
 .sm2-bar-ui .sm2-inline-button {
  position: absolute;
- top: 0px;
- left: 0px;
+ top: 0;
+ left: 0;
  width: 100%;
  height: 100%;
 }
@@ -330,7 +330,7 @@
 
 .sm2-bar-ui .sm2-inline-element.compact {
  min-width: 2em;
- padding: 0px 0.25em;
+ padding: 0 0.25em;
 }
 
 .sm2-bar-ui .sm2-inline-element:first-of-type {
@@ -373,8 +373,8 @@
 
 .sm2-bar-ui .sm2-playlist ul {
  position: absolute;
- left: 0px;
- top: 0px;
+ left: 0;
+ top: 0;
  width: 100%;
  list-style-type: none;
  overflow: hidden;
@@ -385,8 +385,8 @@
 .sm2-bar-ui p,
 .sm2-bar-ui .sm2-playlist ul,
 .sm2-bar-ui .sm2-playlist ul li {
- margin: 0px;
- padding: 0px;
+ margin: 0;
+ padding: 0;
 }
 
 .sm2-bar-ui .sm2-playlist ul li {
@@ -411,7 +411,7 @@
 
 .sm2-progress-bd {
  /* spacing between progress track/ball and time (position) */
- padding: 0px 0.8em;
+ padding: 0 0.8em;
 }
 
 .sm2-progress .sm2-progress-track,
@@ -426,9 +426,9 @@
 .sm2-progress .sm2-progress-bar {
  /* element which follows the progres "ball" as it moves */
  position: absolute;
- left: 0px;
- top: 0px;
- width: 0px;
+ left: 0;
+ top: 0;
+ width: 0;
  background-color: rgba(0,0,0,0.33);
  background-image: url(../image/black-33.png);
  background-image: none, none;
@@ -448,19 +448,19 @@
 
 .sm2-progress .sm2-progress-ball {
  position: absolute;
- top: 0px;
- left: 0px;
+ top: 0;
+ left: 0;
  width: 1em;
  height: 1em;
- margin: -0.2em 0px 0px -0.5em;
+ margin: -0.2em 0 0 -0.5em;
  width: 14px;
  height: 14px;
- margin: -2px 0px 0px -7px;
+ margin: -2px 0 0 -7px;
  width: 0.9333em;
  height: 0.9333em;
- margin: -0.175em 0px 0px -0.466em;
+ margin: -0.175em 0 0 -0.466em;
  background-color: #fff;
- padding: 0px;
+ padding: 0;
 /*
  z-index: 1;
 */
@@ -599,8 +599,8 @@
  position: absolute;
  width: 100%;
  height: 100%;
- top: 0px;
- left: 0px;
+ top: 0;
+ left: 0;
  background: none, url(../image/icomoon/free-25px-000000/SVG/spinner.svg);
  background-size: 72%;
  background-position: 50%;
@@ -648,17 +648,17 @@
 
 .sm2-element ul,
 .sm2-element ul li {
- margin: 0px;
- padding: 0px;
+ margin: 0;
+ padding: 0;
 }
 
 .bd.sm2-playlist-drawer {
  /* optional: absolute positioning */
  /* position: absolute; */
  z-index: 3;
- border-radius: 0px;
+ border-radius: 0;
  width: 100%;
- height: 0px;
+ height: 0;
  border: none;
  background-image: none;
  display: block;
@@ -673,7 +673,7 @@
 
 .sm2-bar-ui.fixed .sm2-playlist-wrapper,
 .sm2-bar-ui.bottom .sm2-playlist-wrapper {
- padding-bottom: 0px;
+ padding-bottom: 0;
 }
 
 .sm2-bar-ui.fixed .bd.sm2-playlist-drawer,
@@ -721,16 +721,16 @@
 
 .sm2-bar-ui .bd.sm2-playlist-drawer .sm2-inline-texture {
  /* negative offset for height of top bar, so background is seamless. */
- background-position: 0px -2.8em;
+ background-position: 0 -2.8em;
 }
 
 .sm2-box-shadow {
  position: absolute;
- left: 0px;
- top: 0px;
+ left: 0;
+ top: 0;
  width: 100%;
  height: 100%;
- box-shadow: inset 0px 1px 6px rgba(0,0,0,0.15);
+ box-shadow: inset 0 1px 6px rgba(0,0,0,0.15);
 }
 
 .sm2-playlist-wrapper {
@@ -767,7 +767,7 @@
 .sm2-playlist-wrapper ul li a.sm2-exclude .label {
  font-size: 95%;
  line-height: 1em;
- margin-left: 0px;
+ margin-left: 0;
  padding: 2px 4px;
 }
 
@@ -808,7 +808,7 @@
 /*.sm2-bar-ui.playlist-open .sm2-menu,*/
 .sm2-bar-ui.playlist-open .sm2-menu:hover {
  /* depressed / "on" state */
- box-shadow: inset 0px 0px 2px rgba(0,0,0,0.1);
+ box-shadow: inset 0 0 2px rgba(0,0,0,0.1);
  background-image: none;
 }
 
@@ -841,7 +841,7 @@
 }
 
 .sm2-extra-controls {
- font-size: 0px;
+ font-size: 0;
  text-align: center;
 }
 
@@ -853,7 +853,7 @@
  vertical-align: top;
  background-color: rgba(0,0,0,0.25);
  border-radius: 3px;
- padding: 0px 3px;
+ padding: 0 3px;
  box-sizing: padding-box;
 }
 
@@ -865,7 +865,7 @@
 
 .sm2-bar-ui .sm2-playlist-drawer .label {
  font-size: 0.8em;
- padding: 0px 3px;
+ padding: 0 3px;
 }
 
 /* --- full width stuff --- */

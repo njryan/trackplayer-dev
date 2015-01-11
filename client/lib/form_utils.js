@@ -1,38 +1,29 @@
 this.isValidEmail = function(value) {
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	if(filter.test(value)) {
-		return true;
-	}
-	return false;
+	return !!filter.test(value);
+
 };
 
 this.isValidPassword = function(value, min_length) {
-	if(!value || value === "" || value.length < min_length)
-		return false;
-	return true;
+	return !(!value || value === "" || value.length < min_length);
+
 };
 
 this.isValidIPv4 = function(value) {
 	var filter = /^(\d{1,3}\.){3}(\d{1,3})$|^(0x[\da-fA-F]{2}\.){3}(0x[\da-fA-F]{2})$|^(0[0-3][0-7]{2}\.){3}(0[0-3][0-7]{2})|^0x[\da-fA-F]{8}$|^[0-4]\d{9}$|^0[0-3]\d{10}$/;
-	if(filter.test(value)) {
-		return true;
-	}
-	return false;
+	return !!filter.test(value);
+
 }
 
 this.isValidIPv6 = function(value) {
 	var filter = /^([\da-fA-F]{1,4}:){7}([\da-fA-F]{1,4})$/;
-	if(filter.test(value)) {
-		return true;
-	}
-	return false;	
+	return !!filter.test(value);
+
 }
 
 this.isValidIP = function(value) {
-	if(isValidIPv4(value) || isValidIPv6(value)) {
-		return true;
-	}
-	return false;
+	return !!(isValidIPv4(value) || isValidIPv6(value));
+
 };
 
 this.timeToSeconds = function(timeStr, timeFormat) {

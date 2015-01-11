@@ -1,31 +1,33 @@
 Template.layout.rendered = function() {
-	// scroll to anchor
-	$('body').on('click', 'a', function(e) {
-		var href = $(this).attr("href");
-		if(!href) {
-			return;
-		}
-		if(href.length > 1 && href.charAt(0) == "#") {
-			var hash = href.substring(1);
-			if(hash) {
-				e.preventDefault();
+  // scroll to anchor
+  $('body').on('click', 'a', function(e) {
+    var href = $(this).attr("href");
+    if (!href) {
+      return;
+    }
+    if (href.length > 1 && href.charAt(0) == "#") {
+      var hash = href.substring(1);
+      if (hash) {
+        e.preventDefault();
 
-				var offset = $('*[id="' + hash + '"]').offset();
+        var offset = $('*[id="' + hash + '"]').offset();
 
-				if (offset) {
-					$('html,body').animate({ scrollTop: offset.top - 50 }, 400);
-				}
-			}
-		} else {
-			if(href.indexOf("http://") != 0 && href.indexOf("https://") != 0 && href.indexOf("#") != 0) {
-				$('html,body').scrollTop(0);
-			}
-		}
-	});
-	/*TEMPLATE_RENDERED_CODE*/
+        if (offset) {
+          $('html,body').animate({
+            scrollTop: offset.top - 50
+          }, 400);
+        }
+      }
+    } else {
+      if (href.indexOf("http://") != 0 && href.indexOf("https://") != 0 && href.indexOf("#") != 0) {
+        $('html,body').scrollTop(0);
+      }
+    }
+  });
+  /*TEMPLATE_RENDERED_CODE*/
 
 
-	// custom evan code to try to subscribe
+  // custom evan code to try to subscribe
 };
 
 // Initiating Code for the Audio Player
@@ -33,15 +35,15 @@ Template.AudioPlayer.helpers({
 
 });
 
-Template.AudioPlayer.created = function(){
+Template.AudioPlayer.created = function() {
 
 }
 
 
 
 Template.AudioPlayer.rendered = function() {
-		// Jplayer Sample Code
-	 /*myPlaylist = new jPlayerPlaylist({
+  // Jplayer Sample Code
+  /*myPlaylist = new jPlayerPlaylist({
 			jPlayer: "#jquery_jplayer_N",
 			cssSelectorAncestor: "#jp_container_N"
 		}, [
@@ -67,9 +69,9 @@ Template.AudioPlayer.rendered = function() {
 
 }
 
-Template.AudioPlayer.events ({
-	// Template Helper to load in the first playlist
-	/*"click #playlist-setPlaylist-audio-mix" : function() {
+Template.AudioPlayer.events({
+  // Template Helper to load in the first playlist
+  /*"click #playlist-setPlaylist-audio-mix" : function() {
 		myPlaylist.setPlaylist([
 		{
 			title:"Cro Magnon Man",
@@ -120,16 +122,16 @@ Template.AudioPlayer.events ({
 });
 
 Template.PublicLayoutLeftMenu.rendered = function() {
-	$(".menu-item-collapse .dropdown-toggle").each(function() {
-		if($(this).find("li.active")) {
-			$(this).removeClass("collapsed");
-		}
-		$(this).parent().find(".collapse").each(function() {
-			if($(this).find("li.active").length) {
-				$(this).addClass("in");
-			}
-		});
-	});
+  $(".menu-item-collapse .dropdown-toggle").each(function() {
+    if ($(this).find("li.active")) {
+      $(this).removeClass("collapsed");
+    }
+    $(this).parent().find(".collapse").each(function() {
+      if ($(this).find("li.active").length) {
+        $(this).addClass("in");
+      }
+    });
+  });
 
 
 };
@@ -143,16 +145,16 @@ Template.PublicLayoutLeftMenu.helpers({
 });
 
 Template.PublicLayoutRightMenu.rendered = function() {
-	$(".menu-item-collapse .dropdown-toggle").each(function() {
-		if($(this).find("li.active")) {
-			$(this).removeClass("collapsed");
-		}
-		$(this).parent().find(".collapse").each(function() {
-			if($(this).find("li.active").length) {
-				$(this).addClass("in");
-			}
-		});
-	});
+  $(".menu-item-collapse .dropdown-toggle").each(function() {
+    if ($(this).find("li.active")) {
+      $(this).removeClass("collapsed");
+    }
+    $(this).parent().find(".collapse").each(function() {
+      if ($(this).find("li.active").length) {
+        $(this).addClass("in");
+      }
+    });
+  });
 
 
 };
@@ -167,16 +169,16 @@ Template.PublicLayoutRightMenu.helpers({
 
 
 Template.PrivateLayoutLeftMenu.rendered = function() {
-	$(".menu-item-collapse .dropdown-toggle").each(function() {
-		if($(this).find("li.active")) {
-			$(this).removeClass("collapsed");
-		}
-		$(this).parent().find(".collapse").each(function() {
-			if($(this).find("li.active").length) {
-				$(this).addClass("in");
-			}
-		});
-	});
+  $(".menu-item-collapse .dropdown-toggle").each(function() {
+    if ($(this).find("li.active")) {
+      $(this).removeClass("collapsed");
+    }
+    $(this).parent().find(".collapse").each(function() {
+      if ($(this).find("li.active").length) {
+        $(this).addClass("in");
+      }
+    });
+  });
 
 
 };
@@ -190,16 +192,16 @@ Template.PrivateLayoutLeftMenu.helpers({
 });
 
 Template.PrivateLayoutRightMenu.rendered = function() {
-	$(".menu-item-collapse .dropdown-toggle").each(function() {
-		if($(this).find("li.active")) {
-			$(this).removeClass("collapsed");
-		}
-		$(this).parent().find(".collapse").each(function() {
-			if($(this).find("li.active").length) {
-				$(this).addClass("in");
-			}
-		});
-	});
+  $(".menu-item-collapse .dropdown-toggle").each(function() {
+    if ($(this).find("li.active")) {
+      $(this).removeClass("collapsed");
+    }
+    $(this).parent().find(".collapse").each(function() {
+      if ($(this).find("li.active").length) {
+        $(this).addClass("in");
+      }
+    });
+  });
 
 
 };
@@ -213,16 +215,16 @@ Template.PrivateLayoutRightMenu.helpers({
 });
 
 Template.PrivateLayoutBottomLeftMenu.rendered = function() {
-	$(".menu-item-collapse .dropdown-toggle").each(function() {
-		if($(this).find("li.active")) {
-			$(this).removeClass("collapsed");
-		}
-		$(this).parent().find(".collapse").each(function() {
-			if($(this).find("li.active").length) {
-				$(this).addClass("in");
-			}
-		});
-	});
+  $(".menu-item-collapse .dropdown-toggle").each(function() {
+    if ($(this).find("li.active")) {
+      $(this).removeClass("collapsed");
+    }
+    $(this).parent().find(".collapse").each(function() {
+      if ($(this).find("li.active").length) {
+        $(this).addClass("in");
+      }
+    });
+  });
 
 
 };

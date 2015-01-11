@@ -4,6 +4,7 @@ this.SongsController = RouteController.extend({
 	yieldTemplates: {
 		/*YIELD_TEMPLATES*/
 	},
+	fastRender: true,
 
 	onBeforeAction: function() {
 		/*BEFORE_FUNCTION*/

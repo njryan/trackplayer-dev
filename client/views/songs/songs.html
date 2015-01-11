@@ -145,7 +145,7 @@
 			{{title}}
 		</td>
 		<td>
-			{{#each imageItems}} <img src="{{this.url}}">   {{/each}}
+			{{#each imageItems}} <a href="{{this.url}}">image link</a>   {{/each}}
 		  Image FS ID: {{coverImage}}
 			Audio FS ID: {{audioFile}}
 		</td>
@@ -153,7 +153,7 @@
 			{{genre}}
 		</td>
 		<td>
-			{{#each audioItems}} <audio controls><source src="{{this.url}}" type="audio/mp3"></audio>   {{/each}}
+			{{#each audioItems}} <a href="{{this.url}}">Song URL</a> {{/each}}
 		</td>
 		<td>
 			{{> favoriteButton _id=_id}}

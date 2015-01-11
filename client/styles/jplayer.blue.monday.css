@@ -204,20 +204,20 @@
   width: 130px; }
 
 .jp-video .jp-progress {
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 10px; }
 
 .jp-seek-bar {
   background: url("../image/jplayer.blue.monday.jpg") 0 -202px repeat-x;
-  width: 0px;
+  width: 0;
   height: 100%;
   cursor: pointer; }
 
 .jp-play-bar {
   background: url("../image/jplayer.blue.monday.jpg") 0 -218px repeat-x;
-  width: 0px;
+  width: 0;
   height: 100%; }
 
 /* The seeking class is added/removed inside jPlayer */
@@ -288,7 +288,7 @@
 
 .jp-volume-bar-value {
   background: url("../image/jplayer.blue.monday.jpg") 0 -256px repeat-x;
-  width: 0px;
+  width: 0;
   height: 5px; }
 
 /* @end */
@@ -450,8 +450,8 @@ span.jp-artist {
 
 .jp-jplayer audio,
 .jp-jplayer {
-  width: 0px;
-  height: 0px; }
+  width: 0;
+  height: 0; }
 
 .jp-jplayer {
   background-color: #000000; }
