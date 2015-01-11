@@ -7,6 +7,7 @@ Meteor.startup(function() {
 	}
 
 
+
 });
 
 Meteor.methods({
@@ -29,7 +30,7 @@ Meteor.methods({
 			throw new Meteor.Error(403, "Access denied.");
 		}
 
-		// non admon user can change only own profile
+		// non admin user can change only own profile
 		if(!Users.isAdmin(Meteor.userId())) {
 			var keys = Object.keys(options);
 			if(keys.length !== 1 || !options.profile) {
@@ -69,6 +70,7 @@ Meteor.methods({
 
 Accounts.onCreateUser(function (options, user) {
 	user.roles = ["user"];
+	MyApp.profile = new ProfileHelper();
 
 	if(options.profile) {
 		user.profile = options.profile;
@@ -112,6 +114,6 @@ Accounts.urls.resetPassword = function (token) {
 };
 
 
-
+//Sample Code incase the strange chrome websockets error
 //process.argv = _.without(process.argv, '--keepalive');
 //Meteor.startup(function () { console.log("LISTENING"); });

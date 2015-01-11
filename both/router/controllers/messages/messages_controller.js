@@ -1,4 +1,4 @@
-this.MessagesController = RouteController.extend({
+this.NewMessagesController = RouteController.extend({
 	template: "Messages",
 
 	yieldTemplates: {

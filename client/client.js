@@ -1,4 +1,4 @@
-this.App = {};
+this.Insonic = {};
 this.Helpers = {};
 
 Meteor.startup(function() {
@@ -9,7 +9,7 @@ Meteor.startup(function() {
 
 });
 
-App.logout = function() {
+Insonic.logout = function() {
 	Meteor.logout(function(err) {
 	});
 };
@@ -56,6 +56,7 @@ Helpers.userEmail = function() {
 		email = Meteor.user().profile.email;
 	return email;
 };
+
 
 Helpers.randomString = function(strLen) {
 	return Random.id(strLen);
@@ -109,4 +110,14 @@ Helpers.integerToTrueFalse = function(i) {
 
 _.each(Helpers, function (helper, key) {
 	Handlebars.registerHelper(key, helper);
+});
+
+
+// Setting Up Account Ui and Social Media Integration
+Accounts.ui.config({
+	requestPermissions: {
+		facebook: ['public_profile', 'email']
+	},
+	passwordSignupFields: 'USERNAME_ONLY',
+	extraSignupFields: []
 });

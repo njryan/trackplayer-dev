@@ -8,7 +8,7 @@ Router.configure({
 
 if(Meteor.isClient) {
 	var publicRoutes = ["home_public", "login", "register", "forgot_password", "reset_password"];
-	var privateRoutes = ["home_private", "spotlight", "rez_radio", "ads", "ads.insert", "ads.details", "ads.edit", "songs", "songs.insert", "songs.details", "songs.edit", "messages", "messages.insert", "messages.details", "messages.edit", "requests", "requests.insert", "requests.details", "requests.edit", "admin", "admin.users", "admin.users.details", "admin.users.insert", "admin.users.edit", "user_settings", "user_settings.profile", "user_settings.change_pass", "logout"];
+	var privateRoutes = ["home_private", "spotlight", "rez_radio", "ads", "ads.insert", "ads.details", "ads.edit", "songs", "songs.insert", "songs.details", "songs.edit", "new_messages", "messages.insert", "messages.details", "messages.edit", "requests", "requests.insert", "requests.details", "requests.edit", "admin", "admin.users", "admin.users.details", "admin.users.insert", "admin.users.edit", "user_settings", "user_settings.profile", "user_settings.change_pass", "logout"];
 	var zonelessRoutes = [];
 
 	var roleMap = [
@@ -21,7 +21,7 @@ if(Meteor.isClient) {
 		{ route: "songs.insert", roles: ["admin","user"] },
 		{ route: "songs.details", roles: ["admin","user"] },
 		{ route: "songs.edit", roles: ["admin","user"] },
-		{ route: "messages", roles: ["admin","user"] },
+		{ route: "new_messages", roles: ["admin","user"] },
 		{ route: "messages.insert", roles: ["admin","user"] },
 		{ route: "messages.details", roles: ["admin","user"] },
 		{ route: "messages.edit", roles: ["admin","user"] },
@@ -92,6 +92,7 @@ if(Meteor.isClient) {
 	};
 
 	Meteor.subscribe("current_user_data");
+	Meteor.subscribe("profiles");
 
 	Router.ensureLogged = function() {
 		if(!Meteor.user()) {
@@ -151,7 +152,7 @@ Router.map(function () {
 	this.route("songs.insert", {path: "/songs/insert", controller: "SongsInsertController"});
 	this.route("songs.details", {path: "/songs/details/:songId", controller: "SongsDetailsController"});
 	this.route("songs.edit", {path: "/songs/edit/:songId", controller: "SongsEditController"});
-	this.route("messages", {path: "/messages", controller: "MessagesController"});
+	this.route("new_messages", {path: "/new_messages", controller: "NewMessagesController"});
 	this.route("messages.insert", {path: "/messages/insert", controller: "MessagesInsertController"});
 	this.route("messages.details", {path: "/messages/details/:messageId", controller: "MessagesDetailsController"});
 	this.route("messages.edit", {path: "/messages/edit/:messageId", controller: "MessagesEditController"});

@@ -26,8 +26,6 @@ aldeed:simple-schema
 yogiben:favorites
 yogiben:autoform-file
 accounts-facebook
-accounts-google
-accounts-twitter
 cfs:standard-packages
 cfs:filesystem
 cfs:gridfs
@@ -43,3 +41,6 @@ msavin:sessioninspector
 cfs:ui
 reywood:publish-composite
 dburles:collection-helpers
+facts
+yogiben:notifications
+aldeed:template-extension
