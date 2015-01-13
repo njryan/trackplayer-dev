@@ -139,3 +139,9 @@ Accounts.ui.config({
         return "images/withOutPhoto.png";
     }
 });*/
+
+Template.registerHelper('userFBImage', function() {
+        if(Meteor.user().services.facebook) {
+            return Meteor.user().services.facebook.id;
+    }
+});

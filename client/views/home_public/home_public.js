@@ -28,9 +28,9 @@ Template.HomePublicHomeJumbotron.events({
 		e.preventDefault();
 		Router.go("login", {});
 	}
-	
 });
 
 Template.HomePublicHomeJumbotron.helpers({
-	
+
 });
+

@@ -34,12 +34,18 @@ body {
   color: @green_font;
 }
 
+#fb_nav_pic {
+  max-height:2em;
+}
 
 #logo {
   max-height: 1.6em;
   position: relative;
   top: -6px;
 }
+
+
+
 
 // Dataview
 #dataview {
@@ -102,9 +108,57 @@ span.glyphicon {
 
 
 
+// Login Css
+/* Truncate the username */
+#login-screen #login-dropdown-list .dropdown-toggle, .user-display-name {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Full-width buttons */
+#login-screen .btn {
+  width: 100%;
+}
+
+/* Half-width "Forgot password" and "Create account" links */
+#login_screen #forgot-password-link {
+  width: 49%;
+  white-space: normal;
+}
+
+#login-screen #signup-link {
+  width: 49%;
+  white-space: normal;
+  text-align: right;
+}
+
+/* Remove shadow. Make width and height dynamic */
+#login-screen .dropdown-menu {
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  min-width: 0px;
+  width: 100%;
+  overflow: auto;
+}
+
+#login-screen #login-dropdown-list {
+  display: block;
+}
+
+#login-screen a.dropdown-toggle {
+  display: none;
+}
 
 
 
+// Start of old css code
 
 /* Wrapper for page content to push down footer */
 #wrap {

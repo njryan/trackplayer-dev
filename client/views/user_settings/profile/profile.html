@@ -21,7 +21,7 @@
 				{{errorMessage}}
 			</div>
 			{{/if}}
-			<p>Profile Image: {{> avatar user=this shape="circle" }}</p><!--<p><img src="{{getImageUser this._id}}" alt="..."></p>-->
+			<!--<p>Profile Image: {{> avatar user=this shape="circle" }}</p>--><p> Profile Image:  <img src="http://graph.facebook.com/{{userFBImage}}/picture/?type=small" alt="..."></p>
 			{{#if infoMessage}}
 			<div class="alert alert-success">
 				{{infoMessage}}
@@ -32,7 +32,7 @@
 					Name
 				</label>
 				<div class="input-div">
-					<input type="text" name="profile.name" value="{{current_user_data.username}}" class="form-control" autofocus="autofocus" required="required">
+					<input type="text" name="profile.name" value="{{currentUser.services.facebook.name}}" class="form-control" autofocus="autofocus" required="required">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
