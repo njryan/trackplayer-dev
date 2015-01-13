@@ -1,4 +1,4 @@
-this.Ads = new Meteor.Collection("ads");
+Ads = new Meteor.Collection("ads");
 Ads.attachSchema(new SimpleSchema({
     title: {
         type: String,
@@ -9,12 +9,6 @@ Ads.attachSchema(new SimpleSchema({
         type: Number,
         label: "Price",
         optional:false
-    },
-    ownerId: {
-        type: String,
-        label: "Owner Id",
-        min: 0,
-        optional:true
     },
     createdAt: {
         type: Date,

@@ -36,7 +36,7 @@ Template.AudioPlayer.helpers({
 });
 
 Template.AudioPlayer.created = function() {
-  Notifications.new({ title: 'New message', link: '/messages/1', icon: 'bolt' });
+  Notifications.new({ title: 'New message', icon: 'bolt' });
 };
 
 
