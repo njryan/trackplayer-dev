@@ -14,7 +14,6 @@ natestrauser:font-awesome
 matb33:collection-hooks
 perak:user-roles
 reactive-dict
-accounts-password
 mizzao:bootboxjs
 mrt:moment
 rajit:bootstrap3-datepicker
@@ -30,17 +29,17 @@ cfs:standard-packages
 cfs:filesystem
 cfs:gridfs
 yogiben:autoform-modals
-mrt:accounts-ui-bootstrap-3
 bozhao:link-accounts
 dandv:jquery-rateit
 joshowens:shareit
 wenape:soundmanager
 fastclick
 arsnebula:darwin
-msavin:sessioninspector
 cfs:ui
 reywood:publish-composite
 dburles:collection-helpers
 facts
 yogiben:notifications
 aldeed:template-extension
+accounts-password
+ian:accounts-ui-bootstrap-3

@@ -36,9 +36,8 @@ Template.AudioPlayer.helpers({
 });
 
 Template.AudioPlayer.created = function() {
-
-}
-
+  Notifications.new({ title: 'New message', link: '/messages/1', icon: 'bolt' });
+};
 
 
 Template.AudioPlayer.rendered = function() {
@@ -67,7 +66,7 @@ Template.AudioPlayer.rendered = function() {
 		audioFullScreen: true
 	});*/
 
-}
+};
 
 Template.AudioPlayer.events({
   // Template Helper to load in the first playlist
@@ -120,7 +119,7 @@ Template.AudioPlayer.events({
 }*/
 
   // Create event for clicking on song and updating the current url in player
-
+    // Integrate with sound manager 2 API
 
 });
 

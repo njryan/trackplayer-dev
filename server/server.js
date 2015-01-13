@@ -70,13 +70,14 @@ Meteor.methods({
 
 Accounts.onCreateUser(function (options, user) {
 	user.roles = ["user"];
-	MyApp.profile = new ProfileHelper();
 
 	if(options.profile) {
+		// Get FB Profile Image if signed in with FB
+		if (typeof(user.services.facebook) != "undefined") {
+			user.services.facebook.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+		}
 		user.profile = options.profile;
 	}
-
-
 
 	return user;
 });
