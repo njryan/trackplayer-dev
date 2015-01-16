@@ -43,7 +43,6 @@ Template.AudioPlayer.created = function() {
 Template.AudioPlayer.rendered = function() {
 
 
-
 };
 
 Template.AudioPlayer.events({

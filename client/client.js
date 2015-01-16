@@ -163,3 +163,9 @@ Template.registerHelper('userFBImage', function() {
             return Meteor.user().services.facebook.id;
     }
 });
+
+soundManager.onerror = function() {
+    // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
+    // Notify user if needed, disable sound-specific functionality etc.
+    console.log("SOMETHING FUCKED UP!");
+};

@@ -9,14 +9,13 @@ standard-app-packages
 less
 accounts-base
 spiderable
-iron:router
+iron:router@1.0.7
 natestrauser:font-awesome
 matb33:collection-hooks
 perak:user-roles
 reactive-dict
 mizzao:bootboxjs
 mrt:moment
-rajit:bootstrap3-datepicker
 anti:fake
 bengott:avatar
 aldeed:autoform
@@ -32,7 +31,6 @@ yogiben:autoform-modals
 bozhao:link-accounts
 dandv:jquery-rateit
 joshowens:shareit
-wenape:soundmanager
 fastclick
 arsnebula:darwin
 cfs:ui
@@ -42,7 +40,7 @@ facts
 yogiben:notifications
 aldeed:template-extension
 accounts-password
-ian:accounts-ui-bootstrap-3
+ian:accounts-ui-bootstrap-3@1.2.17
 service-configuration
 templates:tabs
 aldeed:delete-button
@@ -51,3 +49,4 @@ dburles:lazy
 matteodem:easy-security
 flowkey:hotkeys
 flowkey:bootstrap-tour
+wenape:soundmanager
