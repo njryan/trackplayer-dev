@@ -32,6 +32,8 @@
 
       nodes = utils.dom.getAll(playerSelector);
 
+      console.log('These are nodes: ' + nodes); // debugging
+
       if (nodes && nodes.length) {
         for (i = 0, j = nodes.length; i < j; i++) {
           players.push(new Player(nodes[i]));
