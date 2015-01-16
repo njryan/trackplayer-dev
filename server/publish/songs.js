@@ -4,6 +4,10 @@ Meteor.publish("songs", function() {
 	}
 });
 
+Meteor.publish("user_only_songs", function() {
+	return Songs.find({ownerId: this.userId});
+});
+
 Meteor.publish("all_songs", function() {
 	return Songs.find({}, {});
 });
@@ -15,3 +19,4 @@ Meteor.publish("songs_null", function() {
 Meteor.publish("song", function(songId) {
 	return Songs.find({_id:songId}, {});
 });
+

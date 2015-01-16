@@ -14,3 +14,6 @@ Meteor.publish("ad", function(adId) {
 	return Ads.find({_id:adId}, {});
 });
 
+Meteor.publish("my_ads", function() {
+	return Ads.find({ownerId: this._id});
+});

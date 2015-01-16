@@ -2,6 +2,13 @@
 
 @import "theme.import.less";
 
+// Custom Font
+@font-face {
+  font-family: bentonSans;
+  src:
+  url("/fonts/bentonsans.otf")
+}
+
 // variables
 
 @footer_height: 60px;
@@ -22,6 +29,7 @@ body {
   background: url('/images/bg.png') top #000000 no-repeat;
   background-size: 100% auto;
   height:100%;
+  font-family:bentonSans;
 }
 
 .navbar.navbar-default {
@@ -35,7 +43,10 @@ body {
 }
 
 #nav_pro_pic {
-  max-height:2em;
+  max-height: 1.7em;
+  margin-top: -9px;
+  margin-bottom: -5px;
+  margin-right:2px;
 }
 
 #logo {
@@ -44,8 +55,42 @@ body {
   top: -6px;
 }
 
+// Player
+
+#footer .sm2-bar-ui {
+  overflow:visible;
+  position:absolute;
+  bottom: -3.05em;
+  right:0;
+  max-width:33em;
+  background:black;
+  padding:2px;
+}
+.sm2-bar-ui.playlist-open .bd.sm2-playlist-drawer {
+  border: 1px solid @green_font;
+}
+#footer .sm2-bar-ui .sm2-inline-element {
+  border-right: .07em black solid;
+}
 
 
+
+// Dashboard Css
+
+#title_row {
+  color:white;
+  border-bottom: 1px solid lightslategrey;
+  background: rgba(50, 87, 205, 0.29);
+}
+
+#dash_mid {
+  margin-top:1.3em;
+}
+
+
+.modal-header {
+  min-height: 3em;
+}
 
 // Dataview
 #dataview {
@@ -155,6 +200,16 @@ span.glyphicon {
 #login-screen a.dropdown-toggle {
   display: none;
 }
+
+
+
+// Media Queries
+
+
+
+
+
+
 
 
 

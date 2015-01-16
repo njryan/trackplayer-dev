@@ -2,12 +2,79 @@
 	<div class="page-container container" id="content">
 		<div class="row" id="title_row">
 			<div class="col-md-12">
-				<h2 id="page_title" class="pull-left">
-					Welcome {{userFullName}}!
-				</h2>
+				<h3 id="page_title" class="pull-left">
+					Welcome {{userFullName}}. This is your dashboard.
+				</h3>
 				<div id="page_menu" class="pull-right">
 				</div>
+
+
+
 			</div>
+		</div>
+
+		<div id="dash_mid" class="row">
+			<div class="col-sm-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        <h4 class="list-group-item-heading">Menu</h4>
+                    </a>
+
+					{{#afModal class="list-group-item" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes"}}
+                       Submit New Audio <span class="badge"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></span>{{/afModal}}
+
+
+					{{#afModal class="list-group-item" collection="Ads" operation="insert" omitFields="ownerId,createdAt"}}
+                        New Performance Ad <span class="badge"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></span>{{/afModal}}
+
+                    <a href="{{pathFor 'user_settings'}}" class="list-group-item">Update Portfolio  <span class="badge"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span></a>
+                    <a href="/notifications" class="list-group-item">Inbox <span class="badge">{{notificationCount}}</span></a>
+                </div>
+
+			</div>
+
+			<div class="col-sm-9">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">My Performance Ads</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">My Performance Requests</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">My Songs</a></li>
+                    </ul>
+
+                    <div id="dash_tab_content" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                            <div class="panel panel-default">
+                                <!-- Default panel contents -->
+                                <div class="panel-heading">My Performance Ads</div>
+
+                                <!-- Table -->
+                                <table class="table table-striped">
+									<tbody>
+									{{#each perfAd}}
+                                        <tr>Title:  {{title}}  --  Genre: {{genre}}   --   Price: {{price}}   --    Description: {{description}}</tr>
+									{{else}}
+                                        <div class="alert alert-info" role="alert">No Performance Ads!</div>
+									{{/each}}
+									</tbody>
+                                </table>
+                            </div>
+						</div>
+                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                            <div class="alert alert-info" role="alert">No Performance Requests Recieved Yet!</div>
+						</div>
+                        <div role="tabpanel" class="tab-pane fade" id="messages">
+							{{#each mySong}}
+                                <tr>Title:  {{title}}  --  Genre: {{genre}}   --   Audio File Id: {{audioFile}}   --    Image Id: {{imageFile}}</tr>
+
+							{{else}}
+                                <div class="alert alert-info" role="alert">You haven't uploaded any songs!</div>
+							{{/each}}
+						</div>
+                    </div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </template>

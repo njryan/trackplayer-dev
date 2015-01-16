@@ -14,3 +14,7 @@ Meteor.publish("request", function(requestId) {
 	return Requests.find({_id:requestId}, {});
 });
 
+Meteor.publish("my_pending_requests", function() {
+	return Ads.find({to: this._id});
+});
+

@@ -36,7 +36,7 @@
         players.push(new Player(nodes[i]));
       }
     }
-  
+
   });
 
   utils = {
@@ -696,7 +696,7 @@
         var item, url;
 
         item = getItem();
-      
+
         if (item) {
           url = item.getElementsByTagName('a')[0].href;
         }
@@ -801,15 +801,15 @@
           var progressMaxLeft = 100,
               left,
               width;
-  
+
           left = Math.min(progressMaxLeft, Math.max(0, (progressMaxLeft * (this.position / this.durationEstimate)))) + '%';
           width = Math.min(100, Math.max(0, (100 * this.position / this.durationEstimate))) + '%';
-  
+
           if (this.duration) {
 
             dom.progress.style.left = left;
             dom.progressBar.style.width = width;
-              
+
             // TODO: only write changes
             dom.time.innerHTML = getTime(this.position, true);
 
@@ -869,7 +869,8 @@
           item = playlistController.getItem();
 
           if (item) {
-
+            // EVan Change
+            console.log(item);
             // note error, delay 2 seconds and advance?
             // playlistTarget.innerHTML = '<ul class="sm2-playlist-bd"><li>' + item.innerHTML + '</li></ul>';
 
@@ -887,7 +888,7 @@
           }
 
           // load next, possibly with delay.
-            
+
           if (navigator.userAgent.match(/mobile/i)) {
             // mobile will likely block the next play() call if there is a setTimeout() - so don't use one here.
             actions.next();

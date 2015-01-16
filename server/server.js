@@ -6,7 +6,8 @@ Meteor.startup(function() {
 		}
 	}
 
-
+	//console.log(process.env);
+	FS.debug = true;
 
 });
 
@@ -22,7 +23,7 @@ Meteor.methods({
 		if(options.password) userOptions.password = options.password;
 		if(options.profile) userOptions.profile = options.profile;
 		if(options.profile && options.profile.email) userOptions.email = options.profile.email;
-
+		console.log("Options: "+options.profile + userOptions);
 		Accounts.createUser(userOptions);
 	},
 	"updateUserAccount": function(userId, options) {
@@ -107,13 +108,24 @@ Users.before.update(function(userId, doc, fieldNames, modifier, options) {
 });
 
 Accounts.onLogin(function (info) {
-
+	//Notifications.new({ title: 'Welcome To Insonic!', message: 'Welcome to Insonic, '+user.username+'!', icon: 'bolt', owner: user._id });
 });
 
 Accounts.urls.resetPassword = function (token) {
 	return Meteor.absoluteUrl('reset_password/' + token);
 };
 
+
+// Social Media Login
+/*ServiceConfiguration.configurations.remove({
+	service: 'facebook'
+});
+
+ServiceConfiguration.configurations.insert({
+	service: 'facebook',
+	appId: '878456352174894',
+	secret: '476d354cc1b0dab3c640ee741fbd73f0'
+});*/
 
 //Sample Code incase the strange chrome websockets error
 //process.argv = _.without(process.argv, '--keepalive');

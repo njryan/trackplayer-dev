@@ -2,7 +2,7 @@ this.App = {};
 this.Helpers = {};
 
 Meteor.startup(function () {
-
+    SimpleSchema.debug = true;
 
     /* END THE TEST CODE */
 });
@@ -122,6 +122,22 @@ Accounts.ui.config({
 });
 
 
+// Set up the Share-It social media buttons
+ShareIt.configure({
+    useFB: true,          // boolean (default: true)
+                          // Whether to show the Facebook button
+    useTwitter: true,     // boolean (default: true)
+                          // Whether to show the Twitter button
+    useGoogle: false,      // boolean (default: true)
+                          // Whether to show the Google+ button
+    classes: "small btn", // string (default: 'large btn')
+                          // The classes that will be placed on the sharing buttons, bootstrap by default.
+    iconOnly: true,      // boolean (default: false)
+                          // Don't put text on the sharing buttons
+    applyColors: true     // boolean (default: true)
+                          // apply classes to inherit each social networks background color
+});
+
 // Custom UI Helper for Profile Image
 /*UI.registerHelper("getImageUser", function (userId) {
     var user= Meteor.users.findOne(userId);
@@ -140,6 +156,8 @@ Accounts.ui.config({
     }
 });*/
 
+
+// Template Helper to Pull User FB Image
 Template.registerHelper('userFBImage', function() {
         if(Meteor.user().services.facebook) {
             return Meteor.user().services.facebook.id;

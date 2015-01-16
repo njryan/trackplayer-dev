@@ -8,21 +8,40 @@ Songs.attachSchema(new SimpleSchema({
     author: {
         type: String,
         label: "Author",
-        optional: true
+        optional: true,
+        autoValue: function() {
+            if (this.userId) {
+                return this.username;
+            }
+        }
     },
     ownerId: {
         type: String,
         label: "Owner Id",
-        min: 0,
-        optional: true
+        optional: true,
+        autoValue: function() {
+            if (this.userId) {
+                return this.userId;
+            }
+        }
     },
     createdAt: {
         type: Date,
         label: "Published On",
-        optional: true
+        optional: true,
+        denyUpdate: true,
+        autoValue: function() {
+            if (this.isInsert) {
+                return new Date;
+            } else if (this.isUpsert) {
+                return {$setOnInsert: new Date};
+            } else {
+                this.unset();
+            }
+        }
     },
     genre: {
-        type: [String],
+        type: String,
         label: "Genre",
         allowedValues: ["rap-hiphop", "jazz", "country", "pop", "rock", "reggae", "classical", "EDM"],
         autoform: {

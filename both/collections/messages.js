@@ -2,60 +2,45 @@ Messages = new Meteor.Collection("messages");
 Messages.attachSchema(new SimpleSchema({
     title: {
         type: String,
-        label: "Title",
+        label: "Subject",
         max: 200
     },
-    author: {
+    to: {
         type: String,
-        label: "Author",
-        optional: true
-    },
-    ownerId: {
-        type: String,
-        label: "Owner Id",
-        min: 0,
-        optional: true
+        label: "To: ",
+        max: 200
     },
     createdAt: {
         type: Date,
         label: "Published On",
-        optional: true
-    },
-    genre: {
-        type: [String],
-        label: "Genre",
-        allowedValues: ["rap-hiphop", "jazz", "country", "pop", "rock", "reggae", "classical", "EDM"],
-        autoform: {
-            afFieldInput: {
-                firstOption: "(Select a Genre)"
+        optional: true,
+        denyUpdate: true,
+        autoValue: function() {
+            if (this.isInsert) {
+                return new Date;
+            } else if (this.isUpsert) {
+                return {$setOnInsert: new Date};
+            } else {
+                this.unset();
             }
         }
     },
-    likes: {
-        type: Number,
-        label: "Likes",
-        optional: true
-    },
-    coverImage: {
+    createdBy: {
         type: String,
         optional: true,
-        autoform: {
-            afFieldInput: {
-                type: 'fileUpload',
-                collection: 'Images'
+        autoValue: function() {
+            if (this.userId) {
+                return this.userId;
             }
         }
-
     },
-    audioFile: {
+    read: {
+        type: Boolean,
+        optional: true
+    },
+    body: {
         type: String,
-        optional: true,
-        autoform: {
-            afFieldInput: {
-                type: 'fileUpload',
-                collection: 'Audios'
-            }
-        }
-
+        label: "Message",
+        max: 400
     }
 }));

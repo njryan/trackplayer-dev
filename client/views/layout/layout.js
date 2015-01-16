@@ -36,35 +36,13 @@ Template.AudioPlayer.helpers({
 });
 
 Template.AudioPlayer.created = function() {
-  Notifications.new({ title: 'New message', icon: 'bolt' });
+  //Notifications.new({ title: '{Artist Name} has liked {Song Name}!', icon: 'bolt' });
 };
 
 
 Template.AudioPlayer.rendered = function() {
-  // Jplayer Sample Code
-  /*myPlaylist = new jPlayerPlaylist({
-			jPlayer: "#jquery_jplayer_N",
-			cssSelectorAncestor: "#jp_container_N"
-		}, [
-	{
-		title:"Cro Magnon Man",
-		artist:"The Stark Palace",
-		mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-		oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
-		poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
-	}
-	], {
-		playlistOptions: {
-			enableRemoveControls: true
-		},
-		swfPath: "../../dist/jplayer",
-		supplied: "webmv, ogv, m4v, oga, mp3",
-		useStateClassSkin: true,
-		autoBlur: false,
-		smoothPlayBar: true,
-		keyEnabled: true,
-		audioFullScreen: true
-	});*/
+
+
 
 };
 
@@ -77,7 +55,30 @@ Template.AudioPlayer.events({
 			artist:"The Stark Palace",
 			mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
 			oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
-			poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+			poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"// Jplayer Sample Code
+   /*myPlaylist = new jPlayerPlaylist({
+   jPlayer: "#jquery_jplayer_N",
+   cssSelectorAncestor: "#jp_container_N"
+   }, [
+   {
+   title:"Cro Magnon Man",
+   artist:"The Stark Palace",
+   mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+   oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+   poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+   }
+   ], {
+   playlistOptions: {
+   enableRemoveControls: true
+   },
+   swfPath: "../../dist/jplayer",
+   supplied: "webmv, ogv, m4v, oga, mp3",
+   useStateClassSkin: true,
+   autoBlur: false,
+   smoothPlayBar: true,
+   keyEnabled: true,
+   audioFullScreen: true
+   });
 		},
 	{
 		title:"Your Face",

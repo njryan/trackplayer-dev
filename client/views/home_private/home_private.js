@@ -16,5 +16,11 @@ Template.HomePrivate.events({
 });
 
 Template.HomePrivate.helpers({
+	"perfAds": function() {
+		return Ads.find();
+	},
+	"mySong": function() {
+		return Songs.find();
+	}
 	
 });

@@ -3,87 +3,100 @@ if (Meteor.users.find().count() === 0) {
   // Loop through user array, for each user, make certain number of each post
   var now = new Date().getTime();
   // create two users
+  console.log("Starting User Dump Now");
   var tomId = Meteor.users.insert({
-    profile: { name: 'Tom' },
-    bio: Fake.paragraph(3),
-    rating: 3,
+    profile: {
+      firstName: 'Tom',
+      artistType: "band",
+      state: 'NY',
+      bio: Fake.paragraph(1),
+      rating: 3
+    },
     username: 'tommy',
-    state: 'NY',
-    artistType: 'Musician',
-    roles: ["user"]
+    createdAt: now
   });
   var tom = Meteor.users.findOne(tomId);
 
+  console.log("One Done!" + tom._id + tom + tomId);
+
   var sachaId = Meteor.users.insert({
-    profile: { name: 'SachaG' },
-    bio: Fake.word(1),
-    rating: 2,
+    profile: {
+      firstName: 'SachaG',
+      artistType: "musician",
+      bio: Fake.word(20),
+      state: 'NY',
+      rating: 2
+    },
     username: 'Sacha',
-    state: 'NY',
-    artistType: 'Songwriter',
-    roles: ["user"]
+    createdAt: now
   });
   var sacha = Meteor.users.findOne(sachaId);
 
+  console.log("Two Done!"+ sacha._id +" "+ sacha +" "+ sachaId);
+
   var moId = Meteor.users.insert({
-    profile: { name: 'MOs' },
-    bio: Fake.paragraph(3),
-    rating: 5,
-    username: 'moman',
-    state: 'CT',
-    artistType: 'Producer',
-    roles: ["user"]
+    profile: {
+      firstName: 'MOs',
+      state: 'CT',
+      artistType: "producer",
+      rating: 5,
+      bio: Fake.paragraph(3)
+    },
+    createdAt: now,
+    username: 'moman'
   });
   var moman = Meteor.users.findOne(moId);
+
+  console.log("Mo:" + moId +" "+ moman +" "+ moman._id);
 
   for (var i = 0; i < 6; i++) {
     Songs.insert({
       title: 'Test song #' + i,
       name: 'Test song #' + i,
-      author: sacha.profile.name,
-      ownerId: sacha._id,
+      author: sachaId,
+      ownerId: sachaId,
       audioFile: '/music/song' + i + '.mp3',
       submitted: now - i * 3600 * 1000,
       likes: i + 3,
       coverImage: '/images/anon-img.png',
-      genre: 'Rock'
+      genre: 'rock'
     });
   }
   for (var j = 0; j < 6; j++) {
     Messages.insert({
-      title: 'Test Message #' + i,
-      name: 'Test Message #' + i,
-      author: moman.profile.name,
-      ownerId: moman._id,
-      upload:'/attachments/'+i,
-      description: Fake.paragraph(3),
-      subject: "It's saying Hi! " + i + " ",
-      submitted: now - i * 600 * 1000,
+      title: 'Test Message #' + j,
+      to: sacha._id,
+      createdBy: sachaId,
+      body: Fake.paragraph(3),
+      createdAt: now - j * 600 * 1000,
+      read: false
     });
+    console.log("Message "+ j);
   }
   for (var k = 0; k < 6; k++) {
     Requests.insert({
-      title: 'Test Request #' + i,
-      name: 'Test Request #' + i,
-      author: tom.profile.name,
-      ownerId: tom._id,
+      title: 'Test Request #' + k,
+      createdBy: sachaId,
       to: moman._id,
-      message: 'Hey! Lets work together man!',
-      submitted: now - i * 700 * 1000,
+      ownerId: sacha._id,
+      body: 'Hey! Lets work together man!',
+      sentAt: now - k * 700 * 1000,
+      read: false
     });
+    console.log("Requests "+ k);
   }
 
   for (var l = 0; l < 6; l++) {
     Ads.insert({
       title: 'Test Ad #' + i,
-      author: tom.profile.name,
-      ownerId: tom._id,
-      name: 'Test Ad #' + i,
-      price: i + 12,
+      createdAt: now - l * 700 * 200,
+      createdBy: tom._id || tomId,
+      ownerId: sacha._id || sachaId,
+      price: l + 12,
       description: Fake.paragraph(2),
-      submitted: now - i * 3600 * 1000,
-      genre: 'Jazz'
+      genre: 'Pop'
     });
+    console.log("Ads "+ l);
   }
 
 }

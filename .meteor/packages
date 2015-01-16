@@ -43,3 +43,11 @@ yogiben:notifications
 aldeed:template-extension
 accounts-password
 ian:accounts-ui-bootstrap-3
+service-configuration
+templates:tabs
+aldeed:delete-button
+aldeed:autoform-bs-button-group-input
+dburles:lazy
+matteodem:easy-security
+flowkey:hotkeys
+flowkey:bootstrap-tour
