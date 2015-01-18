@@ -1,9 +1,9 @@
-this.DashboardProfileController = RouteController.extend({
+this.DashboardController = RouteController.extend({
 	template: "Dashboard",
 
 	yieldTemplates: {
-		'DashboardProfile': { to: 'DashboardSubcontent'}
-		
+		/*YIELD_TEMPLATES*/
+		//'DashboardHome' : { to: 'DashboardSubcontent'}
 	},
 
 	onBeforeAction: function() {
@@ -12,14 +12,15 @@ this.DashboardProfileController = RouteController.extend({
 	},
 
 	action: function() {
-		if(this.isReady()) { this.render(); } else { this.render("Dashboard"); this.render("loading", { to: "DashboardSubcontent" });}
+		//console.log("action called");
+		//this.redirect('dashboard.profile', this.params || {});
+		this.redirect('dashboard.home', this.params || {});
 		/*ACTION_FUNCTION*/
+		//this.next();
 	},
 
 	isReady: function() {
 		var subs = [
-			Meteor.subscribe("current_user_data"),
-			Meteor.subscribe("profiles")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
@@ -31,8 +32,7 @@ this.DashboardProfileController = RouteController.extend({
 
 	data: function() {
 		return {
-			params: this.params || {},
-			current_user_data: Users.findOne({_id:Meteor.userId()}, {})
+			params: this.params || {}
 		};
 		/*DATA_FUNCTION*/
 	},

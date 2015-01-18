@@ -1,8 +1,9 @@
-this.DashboardController = RouteController.extend({
+this.DashboardProfileController = RouteController.extend({
 	template: "Dashboard",
 
 	yieldTemplates: {
-		/*YIELD_TEMPLATES*/
+		'DashboardProfile': { to: 'DashboardSubcontent'}
+		
 	},
 
 	onBeforeAction: function() {
@@ -11,12 +12,14 @@ this.DashboardController = RouteController.extend({
 	},
 
 	action: function() {
-		this.redirect('dashboard.profile', this.params || {});
+		if(this.isReady()) { this.render(); } else { this.render("Dashboard"); this.render("loading", { to: "DashboardSubcontent" });}
 		/*ACTION_FUNCTION*/
 	},
 
 	isReady: function() {
 		var subs = [
+			//Meteor.subscribe("current_user_data"),
+			//Meteor.subscribe("profiles")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
@@ -28,7 +31,8 @@ this.DashboardController = RouteController.extend({
 
 	data: function() {
 		return {
-			params: this.params || {}
+			params: this.params || {},
+			current_user_data: Users.findOne({_id:Meteor.userId()}, {})
 		};
 		/*DATA_FUNCTION*/
 	},

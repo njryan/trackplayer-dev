@@ -8,7 +8,9 @@ Router.configure({
 
 if(Meteor.isClient) {
 	var publicRoutes = ["home_public", "login", "register", "forgot_password", "reset_password"];
-	var privateRoutes = ["home_private", "spotlight", "rez_radio", "ads", "ads.insert", "ads.details", "ads.edit", "songs", "songs.insert", "songs.details", "songs.edit", "new_messages", "messages.insert", "messages.details", "messages.edit", "requests", "requests.insert", "requests.details", "requests.edit", "admin", "admin.users", "admin.users.details", "admin.users.insert", "admin.users.edit", "dashboard", "dashboard.profile", "dashboard.change_pass", "logout", "dashboard"];
+	var privateRoutes = ["home_private", "spotlight", "rez_radio", "ads", "ads.insert", "ads.details", "ads.edit", "songs", "songs.insert", "songs.details", "songs.edit", "new_messages",
+		"messages.insert", "messages.details", "messages.edit", "requests", "requests.insert", "requests.details", "requests.edit", "admin", "admin.users", "admin.users.details", "admin.users.insert",
+		"admin.users.edit", "dashboard", "dashboard.profile", "dashboard.change_pass", "logout", "dashboard.home"];
 	var zonelessRoutes = [];
 
 	var roleMap = [
@@ -35,9 +37,9 @@ if(Meteor.isClient) {
 		{route: "admin.users.insert", roles: ["admin"]},
 		{route: "admin.users.edit", roles: ["admin"]},
 		{route: "dashboard", roles: ["user", "admin"]},
+		{route: "dashboard.home", roles: ["user", "admin"]},
 		{route: "dashboard.profile", roles: ["user", "admin"]},
-		{route: "dashboard.change_pass", roles: ["user", "admin"]},
-		{route: "dashboard", roles: ["admin", "user"]}
+		{route: "dashboard.change_pass", roles: ["user", "admin"]}
 	];
 
 	this.firstGrantedRoute = function () {
@@ -193,5 +195,7 @@ Router.map(function () {
 	this.route("dashboard.profile", {path: "/dashboard/profile", controller: "DashboardProfileController"});
 	this.route("dashboard.change_pass", {path: "/dashboard/change_pass", controller: "DashboardChangePassController"})
 	this.route("dashboard", {path: "/dashboard", controller: "DashboardController"});
+	this.route("dashboard.home", {path: "/dashboard/home", controller: "DashboardHomeController"});
+	this.route("dashboard.songs", {path: "/dashboard/songs", controller: "DashboardSongsController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});/*ROUTER_MAP*/
 });
