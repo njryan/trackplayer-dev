@@ -1,23 +1,14 @@
 <template name="DashboardSongs">
     <div class="page-container container" id="content">
         <div class="row">
-            <div id="title_block" class="col-md-12">
-                <h2 id="page_title" class="pull-left">
-                    Songs Directory
-                </h2>
-                <div id="page_menu" class="pull-right">
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div id="content_block" class="col-md-12">
-              {{> SongsView}}
+              {{> SongsViewDashboard}}
             </div>
         </div>
     </div>
 </template>
 
-<template name="SongsView">
+<template name="SongsViewDashboard">
     <div id="dataview" class="">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -94,7 +85,7 @@
                 </div>
             {{else}}
                 <div id="dataview-data">
-                  {{#if viewAsTable}} {{> SongsViewTable}} {{/if}}
+                  {{#if viewAsTable}} {{> SongsViewTableDashboard}} {{/if}}
                 </div>
             {{/if}}
           {{else}}
@@ -107,7 +98,7 @@
     </div>
 </template>
 
-<template name="SongsViewTable">
+<template name="SongsViewTableDashboard">
     <table id="dataview-table" class="table table-striped table-hover">
         <thead id="dataview-table-header">
         <tr id="dataview-table-header-row">
@@ -143,7 +134,7 @@
     </table>
 </template>
 
-<template name="SongsViewTableItems">
+<template name="SongsViewTableDashboardItems">
     <tr id="dataview-table-items-row">
         <td>
           {{title}}

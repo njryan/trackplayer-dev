@@ -80,12 +80,12 @@ var SongsViewExport = function(cursor, fileType) {
 }
 
 
-Template.SongsView.rendered = function() {
+Template.SongsViewDashboard.rendered = function() {
     pageSession.set("SongsViewStyle", "table");
 
 };
 
-Template.SongsView.events({
+Template.SongsViewDashboard.events({
     "submit #dataview-controls": function(e, t) {
         return false;
     },
@@ -167,7 +167,7 @@ Template.SongsView.events({
 
 });
 
-Template.SongsView.helpers({
+Template.SongsViewDashboard.helpers({
     "isEmpty": function() {
         return !this.all_songs || this.all_songs.count() == 0;
     },
@@ -194,11 +194,11 @@ Template.SongsView.helpers({
 });
 
 
-Template.SongsViewTable.rendered = function() {
+Template.SongsViewTableDashboard.rendered = function() {
 
 };
 
-Template.SongsViewTable.events({
+Template.SongsViewTableDashboard.events({
     "click .th-sortable": function(e, t) {
         e.preventDefault();
         var oldSortBy = pageSession.get("SongsViewSortBy");
@@ -214,18 +214,18 @@ Template.SongsViewTable.events({
     }
 });
 
-Template.SongsViewTable.helpers({
+Template.SongsViewTableDashboard.helpers({
     "tableItems": function() {
         return SongsViewItems(this.all_songs);
     }
 });
 
 
-Template.SongsViewTableItems.rendered = function() {
-
+Template.SongsViewTableDashboardItems.rendered = function() {
+    console.log('sleepy');
 };
 
-Template.SongsViewTableItems.events({
+Template.SongsViewTableDashboardItems.events({
     /*"click td": function(e, t) {
      e.preventDefault();
      Router.go("songs.details", {songId: this._id});
@@ -262,7 +262,7 @@ Template.SongsViewTableItems.events({
     }
 });
 
-Template.SongsViewTableItems.helpers({
+Template.SongsViewTableDashboardItems.helpers({
     "imageItems": function() {
         //console.log(this);
         return Images.find({},{limit:1});

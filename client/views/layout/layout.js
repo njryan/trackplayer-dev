@@ -248,6 +248,10 @@ Template.Playlist.events({
     'click .pause' : function(event, template) {
         console.log(this.id); // Debugging
         pauseSong(this.id);
+    },
+    'click #prev' : function(event, template) {
+        console.log('Previous Clicked: '+template+ ' '+event);
+        previousSong(this.id);
     }
 
 });
@@ -260,6 +264,16 @@ Template.Playlist.helpers({
     ],
     getProgress: function () {
         return Session.get('progress') + '%';
+    },
+    /*currentPosMin: function() {
+        return Session.get('currentPosMin');
+    },*/
+    currentPos: function() {
+        return (Session.get('currentPosMin')+':'+Session.get('currentPosSec'));
+    },
+    currentDur: function() {
+        return Session.get('currentDurMin')+':'+Session.get('currentDurSec');
     }
+
 
 });

@@ -1,29 +1,27 @@
 <template name="Dashboard">
-	<div class="page-container container">
-		<div class="row">
-			<div class="col-md-12" id="content">
-				<div class="row" id="title_row">
-					<div class="col-md-12">
-						<div id="page_menu" class="pull-right">
-						</div>
-					</div>
-				</div>
+    <div class="page-container container" id="content">
+        <div class="row">
+            <div id="title_block" class="col-md-12">
+                <h2 id="page_title" class="pull-left">
+					Dashboard
+					</h2>
 			</div>
 		</div>
 		<div class="row">
+			<div id="content_block">
 			<div class="panel panel-primary">
 				<div class="panel-body">
 					<div id="menu" class="col-sm-3 col-md-2">
-						<h2>
-						</h2>
+
 						{{> DashboardSideMenu}}
 					</div>
 
-			<div id="subcontent" class="col-sm-9 col-md-10">
-				{{> yield region='DashboardSubcontent'}}
+					<div id="subcontent" class="col-sm-9 col-md-10">
+						{{> yield region='DashboardSubcontent'}}
+					</div>
+				</div>
 			</div>
-		</div>
-		</div>
+			</div>
 		</div>
 	</div>
 </template>

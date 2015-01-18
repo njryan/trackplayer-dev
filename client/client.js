@@ -164,10 +164,32 @@ Template.registerHelper('userFBImage', function() {
     }
 });
 
+// General Helpers
+
+// Console Log helper
+cl = function(something){
+    console.log(something);
+};
+
 /*
  * Helper Functions for Managing Audio Playing
  */
 
+
+convertTime = function(unit,msec) {
+    var nSec = Math.floor(msec / 1000),
+        hh = Math.floor(nSec / 3600),
+        min = Math.floor(nSec / 60) - Math.floor(hh * 60),
+        sec = Math.floor(nSec - (hh * 3600) - (min * 60));
+    if (unit == 'min') {
+        return min;
+    } else {
+        return sec;
+    }
+};
+
+
+// Play song, or toggle pause if the song is already playing
 playSong = function (_id, url) {
     // Check to see if already playing, if so toggle pause
     if (soundManager.getSoundById(_id)) {
@@ -181,9 +203,17 @@ playSong = function (_id, url) {
             autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
             onload: function () {
                 console.log(_id + "loaded!");
+                Session.set('currentPosMin', '0');
+                Session.set('currentPosSec', '00');
             }, // Show an indicator on the UI that the file is loaded
             whileplaying: function () {
+                cl('positionRaw: '+this.position);
+                cl('durationRaw: '+this.duration);
                 Session.set('progress', this.position * 100 / this.duration);
+                Session.set('currentPosMin', convertTime('min',this.position));
+                Session.set('currentPosSec', convertTime('sec',this.position));
+                Session.set('currentDurMin', convertTime('min', this.duration));
+                Session.set('currentDurSec', convertTime('sec', this.duration));
             }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
             onfinish: function () {
                 // remember to release audio resources
@@ -201,6 +231,11 @@ playSong = function (_id, url) {
 pauseSong = function (_id) {
     //soundManager.pause(_id);
     soundManager.pauseAll();
+};
+
+previousSong = function (_id) {
+    //soundManager.pause(_id);
+    soundManager.setPosition(_id, 0);
 };
 
 soundManager.onerror = function() {

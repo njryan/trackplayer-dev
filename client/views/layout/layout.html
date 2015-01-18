@@ -262,11 +262,11 @@
 
                     <div class="sm2-progress">
                         <div class="sm2-row">
-                            <div class="sm2-inline-time">{{this.duration}}</div>
+                            <div class="sm2-inline-time">{{#if currentPos }}{{ currentPos }}{{ else }}0.00{{ /if }}</div>
                             <div class="sm2-progress-bd">
                                 <div class="progress-bar" style="width: {{getProgress}}"></div>
                             </div>
-                            <div class="sm2-inline-duration">0:00</div>
+                            <div class="sm2-inline-duration">{{ currentDur }}</div>
                         </div>
                     </div>
 
