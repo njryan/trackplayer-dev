@@ -1,5 +1,5 @@
-this.UserSettingsController = RouteController.extend({
-	template: "UserSettings",
+this.DashboardController = RouteController.extend({
+	template: "Dashboard",
 
 	yieldTemplates: {
 		/*YIELD_TEMPLATES*/
@@ -11,7 +11,7 @@ this.UserSettingsController = RouteController.extend({
 	},
 
 	action: function() {
-		this.redirect('user_settings.profile', this.params || {});
+		this.redirect('dashboard.profile', this.params || {});
 		/*ACTION_FUNCTION*/
 	},
 

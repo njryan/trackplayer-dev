@@ -8,49 +8,50 @@ Router.configure({
 
 if(Meteor.isClient) {
 	var publicRoutes = ["home_public", "login", "register", "forgot_password", "reset_password"];
-	var privateRoutes = ["home_private", "spotlight", "rez_radio", "ads", "ads.insert", "ads.details", "ads.edit", "songs", "songs.insert", "songs.details", "songs.edit", "new_messages", "messages.insert", "messages.details", "messages.edit", "requests", "requests.insert", "requests.details", "requests.edit", "admin", "admin.users", "admin.users.details", "admin.users.insert", "admin.users.edit", "user_settings", "user_settings.profile", "user_settings.change_pass", "logout"];
+	var privateRoutes = ["home_private", "spotlight", "rez_radio", "ads", "ads.insert", "ads.details", "ads.edit", "songs", "songs.insert", "songs.details", "songs.edit", "new_messages", "messages.insert", "messages.details", "messages.edit", "requests", "requests.insert", "requests.details", "requests.edit", "admin", "admin.users", "admin.users.details", "admin.users.insert", "admin.users.edit", "dashboard", "dashboard.profile", "dashboard.change_pass", "logout", "dashboard"];
 	var zonelessRoutes = [];
 
 	var roleMap = [
-		{ route: "rez_radio", roles: ["admin","user"] },
-		{ route: "ads", roles: ["admin","user"] },
-		{ route: "ads.insert", roles: ["admin","user"] },
-		{ route: "ads.details", roles: ["admin","user"] },
-		{ route: "ads.edit", roles: ["admin","user"] },
-		{ route: "songs", roles: ["admin","user"] },
-		{ route: "songs.insert", roles: ["admin","user"] },
-		{ route: "songs.details", roles: ["admin","user"] },
-		{ route: "songs.edit", roles: ["admin","user"] },
-		{ route: "new_messages", roles: ["admin","user"] },
-		{ route: "messages.insert", roles: ["admin","user"] },
-		{ route: "messages.details", roles: ["admin","user"] },
-		{ route: "messages.edit", roles: ["admin","user"] },
-		{ route: "requests", roles: ["admin","user"] },
-		{ route: "requests.insert", roles: ["admin","user"] },
-		{ route: "requests.details", roles: ["admin","user"] },
-		{ route: "requests.edit", roles: ["admin","user"] },
-		{ route: "admin", roles: ["admin"] },
-		{ route: "admin.users", roles: ["admin"] },
-		{ route: "admin.users.details", roles: ["admin"] },
-		{ route: "admin.users.insert", roles: ["admin"] },
-		{ route: "admin.users.edit", roles: ["admin"] },
-		{ route: "user_settings", roles: ["user","admin"] },
-		{ route: "user_settings.profile", roles: ["user","admin"] },
-		{ route: "user_settings.change_pass", roles: ["user","admin"] }
+		{route: "rez_radio", roles: ["admin", "user"]},
+		{route: "ads", roles: ["admin", "user"]},
+		{route: "ads.insert", roles: ["admin", "user"]},
+		{route: "ads.details", roles: ["admin", "user"]},
+		{route: "ads.edit", roles: ["admin", "user"]},
+		{route: "songs", roles: ["admin", "user"]},
+		{route: "songs.insert", roles: ["admin", "user"]},
+		{route: "songs.details", roles: ["admin", "user"]},
+		{route: "songs.edit", roles: ["admin", "user"]},
+		{route: "new_messages", roles: ["admin", "user"]},
+		{route: "messages.insert", roles: ["admin", "user"]},
+		{route: "messages.details", roles: ["admin", "user"]},
+		{route: "messages.edit", roles: ["admin", "user"]},
+		{route: "requests", roles: ["admin", "user"]},
+		{route: "requests.insert", roles: ["admin", "user"]},
+		{route: "requests.details", roles: ["admin", "user"]},
+		{route: "requests.edit", roles: ["admin", "user"]},
+		{route: "admin", roles: ["admin"]},
+		{route: "admin.users", roles: ["admin"]},
+		{route: "admin.users.details", roles: ["admin"]},
+		{route: "admin.users.insert", roles: ["admin"]},
+		{route: "admin.users.edit", roles: ["admin"]},
+		{route: "dashboard", roles: ["user", "admin"]},
+		{route: "dashboard.profile", roles: ["user", "admin"]},
+		{route: "dashboard.change_pass", roles: ["user", "admin"]},
+		{route: "dashboard", roles: ["admin", "user"]}
 	];
 
-	this.firstGrantedRoute = function() {
+	this.firstGrantedRoute = function () {
 		var grantedRoute = "";
-		_.every(privateRoutes, function(route) {
-			if(routeGranted(route)) {
+		_.every(privateRoutes, function (route) {
+			if (routeGranted(route)) {
 				grantedRoute = route;
 				return false;
 			}
 			return true;
 		});
 
-		if(grantedRoute == "") {
-			if(routeGranted("home_private")) {
+		if (grantedRoute == "") {
+			if (routeGranted("home_private")) {
 				return "home_private";
 			} else {
 				return "home_public";
@@ -61,24 +62,26 @@ if(Meteor.isClient) {
 	};
 
 	// this function returns true if user is in role allowed to access given route
-	this.routeGranted = function(routeName) {
-		if(!routeName) {
+	this.routeGranted = function (routeName) {
+		if (!routeName) {
 			// route without name - enable access (?)
 			return true;
 		}
 
-		if(!roleMap || roleMap.length === 0) {
+		if (!roleMap || roleMap.length === 0) {
 			// this app don't have role map - enable access
 			return true;
 		}
 
-		var roleMapItem = _.find(roleMap, function(roleItem) { return roleItem.route == routeName; });
-		if(!roleMapItem) {
+		var roleMapItem = _.find(roleMap, function (roleItem) {
+			return roleItem.route == routeName;
+		});
+		if (!roleMapItem) {
 			// page is not restricted
 			return true;
 		}
 
-		if(!Meteor.user() || !Meteor.user().roles) {
+		if (!Meteor.user() || !Meteor.user().roles) {
 			// user is not logged in
 			return false;
 		}
@@ -91,17 +94,19 @@ if(Meteor.isClient) {
 
 	};
 
+	// Subscribe this data for every user
+
 	Meteor.subscribe("current_user_data");
 	Meteor.subscribe("profiles");
 
-	Router.ensureLogged = function() {
-		if(!Meteor.user()) {
+	Router.ensureLogged = function () {
+		if (!Meteor.user()) {
 			// user is not logged in - redirect to public home
 			this.redirect("home_public");
 
 		} else {
 			// user is logged in - check role
-			if(!routeGranted(this.route.getName())) {
+			if (!routeGranted(this.route.getName())) {
 				// user is not in allowedRoles - redirect to private home
 				var redirectRoute = firstGrantedRoute();
 				this.redirect(redirectRoute);
@@ -111,8 +116,8 @@ if(Meteor.isClient) {
 		}
 	};
 
-	Router.ensureNotLogged = function() {
-		if(Meteor.user()) {
+	Router.ensureNotLogged = function () {
+		if (Meteor.user()) {
 			var redirectRoute = firstGrantedRoute();
 			this.redirect(redirectRoute);
 		}
@@ -120,9 +125,9 @@ if(Meteor.isClient) {
 			this.next();
 	};
 
-	Router.onBeforeAction(function() {
+	Router.onBeforeAction(function () {
 		// loading indicator here
-		if(!this.ready()) {
+		if (!this.ready()) {
 			$("body").addClass("wait");
 		} else {
 			$("body").removeClass("wait");
@@ -132,7 +137,27 @@ if(Meteor.isClient) {
 
 	Router.onBeforeAction(Router.ensureNotLogged, {only: publicRoutes});
 	Router.onBeforeAction(Router.ensureLogged, {only: privateRoutes});
+
+	// Add SEO title, meta, and og properly on route load.
+	Router.onAfterAction(function () {
+		if (!Meteor.isClient) {
+			return;
+		}
+		//post = getData();
+		var seoRouterName = Router.current().route.getName();
+		SEO.set({
+			title: seoRouterName,
+			meta: {
+				'description': seoRouterName
+			},
+			og: {
+				'title': seoRouterName,
+				'description': seoRouterName
+			}
+		});
+	});
 }
+
 
 Router.map(function () {
 
@@ -165,8 +190,8 @@ Router.map(function () {
 	this.route("admin.users.details", {path: "/admin/users/details/:userId", controller: "AdminUsersDetailsController"});
 	this.route("admin.users.insert", {path: "/admin/users/insert", controller: "AdminUsersInsertController"});
 	this.route("admin.users.edit", {path: "/admin/users/edit/:userId", controller: "AdminUsersEditController"});
-	this.route("user_settings", {path: "/user_settings", controller: "UserSettingsController"});
-	this.route("user_settings.profile", {path: "/user_settings/profile", controller: "UserSettingsProfileController"});
-	this.route("user_settings.change_pass", {path: "/user_settings/change_pass", controller: "UserSettingsChangePassController"});
+	this.route("dashboard.profile", {path: "/dashboard/profile", controller: "DashboardProfileController"});
+	this.route("dashboard.change_pass", {path: "/dashboard/change_pass", controller: "DashboardChangePassController"})
+	this.route("dashboard", {path: "/dashboard", controller: "DashboardController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});/*ROUTER_MAP*/
 });

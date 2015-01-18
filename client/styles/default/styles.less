@@ -34,12 +34,16 @@ body {
 
 .navbar.navbar-default {
   color: #7fe540;
-  background-image: linear-gradient(#404040, #151515);
+  background-color: #272727;
   border: 1px solid rgba(0, 158, 255, 0.35);
 }
 
 .navbar-default .navbar-nav > li > a {
   color: @green_font;
+}
+
+.navbar-spacer {
+  height: 5em;
 }
 
 #nav_pro_pic {
@@ -56,61 +60,57 @@ body {
 }
 
 // Player
-
 #footer .sm2-bar-ui {
   overflow:visible;
   position:absolute;
-  bottom: -3.05em;
   right:0;
   max-width:33em;
-  background:black;
+  background:#272727;
   padding:2px;
 }
 .sm2-bar-ui.playlist-open .bd.sm2-playlist-drawer {
   border: 1px solid @green_font;
 }
+
+.sm2-bar-ui .progress-bar {
+  background: rgb(164, 255, 164);
+  height: 10px;
+  width: 3.7462937455494276%;
+  box-shadow: 0px 0px 2px;
+}
+
 #footer .sm2-bar-ui .sm2-inline-element {
   border-right: .07em black solid;
 }
 
+#footer .sm2-bar-ui .bd, .sm2-bar-ui .sm2-extra-controls {
+  background-color:inherit;
+}
 
 
-// Dashboard Css
-
-#title_row {
+//All Pages
+#title_block, #content_block {
   color:white;
-  border-bottom: 1px solid lightslategrey;
   background: rgba(50, 87, 205, 0.29);
 }
 
-#dash_mid {
-  margin-top:1.3em;
+#content_block {
+  margin-top: 1%;
+  padding-top: 1%;
 }
 
-
-.modal-header {
-  min-height: 3em;
-}
-
-// Dataview
-#dataview {
-  padding: 10px;
-  background: rgba(245, 245, 245, 0.89);
-  border: 3px solid green;
-}
-
-// Content Background
-
-form#dataview-controls {
-  margin-top:12px;
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: bentonSans;
 }
 
 h2#page_title {
   color: rgb(250, 224, 224);
+  margin-top: .45em;
+  font-size: 1.9em;
 }
 
-.navbar-spacer {
-  height: 5em;
+h3#page_title {
+  margin-top: .6em;
 }
 
 // Component Title
@@ -123,6 +123,30 @@ h2#component-title {
 span.glyphicon {
   margin-left:7px;
 }
+
+.to_dashboard {
+  margin-top: 4%;
+}
+
+// Modal header Fix
+.modal-header {
+  min-height: 3em;
+}
+
+form#dataview-controls {
+  margin-top:12px;
+}
+
+
+
+// Dashboard Css
+
+#dash_mid {
+  margin-top:1.3em;
+}
+
+
+
 
 
 // Rez Radio Page
@@ -337,9 +361,6 @@ p {
 	cursor: pointer;
 }
 
-.table-hover tr {
-	cursor: pointer;
-}
 
 #dataview-controls {
 	margin-bottom: 10px;

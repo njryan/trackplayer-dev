@@ -1,10 +1,10 @@
 var pageSession = new ReactiveDict();
 
-Template.UserSettingsProfile.rendered = function() {
+Template.DashboardProfile.rendered = function() {
 	
 };
 
-Template.UserSettingsProfile.events({
+Template.DashboardProfile.events({
 	"click #page-close-button": function(e, t) {
 		e.preventDefault();
 		Router.go("", {});
@@ -17,15 +17,15 @@ Template.UserSettingsProfile.events({
 	
 });
 
-Template.UserSettingsProfile.helpers({
+Template.DashboardProfile.helpers({
 	
 });
 
-Template.UserSettingsProfileEditForm.rendered = function() {
+Template.DashboardProfileEditForm.rendered = function() {
 	
 
-	pageSession.set("userSettingsProfileEditFormInfoMessage", "");
-	pageSession.set("userSettingsProfileEditFormErrorMessage", "");
+	pageSession.set("DashboardProfileEditFormInfoMessage", "");
+	pageSession.set("DashboardProfileEditFormErrorMessage", "");
 
 	$(".input-group.date").each(function() {
 		var format = $(this).find("input[type='text']").attr("data-format");
@@ -50,24 +50,24 @@ Template.UserSettingsProfileEditForm.rendered = function() {
 	$("input[autofocus]").focus();
 };
 
-Template.UserSettingsProfileEditForm.events({
+Template.DashboardProfileEditForm.events({
 	"submit": function(e, t) {
 		e.preventDefault();
-		pageSession.set("userSettingsProfileEditFormInfoMessage", "");
-		pageSession.set("userSettingsProfileEditFormErrorMessage", "");
+		pageSession.set("DashboardProfileEditFormInfoMessage", "");
+		pageSession.set("DashboardProfileEditFormErrorMessage", "");
 		
 		var self = this;
 
 		function submitAction() {
 			if(!t.find("#form-cancel-button")) {
-				pageSession.set("userSettingsProfileEditFormInfoMessage", "Saved.");
+				pageSession.set("DashboardProfileEditFormInfoMessage", "Saved.");
 			}
 
-			Router.go("user_settings.profile", {});
+			Router.go("dashboard.profile", {});
 		}
 
 		function errorAction(msg) {
-			pageSession.set("userSettingsProfileEditFormErrorMessage", "Error. " + msg);
+			pageSession.set("DashboardProfileEditFormErrorMessage", "Error. " + msg);
 		}
 
 		validateForm(
@@ -108,12 +108,12 @@ Template.UserSettingsProfileEditForm.events({
 	
 });
 
-Template.UserSettingsProfileEditForm.helpers({
+Template.DashboardProfileEditForm.helpers({
 	"infoMessage": function() {
-		return pageSession.get("userSettingsProfileEditFormInfoMessage");
+		return pageSession.get("DashboardProfileEditFormInfoMessage");
 	},
 	"errorMessage": function() {
-		return pageSession.get("userSettingsProfileEditFormErrorMessage");
+		return pageSession.get("DashboardProfileEditFormErrorMessage");
 	}
 	
 });

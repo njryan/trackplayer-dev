@@ -1,7 +1,7 @@
 <template name="Songs">
 	<div class="page-container container" id="content">
-		<div class="row" id="title_row">
-			<div class="col-md-12">
+		<div class="row">
+			<div id="title_block" class="col-md-12">
 				<h2 id="page_title" class="pull-left">
 					Songs Directory
 				</h2>
@@ -9,7 +9,11 @@
 				</div>
 			</div>
 		</div>
+        <div class="row">
+            <div id="content_block" class="col-md-12">
 		{{> SongsView}}
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -145,7 +149,7 @@
 			{{title}}
 		</td>
 		<td>
-			{{#each imageItems}} <a href="{{this.url}}">image link</a>   {{/each}}
+			{{#each imageItems}} <img src="{{this.url}}">   {{/each}}
 		  Image FS ID: {{coverImage}}
 			Audio FS ID: {{audioFile}}
 		</td>
@@ -153,7 +157,7 @@
 			{{genre}}
 		</td>
 		<td>
-			{{#each audioItems}} <a href="{{this.url}}">Song URL</a> {{/each}}
+			{{#each audioItems}} <audio src="{{this.url}}">Song URL</audio> {{/each}}
 		</td>
 		<td>
 			{{> favoriteButton _id=_id}}

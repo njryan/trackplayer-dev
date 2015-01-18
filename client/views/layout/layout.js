@@ -238,3 +238,28 @@ Template.PrivateLayoutBottomLeftMenu.events({
 Template.PrivateLayoutBottomLeftMenu.helpers({
 
 });
+
+// Playlist Play
+Template.Playlist.events({
+    'click .play' : function (event, template) {
+        console.log(this.id + this.url); // debugging
+        playSong(this.id, this.url); // Pass the current song Id + url
+    },
+    'click .pause' : function(event, template) {
+        console.log(this.id); // Debugging
+        pauseSong(this.id);
+    }
+
+});
+
+Template.Playlist.helpers({
+    song: [
+        { id: "song1", url: "/music/song1.mp3", name: "Yos", artist: "beetles" }
+        //{ id: "song2", url: "/music/song2.mp3", name: "RUGs", artist: "besrdles" },
+        //{ id: "song3", url: "/music/song3.mp3", name: "MEs", artist: "mees" }
+    ],
+    getProgress: function () {
+        return Session.get('progress') + '%';
+    }
+
+});

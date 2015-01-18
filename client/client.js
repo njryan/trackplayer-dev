@@ -164,6 +164,45 @@ Template.registerHelper('userFBImage', function() {
     }
 });
 
+/*
+ * Helper Functions for Managing Audio Playing
+ */
+
+playSong = function (_id, url) {
+    // Check to see if already playing, if so toggle pause
+    if (soundManager.getSoundById(_id)) {
+        soundManager.togglePause(_id);
+    } else {
+        soundManager.createSound({
+            id: _id,
+            url: url,
+            autoLoad: true,
+            stream: true,
+            autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
+            onload: function () {
+                console.log(_id + "loaded!");
+            }, // Show an indicator on the UI that the file is loaded
+            whileplaying: function () {
+                Session.set('progress', this.position * 100 / this.duration);
+            }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
+            onfinish: function () {
+                // remember to release audio resources
+                soundManager.unload(_id);
+                soundManager.destroySound(_id);
+
+                // maybe play next file from playlist?
+                playNext(doc._id);
+            }
+
+        });
+    }
+};
+
+pauseSong = function (_id) {
+    //soundManager.pause(_id);
+    soundManager.pauseAll();
+};
+
 soundManager.onerror = function() {
     // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
     // Notify user if needed, disable sound-specific functionality etc.

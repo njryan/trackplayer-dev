@@ -1,4 +1,4 @@
-<template name="UserSettings">
+<template name="Dashboard">
 	<div class="page-container container">
 		<div class="row">
 			<div class="col-md-12" id="content">
@@ -16,11 +16,11 @@
 					<div id="menu" class="col-sm-3 col-md-2">
 						<h2>
 						</h2>
-						{{> UserSettingsSideMenu}}
+						{{> DashboardSideMenu}}
 					</div>
 
 			<div id="subcontent" class="col-sm-9 col-md-10">
-				{{> yield region='UserSettingsSubcontent'}}
+				{{> yield region='DashboardSubcontent'}}
 			</div>
 		</div>
 		</div>
@@ -28,15 +28,15 @@
 	</div>
 </template>
 
-<template name="UserSettingsSideMenu">
+<template name="DashboardSideMenu">
 	<ul id="menu-items" class="nav nav-stacked nav-pills">
-		<li id="menu-item-simple" class="{{menuItemClass 'user_settings.profile'}}">
-			<a href="{{pathFor 'user_settings.profile'}}">
+		<li id="menu-item-simple" class="{{menuItemClass 'dashboard.profile'}}">
+			<a href="{{pathFor 'dashboard.profile'}}">
 				Profile
 			</a>
 		</li>
-		<li id="menu-item-simple" class="{{menuItemClass 'user_settings.change_pass'}}">
-			<a href="{{pathFor 'user_settings.change_pass'}}">
+		<li id="menu-item-simple" class="{{menuItemClass 'dashboard.change_pass'}}">
+			<a href="{{pathFor 'dashboard.change_pass'}}">
 				Change password
 			</a>
 		</li>

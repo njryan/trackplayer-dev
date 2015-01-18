@@ -226,11 +226,11 @@ Template.SongsViewTableItems.rendered = function() {
 };
 
 Template.SongsViewTableItems.events({
-	"click td": function(e, t) {
+	/*"click td": function(e, t) {
 		e.preventDefault();
 		Router.go("songs.details", {songId: this._id});
 		return false;
-	},
+	},*/
 
 	"click #delete-button": function(e, t) {
 		e.preventDefault();

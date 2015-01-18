@@ -1,8 +1,8 @@
-this.UserSettingsChangePassController = RouteController.extend({
-	template: "UserSettings",
+this.DashboardChangePassController = RouteController.extend({
+	template: "Dashboard",
 
 	yieldTemplates: {
-		'UserSettingsChangePass': { to: 'UserSettingsSubcontent'}
+		'DashboardChangePass': { to: 'DashboardSubcontent'}
 		
 	},
 
@@ -12,7 +12,7 @@ this.UserSettingsChangePassController = RouteController.extend({
 	},
 
 	action: function() {
-		if(this.isReady()) { this.render(); } else { this.render("UserSettings"); this.render("loading", { to: "UserSettingsSubcontent" });}
+		if(this.isReady()) { this.render(); } else { this.render("Dashboard"); this.render("loading", { to: "DashboardSubcontent" });}
 		/*ACTION_FUNCTION*/
 	},
 

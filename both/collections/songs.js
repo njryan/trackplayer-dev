@@ -1,4 +1,5 @@
 Songs = new Meteor.Collection("songs");
+
 Songs.attachSchema(new SimpleSchema({
     title: {
         type: String,

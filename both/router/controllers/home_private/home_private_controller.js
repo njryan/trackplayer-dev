@@ -17,11 +17,7 @@ this.HomePrivateController = RouteController.extend({
 
 	isReady: function() {
 		var subs = [
-			Meteor.subscribe("user_only_songs"),
-			Meteor.subscribe("my_ads"),
-			//Meteor.subscribe('my_pending_reqs'),
-			Meteor.subscribe('images'),
-			Meteor.subscribe('audios')
+			Meteor.subscribe("songs")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {

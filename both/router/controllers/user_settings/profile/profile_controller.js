@@ -1,8 +1,8 @@
-this.UserSettingsProfileController = RouteController.extend({
-	template: "UserSettings",
+this.DashboardProfileController = RouteController.extend({
+	template: "Dashboard",
 
 	yieldTemplates: {
-		'UserSettingsProfile': { to: 'UserSettingsSubcontent'}
+		'DashboardProfile': { to: 'DashboardSubcontent'}
 		
 	},
 
@@ -12,7 +12,7 @@ this.UserSettingsProfileController = RouteController.extend({
 	},
 
 	action: function() {
-		if(this.isReady()) { this.render(); } else { this.render("UserSettings"); this.render("loading", { to: "UserSettingsSubcontent" });}
+		if(this.isReady()) { this.render(); } else { this.render("Dashboard"); this.render("loading", { to: "DashboardSubcontent" });}
 		/*ACTION_FUNCTION*/
 	},
 

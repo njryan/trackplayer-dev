@@ -1,8 +1,8 @@
-Template.UserSettings.rendered = function() {
+Template.Dashboard.rendered = function() {
 	
 };
 
-Template.UserSettings.events({
+Template.Dashboard.events({
 	"click #page-close-button": function(e, t) {
 		e.preventDefault();
 		Router.go("", {});
@@ -14,11 +14,11 @@ Template.UserSettings.events({
 	
 });
 
-Template.UserSettings.helpers({
+Template.Dashboard.helpers({
 	
 });
 
-Template.UserSettingsSideMenu.rendered = function() {
+Template.DashboardSideMenu.rendered = function() {
 	$(".menu-item-collapse .dropdown-toggle").each(function() {
 		if($(this).find("li.active")) {
 			$(this).removeClass("collapsed");
@@ -33,10 +33,10 @@ Template.UserSettingsSideMenu.rendered = function() {
 	
 };
 
-Template.UserSettingsSideMenu.events({
+Template.DashboardSideMenu.events({
 	
 });
 
-Template.UserSettingsSideMenu.helpers({
+Template.DashboardSideMenu.helpers({
 	
 });

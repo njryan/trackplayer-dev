@@ -3,17 +3,17 @@ var pageSession = new ReactiveDict();
 pageSession.set("errorMessage", "");
 pageSession.set("infoMessage", "");
 
-Template.UserSettingsChangePass.rendered = function() {
+Template.DashboardChangePass.rendered = function() {
 	
 	$("input[autofocus]").focus();
 };
 
-Template.UserSettingsChangePass.created = function() {
+Template.DashboardChangePass.created = function() {
 	pageSession.set("errorMessage", "");	
 	pageSession.set("infoMessage", "");	
 };
 
-Template.UserSettingsChangePass.events({
+Template.DashboardChangePass.events({
 	'submit #change_pass_form' : function(e, t) {
 		e.preventDefault();
 
@@ -73,7 +73,7 @@ Template.UserSettingsChangePass.events({
 	
 });
 
-Template.UserSettingsChangePass.helpers({
+Template.DashboardChangePass.helpers({
 	errorMessage: function() {
 		return pageSession.get("errorMessage");
 	},

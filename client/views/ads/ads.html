@@ -1,12 +1,21 @@
 <template name="Ads">
 	<div class="page-container container" id="content">
-		<div class="row" id="title_row">
-			<div class="col-md-12">
+        <div class="row">
+            <div id="title_block" class="col-md-12">
+                <h2 id="page_title" class="pull-left">
+                    Performance Ads
+                </h2>
 				<div id="page_menu" class="pull-right">
+                    <a class="btn btn-default to_dashboard" href="/dashboard">Go To Dashboard</a>
 				</div>
 			</div>
 		</div>
-		{{> AdsView}}
+
+        <div class="row">
+            <div id="title_block" class="col-md-12">
+			{{> AdsView}}
+				</div>
+		</div>
 	</div>
 </template>
 
