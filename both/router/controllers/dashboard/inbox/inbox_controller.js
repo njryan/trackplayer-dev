@@ -1,8 +1,8 @@
-this.DashboardSongsController = RouteController.extend({
+this.DashboardInboxController = RouteController.extend({
     template: "Dashboard",
 
     yieldTemplates: {
-        'DashboardSongs': { to: 'DashboardSubcontent'}
+        'DashboardInbox': { to: 'DashboardSubcontent'}
 
     },
 
@@ -18,9 +18,8 @@ this.DashboardSongsController = RouteController.extend({
 
     isReady: function() {
         var subs = [
-            Meteor.subscribe("user_only_songs"),
-            Meteor.subscribe("images"),
-            Meteor.subscribe("audios")
+            Meteor.subscribe("my_received_messages"),
+            Meteor.subscribe("my_sent_messages")
         ];
         var ready = true;
         _.each(subs, function(sub) {
@@ -33,9 +32,8 @@ this.DashboardSongsController = RouteController.extend({
     data: function() {
         return {
             params: this.params || {},
-            user_only_songs: Songs.find({ownerId:Meteor.userId()}),
-            images: Images.find({},{}),
-            audios: Audios.find({},{})
+            my_sent_messages: Messages.find({ownerId:Meteor.userId()},{}),
+            my_received_messages: Messages.find({to:Meteor.userId()}, {})
         };
         /*DATA_FUNCTION*/
     },

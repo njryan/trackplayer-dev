@@ -34,11 +34,19 @@ Songs.attachSchema(new SimpleSchema({
     genre: {
         type: String,
         label: "Genre",
-        allowedValues: ["Rap/HipHop", "Jazz", "Country", "Pop", "Rock", "Reggae", "Classical", "EDM"],
+        allowedValues: ["rap", "jazz", "country", "pop", "rock", "reggae", "classical", "edm"],
         autoform: {
-            afFieldInput: {
-                firstOption: "(Select a Genre)"
-            }
+            type: "select",
+            options: [
+                {label: "Rap/Hip Hop", value: "rap"},
+                {label: "Jazz", value: "jazz"},
+                {label: "Country", value: "country"},
+                {label: "Pop", value: "pop"},
+                {label: "Rock", value: "rock"},
+                {label: "Reggae", value: "reggae"},
+                {label: "Classical", value: "classical"},
+                {label: "EDM", value: "edm"}
+            ]
         }
     },
     likes: {
@@ -48,10 +56,10 @@ Songs.attachSchema(new SimpleSchema({
     },
     coverImageId: {
         type: String,
-        optional: true,
+        //optional: true,
         autoform: {
             afFieldInput: {
-                type: 'cfs-file',
+                type: 'fileUpload',
                 collection: 'Images'
             }
         }
@@ -59,13 +67,28 @@ Songs.attachSchema(new SimpleSchema({
     },
     audioFileId: {
         type: String,
-        optional: true,
+        //optional: true,
         autoform: {
             afFieldInput: {
-                type: 'cfs-files',
+                type: 'fileUpload',
                 collection: 'Audios'
             }
         }
 
+    },
+    socialShare: {
+        type: [String],
+        label: "Share Song",
+        optional:true,
+        allowedValues: ["twitter", "fb"],
+        autoform: {
+            type: "select-checkbox-inline",
+            options: function () {
+                return [
+                    {label: "Twitter", value: "twitter"},
+                    {label: "Facebook", value: "fb"}
+                ];
+            }
+        }
     }
 }));

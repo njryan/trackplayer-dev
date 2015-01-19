@@ -197,5 +197,6 @@ Router.map(function () {
 	this.route("dashboard", {path: "/dashboard", controller: "DashboardController"});
 	this.route("dashboard.home", {path: "/dashboard/home", controller: "DashboardHomeController"});
 	this.route("dashboard.songs", {path: "/dashboard/songs", controller: "DashboardSongsController"});
+	this.route("dashboard.inbox", {path: "/dashboard/inbox", controller: "DashboardInboxController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});/*ROUTER_MAP*/
 });

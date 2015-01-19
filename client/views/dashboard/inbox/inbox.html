@@ -1,0 +1,146 @@
+<template name="DashboardInbox">
+    <div class="page-container container" id="content">
+        <div class="row">
+            <div class="col-md-12">
+              {{> DashboardInboxView}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="DashboardInboxView">
+    <div id="my_inbox">
+        <div class="message_insert_form">
+            <div class="collapse" id="newMessageForm">
+                <div class="well well-sm">
+                  {{#autoForm collection="Messages" id="insertMessageForm" type="insert"}}
+                      <fieldset>
+                          <legend>New Message</legend>
+                        {{> afQuickField name='to'}} <!-- Make this an autocomplete / select for user names -->
+                        {{> afQuickField name='title'}}
+                        {{> afQuickField name='body'}}
+                      </fieldset>
+                      <button type="submit" class="btn btn-primary">Send</button><!-- Hook on submit to set certain fields auto -->
+                  {{/autoForm}}
+                </div>
+            </div><!-- /collapse -->
+        </div>
+        <div id="dataview" class="">
+            <h2 id="component-title">
+                My Messages
+            </h2>
+
+            <div class="pull-right">
+                <form id="dataview-controls" class="form-inline">
+                    <div id="dataview-controls-insert" class="form-group">
+                        <!-- Toggle Button for Panel -->
+                        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#newMessageForm" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="fa fa-edit"></span> New Message
+                        </button>
+                        <!-- /Toggle Button for Panel -->
+                        <button type="submit" id="dataview-insert-button" class="btn btn-success">
+					<span class="fa fa-plus">
+					</span>
+                            Add new
+                        </button>
+                    </div>
+                    <div id="dataview-controls-search">
+                      {{#if isNotEmpty}}
+                          <div id="dataview-controls-search-group" class="form-group">
+                              <label class="sr-only" for="search">
+                                  Search
+                              </label>
+                              <input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
+                              <button type="button" id="dataview-search-button" class="btn btn-primary">
+						<span class="fa fa-search">
+						</span>
+                              </button>
+                          </div>
+                      {{/if}}
+                    </div>
+                </form>
+            </div><!-- /pull-right -->
+
+          {{#if isNotEmpty}}
+            {{#if isNotFound}}
+                <div class="alert alert-warning">
+                    "{{searchString}}" not found.
+                </div>
+            {{else}}
+
+                <div id="dataview-data">
+                  {{#if viewAsTable}} {{> DashboardInboxViewTable}} {{/if}}
+                </div>
+
+            {{/if}}
+          {{else}}
+              <div class="alert alert-info">
+                  No Messages :(
+              </div>
+          {{/if}}
+
+        </div>
+    </div>
+</template>
+
+<template name="DashboardInboxViewTable">
+    <table id="dataview-table" class="table table-striped table-hover">
+        <thead id="dataview-table-header">
+        <tr id="dataview-table-header-row">
+            <th class="th-sortable" data-sort="title">
+                Subject
+            </th>
+            <th class="th-sortable" data-sort="createdAt">
+                Time
+            </th>
+            <th class="" data-sort="">
+                Message
+            </th>
+            <th class="th-sortable" data-sort="createdBy">
+                From
+            </th>
+            <th>
+                Reply
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        </thead>
+        <tbody id="dataview-table-items">
+        {{#each tableItems}} {{> DashboardInboxViewTableItems}} {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="DashboardInboxViewTableItems">
+    <tr id="dataview-table-items-row">
+        <td>
+          {{title}}
+        </td>
+        <td>
+          {{createdAt}}<!-- ToDo: Format Date Correctly -->
+        </td>
+        <td>
+          {{body}}
+        </td>
+        <td>
+          {{createdBy}}
+        </td>
+        <td class="td-icon">
+			<span id="edit-button" class="fa fa-reply" title="Edit">
+			</span>
+        </td>
+        <td class="td-icon">
+			<span id="edit-button" class="fa fa-pencil" title="Edit">
+			</span>
+        </td>
+        <td class="td-icon">
+			<span id="delete-button" class="fa fa-trash-o" title="Delete">
+			</span>
+        </td>
+    </tr>
+</template>

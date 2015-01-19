@@ -41,6 +41,9 @@ Messages.attachSchema(new SimpleSchema({
     body: {
         type: String,
         label: "Message",
-        max: 400
+        max: 400,
+        autoform: {
+            rows:3
+        }
     }
 }));

@@ -169,6 +169,7 @@ Template.registerHelper('userFBImage', function() {
     }
 });
 
+
 // General Helpers
 
 // Console Log helper

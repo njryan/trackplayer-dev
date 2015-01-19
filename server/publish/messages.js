@@ -1,9 +1,25 @@
-Meteor.publish("messages", function() {
+/*
+ * Publishing Messages
+ *
+ * TO DO: **SECURITY** - Limit fields displayed, and set parameter checks
+ */
+
+Meteor.publish("messages", function() { // Out of Date, Should Delete
 	return Messages.find({}, {});
 });
 
 Meteor.publish("all_messages", function() {
 	return Messages.find({}, {});
+});
+
+// Publish Messages "to: " for user inbox
+Meteor.publish("my_received_messages", function() {
+	return Messages.find({to:this.userId}, {});
+});
+
+// Publish Messages from current user for user inbox
+Meteor.publish("my_sent_messages", function() {
+	return Messages.find({ownerId:this.userId}, {});
 });
 
 Meteor.publish("message_null", function() {

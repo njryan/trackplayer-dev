@@ -2,7 +2,7 @@
     <div class="page-container container" id="content">
         <div class="row">
             <div class="col-md-12">
-              {{> SongsViewDashboard}}
+                {{> SongsViewDashboard}}
             </div>
         </div>
     </div>
@@ -11,49 +11,57 @@
 <template name="SongsViewDashboard">
     <div id="my_songs">
         <div class="song_insert_form">
-        {{#autoForm collection="Songs" id="insertSongForm" type="insert"}}
-            <fieldset>
-                <legend>Add New Song</legend>
-                {{> afQuickField name='title'}}
-                {{> afQuickField name='genre'}}
-                {{> afQuickField name='audioFileId'}}
-                {{> afQuickField name='coverImageId'}}
-            </fieldset>
-            <button type="submit" class="btn btn-primary">Insert</button>
-        {{/autoForm}}
-        </div>
-    <div id="dataview" class="">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 id="component-title">
-                    My Songs
-                </h2>
+            {{#autoForm collection="Songs" id="insertSongForm" type="insert"}}
+                <fieldset>
+                    <legend>Add New Song</legend>
+                    {{> afQuickField name='title'}}
+                    {{> afQuickField name='genre' type="select"}}
+                    {{> afQuickField name='audioFileId' collection="Audios"}}
+                    {{> afQuickField name='coverImageId' collection="Images"}}
+                    {{> afQuickField name='socialShare'}}
+                </fieldset>
 
-                <div class="pull-right">
-                    <form id="dataview-controls" class="form-inline">
-                        <div id="dataview-controls-insert" class="form-group">
-                            <button type="submit" id="dataview-insert-button" class="btn btn-success">
+                <!--<p> Audio Progress: {{> FS.UploadProgressBar bootstrap=true}}</p>-->
+                <p> Image Progress:
+                    {{#each images}}
+                        {{#unless this.isUploaded}}
+                            {{> FS.UploadProgressBar}}
+                        {{/unless}}
+                    {{/each}}
+                </p>
+                <button type="submit" class="btn btn-primary">Insert</button>
+            {{/autoForm}}
+        </div>
+        <div id="dataview" class="">
+            <h2 id="component-title">
+                My Songs
+            </h2>
+
+            <div class="pull-right">
+                <form id="dataview-controls" class="form-inline">
+                    <div id="dataview-controls-insert" class="form-group">
+                        <button type="submit" id="dataview-insert-button" class="btn btn-success">
 					<span class="fa fa-plus">
 					</span>
-                                Add new
-                            </button>
-                        </div>
-                        <div id="dataview-controls-search">
-                          {{#if isNotEmpty}}
-                              <div id="dataview-controls-search-group" class="form-group">
-                                  <label class="sr-only" for="search">
-                                      Search
-                                  </label>
-                                  <input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
-                                  <button type="button" id="dataview-search-button" class="btn btn-primary">
+                            Add new
+                        </button>
+                    </div>
+                    <div id="dataview-controls-search">
+                        {{#if isNotEmpty}}
+                            <div id="dataview-controls-search-group" class="form-group">
+                                <label class="sr-only" for="search">
+                                    Search
+                                </label>
+                                <input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
+                                <button type="button" id="dataview-search-button" class="btn btn-primary">
 						<span class="fa fa-search">
 						</span>
-                                  </button>
-                              </div>
-                          {{/if}}
-                        </div>
-                        <div id="dataview-controls-export" class="form-group">
-                          {{#if isNotEmpty}}
+                                </button>
+                            </div>
+                        {{/if}}
+                    </div>
+                    <div id="dataview-controls-export" class="form-group">
+                        {{#if isNotEmpty}}
                             {{#if isFound}}
                                 <div>
                                 </div>
@@ -85,31 +93,29 @@
                                     </ul>
                                 </div>
                             {{/if}}
-                          {{/if}}
-                        </div>
-                    </form>
-                </div><!-- /pull-right -->
-            </div><!-- /panel-heading -->
+                        {{/if}}
+                    </div>
+                </form>
+            </div><!-- /pull-right -->
 
-          {{#if isNotEmpty}}
-            {{#if isNotFound}}
-                <div class="alert alert-warning">
-                    "{{searchString}}" not found.
-                </div>
+            {{#if isNotEmpty}}
+                {{#if isNotFound}}
+                    <div class="alert alert-warning">
+                        "{{searchString}}" not found.
+                    </div>
+                {{else}}
+                    <div id="dataview-data">
+                        {{#if viewAsTable}} {{> SongsViewTableDashboard}} {{/if}}
+                    </div>
+                {{/if}}
             {{else}}
-                <div id="dataview-data">
-                  {{#if viewAsTable}} {{> SongsViewTableDashboard}} {{/if}}
+                <div class="alert alert-info">
+                    No songs :(
                 </div>
             {{/if}}
-          {{else}}
-              <div class="alert alert-info">
-                  No songs :(
-              </div>
-          {{/if}}
 
-        </div><!-- /panel -->
-    </div>
         </div>
+    </div>
 </template>
 
 <template name="SongsViewTableDashboard">
@@ -151,24 +157,24 @@
 <template name="SongsViewTableDashboardItems">
     <tr id="dataview-table-items-row">
         <td>
-          {{title}}
+            {{title}}
         </td>
         <td>
-          {{#each imageItems}} <img src="{{this.url}}">   {{/each}}
+            {{#each imageItems}} <img src="{{this.url}}">   {{/each}}
             Image FS ID: {{coverImage}}
             Audio FS ID: {{audioFile}}
         </td>
         <td>
-          {{genre}}
+            {{genre}}
         </td>
         <td>
-          {{#each audioItems}} <audio src="{{this.url}}">Song URL</audio> {{/each}}
+            {{#each audioItems}} <audio src="{{this.url}}">Song URL</audio> {{/each}}
         </td>
         <td>
-          {{> favoriteButton _id=_id}}
+            {{> favoriteButton _id=_id}}
         </td>
         <td>
-          {{>shareit}}
+            {{>shareit}}
         </td>
         <td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil" title="Edit">

@@ -1,10 +1,10 @@
 var pageSession = new ReactiveDict();
 
-Template.Songs.rendered = function() {
+Template.DashboardInbox.rendered = function() {
 
 };
 
-Template.Songs.events({
+Template.DashboardInbox.events({
     "click #page-close-button": function(e, t) {
         e.preventDefault();
         Router.go("", {});
@@ -17,18 +17,18 @@ Template.Songs.events({
 
 });
 
-Template.Songs.helpers({
+Template.DashboardInbox.helpers({
 
 });
 
-var SongsViewItems = function(cursor) {
+var DashboardInboxViewItems = function(cursor) {
     if(!cursor) {
         return [];
     }
 
-    var searchString = pageSession.get("SongsViewSearchString");
-    var sortBy = pageSession.get("SongsViewSortBy");
-    var sortAscending = pageSession.get("SongsViewSortAscending");
+    var searchString = pageSession.get("DashboardInboxViewSearchString");
+    var sortBy = pageSession.get("DashboardInboxViewSortBy");
+    var sortAscending = pageSession.get("DashboardInboxViewSortAscending");
     if(typeof(sortAscending) == "undefined") sortAscending = true;
 
     var raw = cursor.fetch();
@@ -40,7 +40,7 @@ var SongsViewItems = function(cursor) {
     } else {
         searchString = searchString.replace(".", "\\.");
         var regEx = new RegExp(searchString, "i");
-        var searchFields = ["title", "url", "genre", "likes"];
+        var searchFields = ["to", "subject", "description", "upload"];
         filtered = _.filter(raw, function(item) {
             var match = false;
             _.each(searchFields, function(field) {
@@ -68,24 +68,24 @@ var SongsViewItems = function(cursor) {
     return filtered;
 };
 
-/*var SongsViewExport = function(cursor, fileType) {
-    var data = SongsViewItems(cursor);
-    var exportFields = ["likes"];
+var DashboardInboxViewExport = function(cursor, fileType) {
+    var data = DashboardInboxViewItems(cursor);
+    var exportFields = [];
 
     var str = convertArrayOfObjects(data, exportFields, fileType);
 
     var filename = "export." + fileType;
 
     downloadLocalResource(str, filename, "application/octet-stream");
-}*/
+};
 
 
-Template.SongsViewDashboard.rendered = function() {
-    pageSession.set("SongsViewStyle", "table");
+Template.DashboardInboxView.rendered = function() {
+    pageSession.set("DashboardInboxViewStyle", "table");
 
 };
 
-Template.SongsViewDashboard.events({
+Template.DashboardInboxView.events({
     "submit #dataview-controls": function(e, t) {
         return false;
     },
@@ -98,7 +98,7 @@ Template.SongsViewDashboard.events({
             if(searchInput) {
                 searchInput.focus();
                 var searchString = searchInput.val();
-                pageSession.set("SongsViewSearchString", searchString);
+                pageSession.set("DashboardInboxViewSearchString", searchString);
             }
 
         }
@@ -114,7 +114,7 @@ Template.SongsViewDashboard.events({
                 var searchInput = form.find("#dataview-search-input");
                 if(searchInput) {
                     var searchString = searchInput.val();
-                    pageSession.set("SongsViewSearchString", searchString);
+                    pageSession.set("DashboardInboxViewSearchString", searchString);
                 }
 
             }
@@ -129,7 +129,7 @@ Template.SongsViewDashboard.events({
                 var searchInput = form.find("#dataview-search-input");
                 if(searchInput) {
                     searchInput.val("");
-                    pageSession.set("SongsViewSearchString", "");
+                    pageSession.set("DashboardInboxViewSearchString", "");
                 }
 
             }
@@ -141,96 +141,96 @@ Template.SongsViewDashboard.events({
 
     "click #dataview-insert-button": function(e, t) {
         e.preventDefault();
-        Router.go("songs.insert", {});
-    }
+        Router.go("messages.insert", {});
+    },
 
-    /*"click #dataview-export-default": function(e, t) {
+    "click #dataview-export-default": function(e, t) {
         e.preventDefault();
-        SongsViewExport(this.user_only_songs, "csv");
+        DashboardInboxViewExport(this.my_received_messages, "csv");
     },
 
     "click #dataview-export-csv": function(e, t) {
         e.preventDefault();
-        SongsViewExport(this.user_only_songs, "csv");
+        DashboardInboxViewExport(this.my_received_messages, "csv");
     },
 
     "click #dataview-export-tsv": function(e, t) {
         e.preventDefault();
-        SongsViewExport(this.user_only_songs, "tsv");
+        DashboardInboxViewExport(this.my_received_messages, "tsv");
     },
 
     "click #dataview-export-json": function(e, t) {
         e.preventDefault();
-        SongsViewExport(this.user_only_songs, "json");
-    }*/
+        DashboardInboxViewExport(this.my_received_messages, "json");
+    }
 
 
 });
 
-Template.SongsViewDashboard.helpers({
+Template.DashboardInboxView.helpers({
     "isEmpty": function() {
-        return !this.user_only_songs || this.user_only_songs.count() == 0;
+        return !this.my_received_messages || this.my_received_messages.count() == 0;
     },
     "isNotEmpty": function() {
-        return this.user_only_songs && this.user_only_songs.count() > 0;
+        return this.my_received_messages && this.my_received_messages.count() > 0;
     },
     "isNotFound": function() {
-        return this.user_only_songs && pageSession.get("SongsViewSearchString") && SongsViewItems(this.user_only_songs).length == 0;
+        return this.my_received_messages && pageSession.get("DashboardInboxViewSearchString") && DashboardInboxViewItems(this.my_received_messages).length == 0;
     },
     "searchString": function() {
-        return pageSession.get("SongsViewSearchString");
+        return pageSession.get("DashboardInboxViewSearchString");
     },
     "viewAsTable": function() {
-        return pageSession.get("SongsViewStyle") == "table";
+        return pageSession.get("DashboardInboxViewStyle") == "table";
     },
     "viewAsList": function() {
-        return pageSession.get("SongsViewStyle") == "list";
+        return pageSession.get("DashboardInboxViewStyle") == "list";
     },
     "viewAsGallery": function() {
-        return pageSession.get("SongsViewStyle") == "gallery";
+        return pageSession.get("DashboardInboxViewStyle") == "gallery";
     }
 
 
 });
 
 
-Template.SongsViewTableDashboard.rendered = function() {
+Template.DashboardInboxViewTable.rendered = function() {
 
 };
 
-Template.SongsViewTableDashboard.events({
+Template.DashboardInboxViewTable.events({
     "click .th-sortable": function(e, t) {
         e.preventDefault();
-        var oldSortBy = pageSession.get("SongsViewSortBy");
+        var oldSortBy = pageSession.get("DashboardInboxViewSortBy");
         var newSortBy = $(e.target).attr("data-sort");
 
-        pageSession.set("SongsViewSortBy", newSortBy);
+        pageSession.set("DashboardInboxViewSortBy", newSortBy);
         if(oldSortBy == newSortBy) {
-            var sortAscending = pageSession.get("SongsViewSortAscending") || false;
-            pageSession.set("SongsViewSortAscending", !sortAscending);
+            var sortAscending = pageSession.get("DashboardInboxViewSortAscending") || false;
+            pageSession.set("DashboardInboxViewSortAscending", !sortAscending);
         } else {
-            pageSession.set("SongsViewSortAscending", true);
+            pageSession.set("DashboardInboxViewSortAscending", true);
         }
     }
 });
 
-Template.SongsViewTableDashboard.helpers({
+Template.DashboardInboxViewTable.helpers({
     "tableItems": function() {
-        return SongsViewItems(this.user_only_songs);
+        return DashboardInboxViewItems(this.my_received_messages);
     }
 });
 
 
-Template.SongsViewTableDashboardItems.rendered = function() {
-    console.log('sleepy');
+Template.DashboardInboxViewTableItems.rendered = function() {
+
 };
 
-Template.SongsViewTableDashboardItems.events({
-    /*"click td": function(e, t) {
-     e.preventDefault();
-     Router.go("songs.details", {songId: this._id});
-     return false;
-     },*/
+Template.DashboardInboxViewTableItems.events({
+    "click td": function(e, t) {
+        e.preventDefault();
+        Router.go("messages.details", {messageId: this._id});
+        return false;
+    },
 
     "click #delete-button": function(e, t) {
         e.preventDefault();
@@ -244,7 +244,7 @@ Template.SongsViewTableDashboardItems.events({
                     label: "Yes",
                     className: "btn-success",
                     callback: function() {
-                        Songs.remove({ _id: me._id });
+                        DashboardInbox.remove({ _id: me._id });
                     }
                 },
                 danger: {
@@ -257,19 +257,11 @@ Template.SongsViewTableDashboardItems.events({
     },
     "click #edit-button": function(e, t) {
         e.preventDefault();
-        Router.go("songs.edit", {songId: this._id});
+        Router.go("messages.edit", {messageId: this._id});
         return false;
     }
 });
 
-Template.SongsViewTableDashboardItems.helpers({
-    "imageItems": function() {
-        //console.log(this);
-        return Images.find({},{limit:1});
-    },
-    "audioItems": function() {
-        //console.log(this);
-        return Audios.find({},{limit:1});
-    }
-});
+Template.DashboardInboxViewTableItems.helpers({
 
+});
