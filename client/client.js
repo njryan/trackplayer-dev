@@ -202,14 +202,13 @@ getOffX = function(o) {
 };
 
 // Helper function to set new position when progress bar clicked
-// Pass in: Current SongId, and Event (click)
+// Pass in: Current SongId, Event, barWidth
     // TO DO: Fix Click Handler when Progress Bar is clicked, instead of sm2-progress-bd wrapper
-setSeekPos = function (_id, e) {
+setSeekPos = function (_id, e, barWidth) {
     var seekPos = 0, deltaX = 0;
-    deltaX = ((e.clientX - getOffX(e.currentTarget))/e.currentTarget.offsetWidth) * 100; // Percentage of seek bar clicked
+    deltaX = ((e.clientX - getOffX(e.target))/barWidth) * 100; // Percentage of seek bar clicked
     seekPos = ((deltaX * Session.get('currentDurRaw')) / 100);
-    cl('Percentage: '+deltaX+ 'Seek Millisecs: '+seekPos); // Debugging
-    cl('target: '+e.target.nodeName+ e.target.classList + e.currentTarget.classList +'normTar:'+ e.target.offsetWidth +'currTar'+ e.currentTarget.offsetWidth);
+    //cl('target: '+e.target.nodeName+ e.target.classList + e.currentTarget.classList +'normTar:'+ e.target.offsetWidth +'currTar'+ e.currentTarget.offsetWidth);
     currentSongObj.setPosition(seekPos);
 };
 

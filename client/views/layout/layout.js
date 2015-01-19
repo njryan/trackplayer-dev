@@ -249,38 +249,29 @@ Template.Playlist.events({
         console.log('Previous Clicked: '+template+ ' '+event);
         previousSong(this.id);
     },
-    // To Do: Have it working if the progress-bar or progress-ball are clicked instead of progress-track
-    'click .sm2-progress-track' : function(e, t) {
-        // Testing Code For Seeking Functionality
-        var il = $('.sm2-progress-track').outerWidth();
-        console.log('Width of bar :'+il);
-        setSeekPos(this.id, event);
+    'click .sm2-progress-track' : function(e, t) { // Seeking Handler
+        var barWidth = $('.sm2-progress-track').outerWidth(); // Get the width of the progress bar
+        setSeekPos(this.id, event, barWidth);
     }
 
 });
 
 Template.Playlist.helpers({
     song: [
-        { id: "song1", url: "/music/song1.mp3", name: "Yos", artist: "beetles" }
+        { id: "song2", url: "/music/song2.mp3", name: "Yos", artist: "beetles" }
         //{ id: "song2", url: "/music/song2.mp3", name: "RUGs", artist: "besrdles" },
         //{ id: "song3", url: "/music/song3.mp3", name: "MEs", artist: "mees" }
     ],
     getProgress: function () {
         return Session.get('progress') + '%';
     },
-    /*currentPosMin: function() {
-        return Session.get('currentPosMin');
-    },*/
     currentPos: function() {
-        //return (Session.get('currentPosMin')+':'+Session.get('currentPosSec'));
         return Session.get('currentPos');
     },
     currentDur: function() {
-        //return Session.get('currentDurMin')+':'+Session.get('currentDurSec');
         return Session.get('currentDur');
     },
     playingClass: function() {
-        //return Session.get('currentDurMin')+':'+Session.get('currentDurSec');
         return Session.get('playingClass') === true ? 'playing' : 'paused';
     }
 
