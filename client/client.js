@@ -175,27 +175,53 @@ cl = function(something){
  * Helper Functions for Managing Audio Playing
  */
 
-
-convertTime = function(unit,msec) {
+// Convert the time from milliseconds to minutes and seconds
+convertTime = function(msec,useString) {
     var nSec = Math.floor(msec / 1000),
         hh = Math.floor(nSec / 3600),
         min = Math.floor(nSec / 60) - Math.floor(hh * 60),
         sec = Math.floor(nSec - (hh * 3600) - (min * 60));
-    if (unit == 'min') {
-        return min;
-    } else {
-        return sec;
+
+    return (useString ? ((hh ? hh + ':' : '') + (hh && min < 10 ? '0' + min : min) + ':' + ( sec < 10 ? '0' + sec : sec ) ) : { 'min': min, 'sec': sec });
+};
+
+
+// Get X position of element
+getOffX = function(o) {
+    // http://www.xs4all.nl/~ppk/js/findpos.html
+    var curleft = 0;
+    if (o.offsetParent) {
+        while (o.offsetParent) {
+            curleft += o.offsetLeft;
+            o = o.offsetParent;
+        }
+    } else if (o.x) {
+        curleft += o.x;
     }
+    return curleft;
+};
+
+// Helper function to set new position when progress bar clicked
+// Pass in: Current SongId, and Event (click)
+    // TO DO: Fix Click Handler when Progress Bar is clicked, instead of sm2-progress-bd wrapper
+setSeekPos = function (_id, e) {
+    var seekPos = 0, deltaX = 0;
+    deltaX = ((e.clientX - getOffX(e.currentTarget))/e.currentTarget.offsetWidth) * 100; // Percentage of seek bar clicked
+    seekPos = ((deltaX * Session.get('currentDurRaw')) / 100);
+    cl('Percentage: '+deltaX+ 'Seek Millisecs: '+seekPos); // Debugging
+    cl('target: '+e.target.nodeName+ e.target.classList + e.currentTarget.classList +'normTar:'+ e.target.offsetWidth +'currTar'+ e.currentTarget.offsetWidth);
+    currentSongObj.setPosition(seekPos);
 };
 
 
 // Play song, or toggle pause if the song is already playing
 playSong = function (_id, url) {
     // Check to see if already playing, if so toggle pause
+    //var currentSongObj;
     if (soundManager.getSoundById(_id)) {
         soundManager.togglePause(_id);
     } else {
-        soundManager.createSound({
+    currentSongObj = soundManager.createSound({
             id: _id,
             url: url,
             autoLoad: true,
@@ -203,34 +229,39 @@ playSong = function (_id, url) {
             autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
             onload: function () {
                 console.log(_id + "loaded!");
-                Session.set('currentPosMin', '0');
-                Session.set('currentPosSec', '00');
-            }, // Show an indicator on the UI that the file is loaded
+                this.setPosition(0); // Set Position to 0 on Load
+                Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click handler
+                Session.set('currentPos',this.position); // initial position
+                Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time once
+            },
             whileplaying: function () {
-                cl('positionRaw: '+this.position);
-                cl('durationRaw: '+this.duration);
-                Session.set('progress', this.position * 100 / this.duration);
-                Session.set('currentPosMin', convertTime('min',this.position));
-                Session.set('currentPosSec', convertTime('sec',this.position));
-                Session.set('currentDurMin', convertTime('min', this.duration));
-                Session.set('currentDurSec', convertTime('sec', this.duration));
+                Session.set('progress', this.position * 100 / this.duration); // Display Current position in % for progress bar
+                Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
             }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
-            onfinish: function () {
+            onplay: function() {
+                Session.set('playingClass', true);
+            },
+            onpause: function() {
+                Session.set('playingClass', false);
+            },
+            onresume: function() {
+                Session.set('playingClass', true);
+            },
+            onfinish: function() {
                 // remember to release audio resources
                 soundManager.unload(_id);
                 soundManager.destroySound(_id);
-
+                Session.set('playingClass', false);
                 // maybe play next file from playlist?
                 playNext(doc._id);
+            },
+            onerror: function() {
+            // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
+            // Notify user if needed, disable sound-specific functionality etc.
+                console.log("SOMETHING FUCKED UP!");
             }
-
         });
     }
-};
-
-pauseSong = function (_id) {
-    //soundManager.pause(_id);
-    soundManager.pauseAll();
 };
 
 previousSong = function (_id) {
@@ -238,8 +269,9 @@ previousSong = function (_id) {
     soundManager.setPosition(_id, 0);
 };
 
+/*
 soundManager.onerror = function() {
     // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
     // Notify user if needed, disable sound-specific functionality etc.
     console.log("SOMETHING FUCKED UP!");
-};
+};*/

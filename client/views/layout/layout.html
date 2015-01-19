@@ -240,11 +240,11 @@
                 <div class="sm2-inline-texture"></div>
                 <div class="sm2-inline-gradient"></div>
 
-                <div class="sm2-inline-element sm2-button-element">
-                    <div class="sm2-button-bd">
-                        <button class="play">Play / pause</button>
-                    </div>
+            <div class="sm2-inline-element sm2-button-element">
+                <div class="sm2-button-bd {{#if playingClass }}{{ playingClass }}{{ else }} paused {{ /if }}">
+                    <a href="#play" class="sm2-inline-button play-pause">Play / pause</a>
                 </div>
+            </div>
 
 
                     <div class="sm2-inline-element sm2-inline-status">
@@ -264,9 +264,15 @@
                         <div class="sm2-row">
                             <div class="sm2-inline-time">{{#if currentPos }}{{ currentPos }}{{ else }}0.00{{ /if }}</div>
                             <div class="sm2-progress-bd">
-                                <div class="progress-bar" style="width: {{getProgress}}"></div>
+                                <div class="sm2-progress-track">
+                                    <div class="sm2-progress-bar" style="width: {{getProgress}}"></div>
+                                    <div class="sm2-progress-ball" style="left: {{getProgress}}">
+                                        <div class="icon-overlay"></div>
+                                    </div>
+                                </div>
+                                <!--<div class="progress-bar" style="width: {{getProgress}}"></div>-->
                             </div>
-                            <div class="sm2-inline-duration">{{ currentDur }}</div>
+                            <div class="sm2-inline-duration">{{#if currentDur }}{{ currentDur }}{{ else }}0.00{{ /if }}</div>
                         </div>
                     </div>
 
