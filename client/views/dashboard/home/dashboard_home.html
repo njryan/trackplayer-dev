@@ -1,18 +1,76 @@
 <template name="DashboardHome">
     <div class="page-container container" id="content">
         <div class="row">
-            <div id="title_block" class="col-md-12">
-                <h2 id="page_title" class="pull-left">
-                    Main Dashboard
-                </h2>
+            <div class="col-md-12">
+                <h3 id="page_title" class="pull-left">
+                    Welcome back, {{ currentUser.name}}
+                </h3>
                 <div id="page_menu" class="pull-right">
                 </div>
             </div>
         </div>
+        {{ > DashConsole }}
+    </div>
+</template>
+
+<template name="DashConsole">
+    <div id="dash_console">
         <div class="row">
-            <div id="content_block" class="col-md-12">
-                Dashboard Content and Views
+            <div class="col-md-12">
+                {{ clock }}
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-danger">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">7</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Uploaded Songs</strong>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-warning">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">72</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Total Likes</strong>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-success">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">17</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Followers</strong>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-info">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">23</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Following</strong>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
+    </div>
 </template>

@@ -1,7 +1,7 @@
 <template name="DashboardSongs">
     <div class="page-container container" id="content">
         <div class="row">
-            <div id="content_block" class="col-md-12">
+            <div class="col-md-12">
               {{> SongsViewDashboard}}
             </div>
         </div>
@@ -9,11 +9,24 @@
 </template>
 
 <template name="SongsViewDashboard">
+    <div id="my_songs">
+        <div class="song_insert_form">
+        {{#autoForm collection="Songs" id="insertSongForm" type="insert"}}
+            <fieldset>
+                <legend>Add New Song</legend>
+                {{> afQuickField name='title'}}
+                {{> afQuickField name='genre'}}
+                {{> afQuickField name='audioFileId'}}
+                {{> afQuickField name='coverImageId'}}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Insert</button>
+        {{/autoForm}}
+        </div>
     <div id="dataview" class="">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 id="component-title">
-                    All Songs
+                    My Songs
                 </h2>
 
                 <div class="pull-right">
@@ -96,6 +109,7 @@
 
         </div><!-- /panel -->
     </div>
+        </div>
 </template>
 
 <template name="SongsViewTableDashboard">

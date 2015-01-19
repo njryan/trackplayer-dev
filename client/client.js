@@ -4,6 +4,11 @@ this.Helpers = {};
 Meteor.startup(function () {
     SimpleSchema.debug = true;
 
+    // Clock
+    FirstClock = new ReactiveClock("ExerciseClock");
+    FirstClock.start();
+
+
     /* END THE TEST CODE */
 });
 
@@ -171,9 +176,15 @@ cl = function(something){
     console.log(something);
 };
 
+
+
 /*
  * Helper Functions for Managing Audio Playing
+ *
+ * TO DO: Get Volume Functionality Working!!
  */
+
+
 
 // Convert the time from milliseconds to minutes and seconds
 convertTime = function(msec,useString) {
@@ -186,7 +197,7 @@ convertTime = function(msec,useString) {
 };
 
 
-// Get X position of element
+// Get X position of the target clicked on
 getOffX = function(o) {
     // http://www.xs4all.nl/~ppk/js/findpos.html
     var curleft = 0;
@@ -203,7 +214,6 @@ getOffX = function(o) {
 
 // Helper function to set new position when progress bar clicked
 // Pass in: Current SongId, Event, barWidth
-    // TO DO: Fix Click Handler when Progress Bar is clicked, instead of sm2-progress-bd wrapper
 setSeekPos = function (_id, e, barWidth) {
     var seekPos = 0, deltaX = 0;
     deltaX = ((e.clientX - getOffX(e.target))/barWidth) * 100; // Percentage of seek bar clicked
@@ -229,12 +239,13 @@ playSong = function (_id, url) {
             onload: function () {
                 console.log(_id + "loaded!");
                 this.setPosition(0); // Set Position to 0 on Load
+                //varDuration = this.duration
                 Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click handler
-                Session.set('currentPos',this.position); // initial position
+                Session.set('currentPos', this.position); // initial position
                 Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time once
             },
             whileplaying: function () {
-                Session.set('progress', this.position * 100 / this.duration); // Display Current position in % for progress bar
+                Session.set('progress', (this.position * 100 / this.duration).toFixed(4)); // Display Current position in % for progress bar
                 Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
             }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
             onplay: function() {

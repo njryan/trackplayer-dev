@@ -6,16 +6,6 @@ Songs.attachSchema(new SimpleSchema({
         label: "Title",
         max: 200
     },
-    author: {
-        type: String,
-        label: "Author",
-        optional: true,
-        autoValue: function() {
-            if (this.userId) {
-                return this.username;
-            }
-        }
-    },
     ownerId: {
         type: String,
         label: "Owner Id",
@@ -44,7 +34,7 @@ Songs.attachSchema(new SimpleSchema({
     genre: {
         type: String,
         label: "Genre",
-        allowedValues: ["rap-hiphop", "jazz", "country", "pop", "rock", "reggae", "classical", "EDM"],
+        allowedValues: ["Rap/HipHop", "Jazz", "Country", "Pop", "Rock", "Reggae", "Classical", "EDM"],
         autoform: {
             afFieldInput: {
                 firstOption: "(Select a Genre)"
@@ -56,23 +46,23 @@ Songs.attachSchema(new SimpleSchema({
         label: "Likes",
         optional: true
     },
-    coverImage: {
+    coverImageId: {
         type: String,
         optional: true,
         autoform: {
             afFieldInput: {
-                type: 'fileUpload',
+                type: 'cfs-file',
                 collection: 'Images'
             }
         }
 
     },
-    audioFile: {
+    audioFileId: {
         type: String,
         optional: true,
         autoform: {
             afFieldInput: {
-                type: 'fileUpload',
+                type: 'cfs-files',
                 collection: 'Audios'
             }
         }
