@@ -69,15 +69,15 @@ var SongsViewItems = function(cursor) {
 };
 
 /*var SongsViewExport = function(cursor, fileType) {
-    var data = SongsViewItems(cursor);
-    var exportFields = ["likes"];
+ var data = SongsViewItems(cursor);
+ var exportFields = ["likes"];
 
-    var str = convertArrayOfObjects(data, exportFields, fileType);
+ var str = convertArrayOfObjects(data, exportFields, fileType);
 
-    var filename = "export." + fileType;
+ var filename = "export." + fileType;
 
-    downloadLocalResource(str, filename, "application/octet-stream");
-}*/
+ downloadLocalResource(str, filename, "application/octet-stream");
+ }*/
 
 
 Template.SongsViewDashboard.rendered = function() {
@@ -88,6 +88,30 @@ Template.SongsViewDashboard.rendered = function() {
 Template.SongsViewDashboard.events({
     "submit #dataview-controls": function(e, t) {
         return false;
+    },
+    "change .myFileInput": function(e,t) {
+        var userId;
+        console.log("audioInput Clicked!");
+        e.preventDefault();
+        userId = Meteor.userId();
+
+        FS.Utility.eachFile(event, function(file) { // insert Call is started, place meta code Below
+            var newFile = new FS.File(file);
+            newFile.metadata = [
+                {ownerId: Meteor.userId()},
+                {urlPath: this.url}
+            ];
+            Audios.insert(newFile, function (err, fileObj) {
+                if (err){
+                    // handle error
+                    cl("Error Uploaded Audio: "+err + fileObj);
+                } else {
+                    // handle success depending what you need to do
+                    Meteor.users.update(userId, {$inc: { "songCount": 1 }});
+                    cl("Success! : "+this.url+' '+this.name+' File Obj: '+fileObj);
+                }
+            });
+        });
     },
 
     "click #dataview-search-button": function(e, t) {
@@ -145,24 +169,24 @@ Template.SongsViewDashboard.events({
     }
 
     /*"click #dataview-export-default": function(e, t) {
-        e.preventDefault();
-        SongsViewExport(this.user_only_songs, "csv");
-    },
+     e.preventDefault();
+     SongsViewExport(this.user_only_songs, "csv");
+     },
 
-    "click #dataview-export-csv": function(e, t) {
-        e.preventDefault();
-        SongsViewExport(this.user_only_songs, "csv");
-    },
+     "click #dataview-export-csv": function(e, t) {
+     e.preventDefault();
+     SongsViewExport(this.user_only_songs, "csv");
+     },
 
-    "click #dataview-export-tsv": function(e, t) {
-        e.preventDefault();
-        SongsViewExport(this.user_only_songs, "tsv");
-    },
+     "click #dataview-export-tsv": function(e, t) {
+     e.preventDefault();
+     SongsViewExport(this.user_only_songs, "tsv");
+     },
 
-    "click #dataview-export-json": function(e, t) {
-        e.preventDefault();
-        SongsViewExport(this.user_only_songs, "json");
-    }*/
+     "click #dataview-export-json": function(e, t) {
+     e.preventDefault();
+     SongsViewExport(this.user_only_songs, "json");
+     }*/
 
 
 });
@@ -221,11 +245,10 @@ Template.SongsViewTableDashboard.helpers({
 });
 
 
-Template.SongsViewTableDashboardItems.rendered = function() {
-    console.log('sleepy');
+Template.SongsViewTableItemsDashboard.rendered = function() {
 };
 
-Template.SongsViewTableDashboardItems.events({
+Template.SongsViewTableItemsDashboard.events({
     /*"click td": function(e, t) {
      e.preventDefault();
      Router.go("songs.details", {songId: this._id});
@@ -262,7 +285,7 @@ Template.SongsViewTableDashboardItems.events({
     }
 });
 
-Template.SongsViewTableDashboardItems.helpers({
+Template.SongsViewTableItemsDashboard.helpers({
     "imageItems": function() {
         //console.log(this);
         return Images.find({},{limit:1});

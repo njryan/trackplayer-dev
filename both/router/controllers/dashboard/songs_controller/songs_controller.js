@@ -33,7 +33,7 @@ this.DashboardSongsController = RouteController.extend({
     data: function() {
         return {
             params: this.params || {},
-            user_only_songs: Songs.find({ownerId:Meteor.userId()}),
+            user_only_songs: Songs.find({ownerId:Meteor.userId()},{}),
             images: Images.find({},{}),
             audios: Audios.find({},{})
         };

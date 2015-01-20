@@ -10,28 +10,7 @@
 
 <template name="SongsViewDashboard">
     <div id="my_songs">
-        <div class="song_insert_form">
-            {{#autoForm collection="Songs" id="insertSongForm" type="insert"}}
-                <fieldset>
-                    <legend>Add New Song</legend>
-                    {{> afQuickField name='title'}}
-                    {{> afQuickField name='genre' type="select"}}
-                    {{> afQuickField name='audioFileId' collection="Audios"}}
-                    {{> afQuickField name='coverImageId' collection="Images"}}
-                    {{> afQuickField name='socialShare'}}
-                </fieldset>
 
-                <!--<p> Audio Progress: {{> FS.UploadProgressBar bootstrap=true}}</p>-->
-                <p> Image Progress:
-                    {{#each images}}
-                        {{#unless this.isUploaded}}
-                            {{> FS.UploadProgressBar}}
-                        {{/unless}}
-                    {{/each}}
-                </p>
-                <button type="submit" class="btn btn-primary">Insert</button>
-            {{/autoForm}}
-        </div>
         <div id="dataview" class="">
             <h2 id="component-title">
                 My Songs
@@ -40,6 +19,12 @@
             <div class="pull-right">
                 <form id="dataview-controls" class="form-inline">
                     <div id="dataview-controls-insert" class="form-group">
+                        <!-- Toggle Button for Panel -->
+                        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#newMessageForm" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="fa fa-edit"></span> New Song
+                        </button>
+                        <!-- /Toggle Button for Panel -->
+
                         <button type="submit" id="dataview-insert-button" class="btn btn-success">
 					<span class="fa fa-plus">
 					</span>
@@ -98,6 +83,34 @@
                 </form>
             </div><!-- /pull-right -->
 
+            <div class="song_insert_form">
+                <div class="collapse" id="newMessageForm">
+                    <div class="well well-sm">
+                        {{#autoForm collection="Songs" id="insertSongForm" type="insert"}}
+                            <fieldset>
+                                <legend>Add New Song</legend>
+                                {{> afQuickField name='title'}}
+                                {{> afQuickField name='genre' type="select"}}
+                                {{> afQuickField name='audioFileId' collection="Audios" class="audioInput"}}
+                                {{> afQuickField name='coverImageId' collection="Images" class="fileInput"}}
+                                <input type="file" name="realAudio" class="myFileInput">
+                                <p> Audio Progress: {{> FS.UploadProgressBar bootstrap=true}}</p>
+                                {{> afQuickField name='socialShare'}}
+                            </fieldset>
+
+                            <!--<p> Image Progress:
+                            {{#each images}}
+                                {{#unless this.isUploaded}}
+                                    {{> FS.UploadProgressBar}}
+                                {{/unless}}
+                            {{/each}}
+                        </p>-->
+                            <button id="song_insert" type="submit" class="btn btn-primary">Insert</button>
+                        {{/autoForm }}
+                    </div>
+                </div>
+            </div>
+
             {{#if isNotEmpty}}
                 {{#if isNotFound}}
                     <div class="alert alert-warning">
@@ -132,7 +145,7 @@
                 Genre
             </th>
             <th class="th-sortable" data-sort="likes">
-                Total Likes
+                IMG Url
             </th>
             <th>
                 Favorite
@@ -149,26 +162,34 @@
         </tr>
         </thead>
         <tbody id="dataview-table-items">
-        {{#each tableItems}} {{> SongsViewTableItems}} {{/each}}
+        {{#each tableItems}} {{> SongsViewTableItemsDashboard}} {{/each}}
         </tbody>
     </table>
 </template>
 
-<template name="SongsViewTableDashboardItems">
+<template name="SongsViewTableItemsDashboard">
     <tr id="dataview-table-items-row">
         <td>
             {{title}}
         </td>
         <td>
-            {{#each imageItems}} <img src="{{this.url}}">   {{/each}}
-            Image FS ID: {{coverImage}}
-            Audio FS ID: {{audioFile}}
+
+            {{#with FS.GetFile "audios" this.audioFileId }}
+               <a href="{{this.url}}">{{this.name}}</a>
+                <p>{{> FS.DeleteButton class="btn btn-danger btn-xs"}}</p>
+            {{/with}}
+
         </td>
         <td>
             {{genre}}
         </td>
         <td>
-            {{#each audioItems}} <audio src="{{this.url}}">Song URL</audio> {{/each}}
+
+            {{#with FS.GetFile "images" this.coverImageId }}
+                <img style="max-height:150px;" src="{{this.url}}">
+                <p>file name:{{this.name}}</p>
+                <p>{{> FS.DeleteButton class="btn btn-danger btn-xs"}}</p>
+            {{/with}}
         </td>
         <td>
             {{> favoriteButton _id=_id}}
