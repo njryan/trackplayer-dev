@@ -31,94 +31,25 @@ Template.layout.rendered = function() {
 };
 
 // Initiating Code for the Audio Player
-Template.AudioPlayer.helpers({
-
+Template.PlayerWrapper.helpers({
+    "playerCheck": function() {
+        cl('Player DIdnt Load!');
+    }
 });
 
-Template.AudioPlayer.created = function() {
+Template.PlayerWrapper.created = function() {
   //Notifications.new({ title: '{Artist Name} has liked {Song Name}!', icon: 'bolt' });
 };
 
 
-Template.AudioPlayer.rendered = function() {
+Template.PlayerWrapper.rendered = function() {
 
 
 };
 
-Template.AudioPlayer.events({
-  // Template Helper to load in the first playlist
-  /*"click #playlist-setPlaylist-audio-mix" : function() {
-		myPlaylist.setPlaylist([
-		{
-			title:"Cro Magnon Man",
-			artist:"The Stark Palace",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
-			poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"// Jplayer Sample Code
-   /*myPlaylist = new jPlayerPlaylist({
-   jPlayer: "#jquery_jplayer_N",
-   cssSelectorAncestor: "#jp_container_N"
-   }, [
-   {
-   title:"Cro Magnon Man",
-   artist:"The Stark Palace",
-   mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-   oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
-   poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
-   }
-   ], {
-   playlistOptions: {
-   enableRemoveControls: true
-   },
-   swfPath: "../../dist/jplayer",
-   supplied: "webmv, ogv, m4v, oga, mp3",
-   useStateClassSkin: true,
-   autoBlur: false,
-   smoothPlayBar: true,
-   keyEnabled: true,
-   audioFullScreen: true
-   });
-		},
-	{
-		title:"Your Face",
-		artist:"The Stark Palace",
-		mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
-		oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
-		poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
-	},
-{
-	title:"Hidden",
-	artist:"Miaow",
-	free: true,
-	mp3:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3",
-	oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg",
-	poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
-},
-{
-	title:"Cyber Sonnet",
-	artist:"The Stark Palace",
-	mp3:"http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
-	oga:"http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg",
-	poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
-},
-{
-	title:"Tempered Song",
-	artist:"Miaow",
-	mp3:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
-	oga:"http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg",
-	poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
-},
-{
-	title:"Lentement",
-	artist:"Miaow",
-	mp3:"http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3",
-	oga:"http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg",
-	poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
-}
-]);
-}*/
+Template.PlayerWrapper.events({
 
-  // Create event for clicking on song and updating the current url in player
+ // Create event for clicking on song and updating the current url in player
     // Integrate with sound manager 2 API
 
 });
@@ -239,42 +170,3 @@ Template.PrivateLayoutBottomLeftMenu.helpers({
 
 });
 
-// Playlist Play
-Template.Playlist.events({
-    'click .play-pause' : function (event, template) {
-        console.log(this.id + this.url); // debugging
-        playSong(this.id, this.url); // Pass the current song Id + url
-    },
-    'click .previous' : function(event, template) {
-        console.log('Previous Clicked: '+template+ ' '+event);
-        previousSong(this.id);
-    },
-    'click .sm2-progress-track' : function(e, t) { // Seeking Handler
-        var barWidth = $('.sm2-progress-track').outerWidth(); // Get the width of the progress bar
-        setSeekPos(this.id, event, barWidth);
-    }
-
-});
-
-Template.Playlist.helpers({
-    song: [
-        { id: "song2", url: "/music/song2.mp3", name: "Yos", artist: "beetles" }
-        //{ id: "song2", url: "/music/song2.mp3", name: "RUGs", artist: "besrdles" },
-        //{ id: "song3", url: "/music/song3.mp3", name: "MEs", artist: "mees" }
-    ],
-    getProgress: function () {
-        return Session.get('progress') + '%';
-    },
-    currentPos: function() {
-        return Session.get('currentPos');
-    },
-    currentDur: function() {
-        return Session.get('currentDur');
-    },
-    playingClass: function() {
-        return Session.get('playingClass') === true ? 'playing' : 'paused';
-    }
-
-
-
-});

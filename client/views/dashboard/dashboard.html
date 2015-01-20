@@ -1,13 +1,10 @@
 <template name="Dashboard">
-    <div id="content">
-        <div class="row">
-		</div>
-		<div class="row">
-			<div id="content_block">
-			<div class="panel panel-primary">
-				<div class="panel-body">
-					<div id="menu" class="col-sm-3 col-md-2">
+    <div id="content" class="dash-container">
 
+			<div id="content_block">
+			<div class="panel">
+				<div class="panel-body">
+					<div id="dash_menu" class="col-sm-3 col-md-2">
 						{{> DashboardSideMenu}}
 					</div>
 
@@ -17,12 +14,15 @@
 				</div>
 			</div>
 			</div>
-		</div>
+
 	</div>
 </template>
 
 <template name="DashboardSideMenu">
 	<ul id="menu-items" class="nav nav-stacked nav-pills">
+        <li id="menu-item-simple">
+            <h4 class="list-group-item-heading"><img src="/images/insonic-logo.png" style="max-width:120px"></h4>
+        </li>
         <li id="menu-item-simple" class="{{menuItemClass 'dashboard.home'}}">
             <a href="{{pathFor 'dashboard.home'}}">
                 Console

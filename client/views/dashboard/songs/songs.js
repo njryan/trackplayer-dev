@@ -249,12 +249,6 @@ Template.SongsViewTableItemsDashboard.rendered = function() {
 };
 
 Template.SongsViewTableItemsDashboard.events({
-    /*"click td": function(e, t) {
-     e.preventDefault();
-     Router.go("songs.details", {songId: this._id});
-     return false;
-     },*/
-
     "click #delete-button": function(e, t) {
         e.preventDefault();
         var me = this;
@@ -282,6 +276,16 @@ Template.SongsViewTableItemsDashboard.events({
         e.preventDefault();
         Router.go("songs.edit", {songId: this._id});
         return false;
+    },
+    "click .song_url": function(e,t) {
+        cl("Song Url Clicked :"+t);
+        var id;
+        var url;
+        e.preventDefault();
+        url = e.target.href;
+        //id = e.target.getAttribute('data-id');
+        id = this.id;
+        playSong(id,url);
     }
 });
 

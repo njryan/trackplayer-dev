@@ -22,7 +22,10 @@
 
 @gray_bg: rgba(255, 255, 255, 0.21);
 @green_font: #7FE540;
+@grey_font: #9b9b9b;
 @white_bg: #F4F4F4;
+@dash_menu_bg_bro: #e6e6e6;
+@dash_menu_bg_yel:rgba(255, 215, 0, 0.21);
 
 html {
 
@@ -36,13 +39,14 @@ body {
 }
 
 .navbar.navbar-default {
-  color: #7fe540;
   background-color: #272727;
-  border: 1px solid rgba(0, 158, 255, 0.35);
+  border-bottom: 3px solid #1D1D1D;
+  box-shadow: 1px .01em .3em .01em black;
 }
 
 .navbar-default .navbar-nav > li > a {
   color: @green_font;
+  border-left: 1px solid rgba(61, 59, 59, 0.49);
 }
 
 .navbar-spacer {
@@ -62,25 +66,22 @@ body {
   top: -6px;
 }
 
+
 // Player
 
 
 
 //All Pages
 #title_block, #content_block {
-  color:white;
-  background: rgba(50, 87, 205, 0.29);
+
 }
 
 #content_block {
   margin-top: -4%;
   padding-top: 2%;
+  min-height:450px;
 }
 
-#content_block .panel {
-  color:black;
-  background: @white_bg;
-}
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: bentonSans;
@@ -104,7 +105,7 @@ h2#component-title {
 
 // Icons
 span.glyphicon {
-  margin-left:7px;
+  margin-left:0;
 }
 
 .to_dashboard {
@@ -123,6 +124,31 @@ form#dataview-controls {
 
 
 // Dashboard Css
+.dash-container {
+  > #content_block > .panel {
+    color: black;
+    min-height: 450px;
+    background-color: transparent;
+    margin-bottom: 0;
+    > .panel-body {
+      padding: 0;
+      > #subcontent {
+        background-color: @white_bg;
+        padding-top: 20px;
+        min-height:100vh;
+      }
+    }
+  }
+}
+
+.dash-container thead tr {
+  background-color: #DBDBDB;
+  color: #8B8B8B;
+}
+
+.dash-container #content > row {
+  background:white
+}
 
 #dash_mid {
   margin-top:1.3em;
@@ -141,8 +167,84 @@ form#dataview-controls {
   letter-spacing: -0.8px;
 }
 
+// Navbar left
+#dash_menu {
+  //background: rgba(0, 0, 0, 1);
+  position: relative;
+  height: 100vh;
+  > #menu-items {
+    position: fixed;
+    background-color: #000000;
+    padding-top: 2.2%;
+    height: 100%;
+    width: inherit;
+    left: 0;
+    padding-left: 2%;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 11%, rgba(0,0,0,0.65) 44%, rgba(0,0,0,0) 93%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(11%,rgba(0,0,0,0.65)), color-stop(44%,rgba(0,0,0,0.65)), color-stop(93%,rgba(0,0,0,0)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 11%,rgba(0,0,0,0.65) 44%,rgba(0,0,0,0) 93%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0.65) 11%,rgba(0,0,0,0.65) 44%,rgba(0,0,0,0) 93%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0.65) 11%,rgba(0,0,0,0.65) 44%,rgba(0,0,0,0) 93%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 11%,rgba(0,0,0,0.65) 44%,rgba(0,0,0,0) 93%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+    > .nav-stacked li {
+      margin-top: 2px;
+      padding-right: 10px;
+      + li {
+        margin-top: 2px;
+        margin-left: 0;
+        background: #000000;
+      }
+      > a {
+        border-radius: 0;
+        margin-right: 10%;
+        font-size: 14px;
+        color: @grey_font;
+        :hover {
+          background-color: transparent;
+          color:white;
+        }
+      }
+    }
+    > li.active {
+      > a, a:hover {
+        background-color: initial;
+        color: white;
+      }
+    }
+    > li > a {
+      color:@grey_font;
+      :hover {
+        background-color: initial;
+        color: white;
+      }
+    }
+    > li > a:hover {
+      background-color: initial;
+      color: white;
+    }
+  }
+}
+
+// Dash Console Page
+#dash_console {
+  .panel-heading {
+    padding-bottom: 1px;
+  }
+}
 
 
+
+
+// Home Private Page
+.song-img {
+  width:150px;
+  max-height: 150px;
+}
+
+.song-title {
+
+}
 
 
 // Rez Radio Page
@@ -222,8 +324,97 @@ form#dataview-controls {
 }
 
 
+// Social Media Buttons
+.share-buttons .shareit-twitter-colors {
+  color: #fff;
+  background: #4099FF;
+  padding: 4px;
+  border-radius: 100%;
+  padding: 2px 5px;
+}
+
+.share-buttons .shareit-facebook-colors {
+  background: #3B5998;
+  color: #fff;
+  padding: 4px;
+  border-radius: 100%;
+  padding: 2px 8px;
+  margin-bottom:5px;
+}
+
+
+
+// Public Styling
+
+.public {
+  .jumbotron {
+    background: url(http://p1.pichost.me/i/66/1910819.jpg) no-repeat center center fixed;
+  }
+}
+
+
+
+
+
+
+
+// Tests
+
+// Style buttons
+/*
+.btn-ui .btn-ui {
+  padding: 20px 20px 15px 20px;
+  margin: 0 1px 0 0;
+  text-decoration: none;
+  text-align: center;
+  color: #7f8c8d;
+  cursor: pointer;
+  background: #2c3e50;
+  border-bottom: 5px solid #34495e;
+}
+.btn-ui .active .btn-ui{
+  border-bottom: 10px solid #2ecc71;
+  transition-property:border-bottom .6s linear 0s;
+  -moz-transition:border-bottom .6s linear 0s;
+  -webkit-transition:border-bottom .6s linear 0s;
+  -o-transition:border-bottom .6s linear 0s;
+  color:#2ecc71;
+}
+.btn-ui .button-group-navigation li {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  zoom: 1;
+  background:#7f8c8d;
+}
+
+.btn-ui .button-group-navigation li .btn-ui {
+  float: left;
+  margin-left:-4px;
+}
+
+.btn-ui .button-group-navigation > .btn-ui:not(:first-child):not(:last-child),
+.button-group-navigation li:not(:first-child):not(:last-child) .btn-ui {
+  border-radius: 0;
+}
+
+.btn-ui .button-group-navigation > .btn-ui:first-child,
+.btn-ui .button-group-navigation li:first-child .btn-ui {
+  margin-left: 0;
+}
+
+.btn-ui .button-group-navigation > .btn-ui:last-child,
+.btn-ui .button-group-navigation li:last-child > .btn-ui {
+  margin-right:0;
+
+}
+*/
+
 
 // Media Queries
+
+
 
 
 

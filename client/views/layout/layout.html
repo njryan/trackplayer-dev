@@ -1,4 +1,4 @@
-<template name="layout">
+<template name="layout" xmlns="http://www.w3.org/1999/html">
     {{#if currentUser}}
         {{> autoformModals}}
         {{> PrivateLayout}}
@@ -8,7 +8,7 @@
 </template>
 
 <template name="PublicLayout">
-    <div id="wrap">
+    <div id="wrap" class="public">
         <div class="navbar navbar-fixed-top navbar-default" role="navigation">
             <div class="navbar-container container">
                 <div class="navbar-header">
@@ -106,199 +106,130 @@
             <div class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
                     <div class="col-md-6">{{> PrivateLayoutBottomLeftMenu}}</div>
-                    <div class="col-md-6">{{> AudioPlayer}}</div>
+                    <div class="col-md-6">{{> PlayerWrapper }}</div>
                 </div>
             </div>
         </div>
     </div>
 
-    </template>
+</template>
 
-    <template name="PrivateLayoutLeftMenu">
-        <ul id="menu-items" class="nav navbar-nav">
-            <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
-                <a href="{{pathFor 'dashboard'}}">
-                    Dashboard
-                </a>
-            </li>
-
-        </ul>
-    </template>
-
-    <template name="PrivateLayoutRightMenu">
-    <ul id="menu-items" class="nav navbar-nav navbar-right">
-        <li id="menu-item-simple" class="{{menuItemClass 'songs'}}">
-            <a href="{{pathFor 'songs'}}">
-                <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+<template name="PrivateLayoutLeftMenu">
+    <ul id="menu-items" class="nav navbar-nav">
+        <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+            <a href="{{pathFor 'dashboard'}}">
+                Dashboard
             </a>
-        </li>
-        <li id="menu-item-simple" class="{{menuItemClass 'new_messages'}}">
-            <a href="{{pathFor 'new_messages'}}">
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-            </a>
-        </li>
-        <li id="menu-item-simple" class="{{menuItemClass 'requests'}}">
-            <a href="{{pathFor 'requests'}}">
-                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-            </a>
-        </li>
-    {{> notificationsDropdown}}
-        <li id="menu-item-dropdown" class="dropdown ">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New
-                <b class="caret">
-                </b>
-            </a>
-            <ul id="menu-items" class="dropdown-menu">
-                <li class="active">
-                    {{#afModal class="btn btn-primary" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes"}}
-                        Song {{/afModal}}
-                </li>
-                <li class="active">
-                    {{#afModal class="btn btn-primary" collection="Ads" operation="insert" omitFields="ownerId,createdAt"}}
-                        Performance Ad {{/afModal}}
-                </li>
-            </ul>
         </li>
 
-        <li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
-            <a href="{{pathFor 'admin'}}">
-                Admin
-            </a>
-        </li>
+    </ul>
+</template>
+
+<template name="PrivateLayoutRightMenu">
+<ul id="menu-items" class="nav navbar-nav navbar-right">
+
+    <li id="menu-item-simple" class="{{menuItemClass 'songs'}}">
+        <a href="{{pathFor 'songs'}}" class="">
+            <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+        </a>
+    </li>
+    <li id="menu-item-simple" class="{{menuItemClass 'new_messages'}}">
+        <a href="{{pathFor 'new_messages'}}" class="">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+        </a>
+    </li>
+    <li id="menu-item-simple" class="{{menuItemClass 'requests'}}">
+        <a href="{{pathFor 'requests'}}" class="">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        </a>
+    </li>
+    {{> notificationsDropdown }}
     <li id="menu-item-dropdown" class="dropdown ">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-    {{ #if currentUser.services.facebook }}
-        <img id="nav_pro_pic" src="http://graph.facebook.com/{{ userFBImage }}/picture/?type=small" alt="...">
-        {{ currentUser.services.facebook.name }}
-    {{ else }}
-        <img id="nav_pro_pic" src="/images/profile/avatar.png" alt="...">
-        {{ currentUser.username }}
-    {{ /if }} - ID: {{ currentUser._id }}
-        <b class="caret">
-        </b>
-    </a>
+        <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New
+            <b class="caret">
+            </b>
+        </a>
         <ul id="menu-items" class="dropdown-menu">
-            <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
-                <a href="{{pathFor 'dashboard'}}">
-                    Dashboard
-                </a>
+            <li class="active">
+                {{#afModal class="btn btn-primary" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes"}}
+                    Song {{/afModal}}
             </li>
-            <li class="{{menuItemClass 'dashboard'}}">
-                <a href="{{pathFor 'dashboard'}}">
-                    Settings
-                </a>
-            </li>
-            <li class="{{menuItemClass 'logout'}}">
-                <a href="{{pathFor 'logout'}}">
-                    Logout
-                </a>
+            <li class="active">
+                {{#afModal class="btn btn-primary" collection="Ads" operation="insert" omitFields="ownerId,createdAt"}}
+                    Performance Ad {{/afModal}}
             </li>
         </ul>
     </li>
+
+    <li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
+        <a href="{{pathFor 'admin'}}" class="">
+            Admin
+        </a>
+    </li>
+<li id="menu-item-dropdown" class="dropdown ">
+<a href="#" class="dropdown-toggle " data-toggle="dropdown">
+
+{{ #if currentUser.services.facebook }}
+    <img id="nav_pro_pic" src="http://graph.facebook.com/{{ userFBImage }}/picture/?type=small" alt="...">
+{{ currentUser.services.facebook.name }}
+{{ else }}
+    <img id="nav_pro_pic" src="/images/profile/avatar.png" alt="...">
+{{ currentUser.username }}
+{{ /if }}
+    <b class="caret">
+    </b>
+</a>
+    <ul id="menu-items" class="dropdown-menu">
+        <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+            <a href="{{pathFor 'dashboard'}}">
+                Dashboard
+            </a>
+        </li>
+        <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+            <a href="{{pathFor 'dashboard'}}">
+                Settings
+            </a>
+        </li>
+        <li id="menu-item-simple" class="{{menuItemClass 'logout'}}">
+            <a href="{{pathFor 'logout'}}">
+                Logout
+            </a>
+        </li>
+        <li id="menu-item-simple" class="">
+            ID - {{ currentUser.id }}
+        </li>
     </ul>
-    </template>
+</li>
 
-    <template name="PrivateLayoutBottomLeftMenu">
-        <ul id="menu-items" class="nav navbar-nav navbar-left">
-            <li id="menu-item-simple" class="{{menuItemClass 'spotlight'}}">
-                <a href="{{pathFor 'spotlight'}}">
-                    Spotlight
-                </a>
-            </li>
-            <li id="menu-item-simple" class="{{menuItemClass 'rez_radio'}}">
-                <a href="{{pathFor 'rez_radio'}}">
-                    Rez Radio
-                </a>
-            </li>
-            <li id="menu-item-simple" class="{{menuItemClass 'ads'}}">
-                <a href="{{pathFor 'ads'}}">
-                    Performance Ads
-                </a>
-            </li>
-        </ul>
-    </template>
+</ul>
+</template>
 
-    <template name="AudioPlayer">
+<template name="PrivateLayoutBottomLeftMenu">
+    <ul id="menu-items" class="nav navbar-nav navbar-left">
+        <li id="menu-item-simple" class="{{menuItemClass 'spotlight'}}">
+            <a href="{{pathFor 'spotlight'}}" class="">
+                Spotlight
+            </a>
+        </li>
+        <li id="menu-item-simple" class="{{menuItemClass 'rez_radio'}}">
+            <a href="{{pathFor 'rez_radio'}}" class="">
+                Rez Radio
+            </a>
+        </li>
+        <li id="menu-item-simple" class="{{menuItemClass 'ads'}}">
+            <a href="{{pathFor 'ads'}}" class="">
+                Performance Ads
+            </a>
+        </li>
+    </ul>
+</template>
 
-        {{>Playlist}}
-
-    </template>
-
-
-    <template name="Playlist">
-
-        {{ #each song}}
-
-        <div class="sm2-bar-ui">
-
-            <div class="bd sm2-main-controls">
-
-                <div class="sm2-inline-texture"></div>
-                <div class="sm2-inline-gradient"></div>
-
-            <div class="sm2-inline-element sm2-button-element">
-                <div class="sm2-button-bd {{#if playingClass }}{{ playingClass }}{{ else }} paused {{ /if }}">
-                    <a href="#play" class="sm2-inline-button play-pause">Play / pause</a>
-                </div>
-            </div>
-
-
-                    <div class="sm2-inline-element sm2-inline-status">
-
-
-
-                    <div class="sm2-playlist">
-                        <div class="sm2-playlist-target">
-                            {{name}} - {{artist}}
-                            <!-- playlist <ul> + <li> markup will be injected here -->
-                            <!-- if you want default / non-JS content, you can put that here. -->
-                            <noscript><p>JavaScript is required.</p></noscript>
-                        </div>
-                    </div>
-
-                    <div class="sm2-progress">
-                        <div class="sm2-row">
-                            <div class="sm2-inline-time">{{#if currentPos }}{{ currentPos }}{{ else }}0.00{{ /if }}</div>
-                            <div class="sm2-progress-bd">
-                                <div class="sm2-progress-track">
-                                    <div class="sm2-progress-bar" style="width: {{getProgress}}"></div>
-                                    <div class="sm2-progress-ball" style="left: {{getProgress}}">
-                                        <div class="icon-overlay"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sm2-inline-duration">{{#if currentDur }}{{ currentDur }}{{ else }}0.00{{ /if }}</div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="sm2-inline-element sm2-button-element sm2-volume">
-                    <div class="sm2-button-bd">
-                        <span class="sm2-inline-button sm2-volume-control volume-shade"></span>
-                        <a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>
-                    </div>
-                </div>
-
-                <div class="sm2-inline-element sm2-button-element">
-                    <div class="sm2-button-bd">
-                        <a href="#prev" title="Previous" class="sm2-inline-button previous">&lt; previous</a>
-                    </div>
-                </div>
-
-                <div class="sm2-inline-element sm2-button-element">
-                    <div class="sm2-button-bd">
-                        <a href="#next" title="Next" class="sm2-inline-button next">&gt; next</a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        {{/each}}
-
-
-    </template>
+<template name="PlayerWrapper">
+    {{ #each song}}
+    {{> Player }}
+    {{ else }}
+        {{ playerCheck }}
+    {{> Player }}
+    {{ /each }}
+</template>

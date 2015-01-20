@@ -4,6 +4,11 @@ this.Helpers = {};
 Meteor.startup(function () {
     SimpleSchema.debug = true;
 
+    // Session Set Defaults
+    Session.setDefault('curSoundObj', null);
+
+    curSoundObj = null;
+
     // Clock
     FirstClock = new ReactiveClock("ExerciseClock");
     FirstClock.start();
@@ -162,6 +167,7 @@ ShareIt.configure({
 });*/
 
 
+
 // Template Helper to Pull User FB Image
 Template.registerHelper('userFBImage', function() {
         if(Meteor.user().services.facebook) {
@@ -219,65 +225,78 @@ setSeekPos = function (_id, e, barWidth) {
     var seekPos = 0, deltaX = 0;
     deltaX = ((e.clientX - getOffX(e.target))/barWidth) * 100; // Percentage of seek bar clicked
     seekPos = ((deltaX * Session.get('currentDurRaw')) / 100);
-    //cl('target: '+e.target.nodeName+ e.target.classList + e.currentTarget.classList +'normTar:'+ e.target.offsetWidth +'currTar'+ e.currentTarget.offsetWidth);
-    currentSongObj.setPosition(seekPos);
+    //cl(deltaX + ''+seekPos); //Debug
+    curSoundObj.setPosition(seekPos);
 };
+
 
 
 // Play song, or toggle pause if the song is already playing
 playSong = function (_id, url) {
-    // Check to see if already playing, if so toggle pause
+    // If Sound Manager is already active, stop playing all other songs. Play one at a time
+    if(typeof(soundManager) !== 'undefined'){
+        soundManager.stopAll();
+    }
+
     //var currentSongObj;
-    if (soundManager.getSoundById(_id)) {
-        soundManager.togglePause(_id);
+    if (!soundManager.getSoundById(_id)) {
+        curSoundObj = soundManager.createSound({
+                id: _id,
+                url: url,
+                autoLoad: true,
+                stream: true,
+                autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
+                onload: function () {
+                    Session.set('curSoundObj', _id);
+                    console.log(_id + "loaded!");
+                    this.setPosition(0); // Set Position to 0 on Load
+                    //varDuration = this.duration
+                    Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click handler
+                    Session.set('currentPos', this.position); // initial position
+                    Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time once
+                },
+                whileplaying: function () {
+                    Session.set('progress', (this.position * 100 / this.duration).toFixed(4)); // Display Current position in % for progress bar
+                    Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
+                }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
+                onplay: function () {
+                    Session.set('playingClass', true);
+                },
+                onpause: function () {
+                    Session.set('playingClass', false);
+                },
+                onresume: function () {
+                    Session.set('playingClass', true);
+                },
+                onfinish: function () {
+                    // remember to release audio resources
+                    soundManager.unload(_id);
+                    soundManager.destroySound(_id);
+                    Session.set('playingClass', false);
+                    curSoundObj = null;
+                    // maybe play next file from playlist?
+                    //playNext(doc._id);
+                    cl("done playing sound!");
+                },
+                onerror: function () {
+                    // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
+                    // Notify user if needed, disable sound-specific functionality etc.
+                    console.log("Error on SoundObj - onerror!");
+                }
+            });
+            cl(curSoundObj);
     } else {
-    currentSongObj = soundManager.createSound({
-            id: _id,
-            url: url,
-            autoLoad: true,
-            stream: true,
-            autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
-            onload: function () {
-                console.log(_id + "loaded!");
-                this.setPosition(0); // Set Position to 0 on Load
-                //varDuration = this.duration
-                Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click handler
-                Session.set('currentPos', this.position); // initial position
-                Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time once
-            },
-            whileplaying: function () {
-                Session.set('progress', (this.position * 100 / this.duration).toFixed(4)); // Display Current position in % for progress bar
-                Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
-            }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
-            onplay: function() {
-                Session.set('playingClass', true);
-            },
-            onpause: function() {
-                Session.set('playingClass', false);
-            },
-            onresume: function() {
-                Session.set('playingClass', true);
-            },
-            onfinish: function() {
-                // remember to release audio resources
-                soundManager.unload(_id);
-                soundManager.destroySound(_id);
-                Session.set('playingClass', false);
-                // maybe play next file from playlist?
-                playNext(doc._id);
-            },
-            onerror: function() {
-            // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
-            // Notify user if needed, disable sound-specific functionality etc.
-                console.log("SOMETHING FUCKED UP!");
-            }
-        });
+        cl("How did it get here....(else loop of playSong"+soundManager.getSoundById(_id));
+        soundManager.togglePause(_id);
     }
 };
 
 previousSong = function (_id) {
-    //soundManager.pause(_id);
-    soundManager.setPosition(_id, 0);
+    if (curSoundObj.position > 1) { //Song playing for over 1 second, set to beginning
+        soundManager.setPosition(_id, 0);
+    } else {
+        cl('ToDO: COnfig Playlist');
+    }
 };
 
 /*

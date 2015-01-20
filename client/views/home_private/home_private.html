@@ -11,9 +11,27 @@
 			</div>
 		</div>
         <div class="row">
-            <div id="title_block" class="col-md-12">
-			</div>
+            {{ #each songs }}
+            <div class="col-md-3">
+
+            {{#with FS.GetFile "audios" this.audioFileId }}
+                <a class="song_url" id="{{this._id}}" href="{{this.url}}">{{ this.name }}
+                </a>
+                {{ seshHelper this.url }}
+                {{ /with }}
+
+
+            {{#with FS.GetFile "images" this.coverImageId }}
+                <img class="song-img" src="{{this.url}}">
+            {{ /with }}
+
+
+
+                <h3 class="song-title">{{this.title}}</h3>
+                <h5>{{artistName}}</h5>
+            </div>
+            {{ /each }}
+
 		</div>
 	</div>
 </template>
-
