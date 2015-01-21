@@ -10,22 +10,33 @@ Ads.attachSchema(new SimpleSchema({
         label: "Price",
         optional:false
     },
-    createdBy: {
+    ownerId: {
         type: String,
         optional: true,
+        label: 'Owner Id'
         /*autoValue: function() {
             if (this.userId) {
                 return this.userId;
             }
-        },*/
+        },
         autoform: {
             omit: true
-        }
+        }*/
     },
     createdAt: {
         type: Date,
         label: "Published On",
-        optional: true
+        optional: true,
+        denyUpdate: true,
+        autoValue: function() {
+            if (this.isInsert) {
+                return new Date;
+            } else if (this.isUpsert) {
+                return {$setOnInsert: new Date};
+            } else {
+                this.unset();
+            }
+        }
     },
     description: {
         type: String,

@@ -21,7 +21,7 @@
 				{{errorMessage}}
 			</div>
 			{{/if}}
-			<!--<p>Profile Image: {{> avatar user=this shape="circle" }}</p>--><p><img src="http://graph.facebook.com/{{userFBImage}}/picture/?type=small" alt="..."></p>
+			<!--<p>Profile Image: {{> avatar user=this shape="circle" }}</p>--><p>{{userFBImage}}</p>
 			{{#if infoMessage}}
 			<div class="alert alert-success">
 				{{infoMessage}}

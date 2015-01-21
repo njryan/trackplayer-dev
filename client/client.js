@@ -171,9 +171,9 @@ ShareIt.configure({
 // Template Helper to Pull User FB Image
 Template.registerHelper('userFBImage', function() {
     if(Meteor.user().services.facebook) {
-        return Meteor.user().services.facebook.id;
+        return '<img src="http://graph.facebook.com/'+Meteor.user().services.facebook.id+'/picture/?type=small" alt="...">';
     }
-    return '/images/anon-img.png';
+    return '<img src="/images/anon-img.png">';
 });
 
 

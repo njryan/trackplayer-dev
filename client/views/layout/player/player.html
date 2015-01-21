@@ -4,7 +4,7 @@
 
 <div class="sm2-bar-ui">
 
-<div class="bd sm2-main-controls">
+    <div class="bd sm2-main-controls">
 
 <div class="sm2-inline-element sm2-button-element">
         <div class="sm2-button-bd {{#if playingClass }}{{ playingClass }}{{ else }} paused {{ /if }}">
@@ -19,7 +19,7 @@
 
     <div class="sm2-playlist">
         <div class="sm2-playlist-target">
-            {{name}} - {{artist}}
+            {{this.name}} - {{ this.artist }}
             <!-- playlist <ul> + <li> markup will be injected here -->
             <!-- if you want default / non-JS content, you can put that here. -->
             <noscript><p>JavaScript is required.</p></noscript>
@@ -67,6 +67,4 @@
         </div>
 
         {{/each}}
-
-
 </template>

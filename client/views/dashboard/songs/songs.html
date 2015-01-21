@@ -165,12 +165,15 @@
 <template name="SongsViewTableItemsDashboard">
     <tr id="dataview-table-items-row">
         <td>
-            {{title}}
+            {{#with FS.GetFile "images" this.coverImageId }}
+		        <img class="song-dash-single" style="" src="{{this.url}}">
+		        <p>{{> FS.DeleteButton class="btn btn-danger btn-xs"}}</p>
+            {{/with}}
         </td>
         <td>
 
             {{#with FS.GetFile "audios" this.audioFileId }}
-                <a class="song_url" id="{{this._id}}" href="{{this.url}}">{{this.name}}</a>
+                <a class="song_url play-btn" id="{{this._id}}" href="{{this.url}}"><span class="glyphicon-play-circle"> </span></a>
                 <p>{{> FS.DeleteButton class="btn btn-danger btn-xs"}}</p>
             {{/with}}
 
@@ -179,14 +182,10 @@
             {{genre}}
         </td>
         <td>
-
-            {{#with FS.GetFile "images" this.coverImageId }}
-                <img style="max-height:150px;" src="{{this.url}}">
-                <p>{{> FS.DeleteButton class="btn btn-danger btn-xs"}}</p>
-            {{/with}}
+            
         </td>
         <td>
-            {{> favoriteButton _id=_id}}
+            {{#if this.likes }}<span class="badge">{{ this.likes }}</span>{{ else }}<span class="badge">None yet!</span>{{ /if }}
         </td>
         <td>
             {{>shareit}}

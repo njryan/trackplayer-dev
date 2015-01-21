@@ -202,7 +202,7 @@ Meteor.startup(function () {
 		console.log(" arrayIds: "+arrayIds);
 
         // Create Admin Account
-        var createAdminAccount = function () {
+        /*var createAdminAccount = function () {
             return {
                 profile: {
                     firstName: 'admin',
@@ -224,7 +224,7 @@ Meteor.startup(function () {
             var newAdminInfo = Meteor.users.findOne(newAdmin);
             console.log("User: "+newAdminInfo.profile.firstName+" -added.");
         };
-        initAdminAccount();
+        initAdminAccount();*/
         console.log('arrayIds '+fakeFixture.fromArray(arrayIds));
         // Song Obj
         var createFakeSong = function (i) { // Pass in i to loop through the actual local files
@@ -246,12 +246,14 @@ Meteor.startup(function () {
 			    var newSong = Songs.insert(createFakeSong(i));
 			    console.log("newSong: "+newSong);
 			    var newSongInfo = Songs.findOne(newSong);
-			    console.log('new song made: ' + newSongInfo.ownerId + ' '+ newSongInfo.createdBy);
+			    console.log('new song ownerId: ' + newSongInfo.ownerId + ' createdby: '+ newSongInfo.createdBy);
 		    }
 	    };
         initFakeSongs(); // Creating Fake Songs
         console.log('arrayIds '+fakeFixture.fromArray(arrayIds));
-	    var createFakeMessages = function () {
+
+
+        var createFakeMessages = function () {
 		    return {
 			    title: fakeFixture.getSentence(5),
 			    createdBy: fakeFixture.fromArray(arrayIds), // Assign to random user
@@ -267,23 +269,25 @@ Meteor.startup(function () {
 			    var newMessage = Messages.insert(createFakeMessages());
 			    console.log('Message create: '+newMessage);
 			    var newMess = Messages.findOne(newMessage);
-			    console.log('nmess: '+newMess.ownerId);
+                console.log('new message ownerId: ' + newMess.ownerId + ' createdby: '+ newMess.createdBy);
 			    console.log("User: "+newMess.title+" -added.");
 		    }
 	    };
-
         initFakeMessages(20);
-        console.log("Init Done!");
+        console.log("Init Messages Done!");
 	    // Create 1 ad for each fake user
-	    var createFakeAds = function (value) {
+
+        var createFakeAds = function (value) {
             if (!value){
                 console.log("NO VALUE!");
             }
 		    var userObj = Meteor.users.findOne(value);
-		    console.log('createFake '+userObj+'value: '+value);
+		    console.log('Ad profile Artist Type '+userObj.profile.artistType+' userObj Id: '+userObj._id+' .id: '+userObj.id);
 		    return {
 			    title: fakeFixture.getSentence(5),
-			    createdBy: value, // Assign to the pulled in author
+			    //createdBy: value, // Assign to the pulled in author
+                createdBy: value,
+                ownerId: value,
 			    description: fakeFixture.getParagraph(1),
 			    artistType: userObj.profile.artistType,
 			    createdAt: fakeFixture.getRandomDate(new Date(2012, 0, 1), new Date()),
@@ -292,10 +296,13 @@ Meteor.startup(function () {
 		    };
 	    };
         var initFakeAds = function(list) {
+            console.log("Ads List: "+list);
             var len = list.length;
             for (var i = 0; i < len; i++) {
                 var adObj = Ads.insert(createFakeAds(list[i]));
-                console.log('Ad Made: '+adObj);
+                console.log("compare list[i]: "+list[i]+' with adObj '+adObj);
+                var adObjReal = Ads.findOne(adObj);
+                console.log('Ad Made: '+adObjReal+' returned Obj:CB '+adObjReal.createdBy+' OI: '+adObjReal.ownerId);
             }
         };
         initFakeAds(arrayIds);

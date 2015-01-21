@@ -18,7 +18,7 @@ Template.HomePrivate.events({
         e.preventDefault();
 	    e.stopPropagation();
         url = e.target.parentNode.href;
-	    cl('parent: '+e.target.parentNode+'');
+	    cl('parent: '+e.target.parentNode.href+'');
         id = e.target.parentNode.getAttribute('data-id');
         //id = this.id;
 	    cl("song change: "+url+' Id :'+id);

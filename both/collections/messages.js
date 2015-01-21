@@ -25,9 +25,10 @@ Messages.attachSchema(new SimpleSchema({
             }
         }
     },
-    createdBy: {
+    ownerId: {
         type: String,
-        optional: true
+        optional: true,
+        label: 'createdBY'
         /*autoValue: function() {
             if (this.userId) {
                 return this.userId;

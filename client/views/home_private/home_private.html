@@ -1,42 +1,42 @@
 <template name="HomePrivate">
 <div id="home_private">
-<div class="page-container container" id="content">
-	<div class="row">
-		<div id="title_block" class="col-md-12">
-			<h2 id="page_title" class="pull-left">
-				Latest Music
-			</h2>
-			<div id="page_menu" class="pull-right">
-				<a class="btn btn-default to_dashboard" href="/dashboard">Go To Dashboard</a>
-			</div>
-		</div>
-	</div>
-    <div class="row">
-    {{ #each songs }}
-        <div class="col-md-3">
-            <div class="single-song-wrapper">
-    {{#with FS.GetFile "audios" this.audioFileId }}
-        {{ seshHelper1 .. }}
-		<a class="song_url" id="{{this._id}}" href="{{this.url}}">{{ this.name }}
-		</a>
-        {{ seshHelper  }}
-        {{ /with }}
-
-        <button class="play-btn"><span class="glyphicon glyphicon-play"> </span></button>
-		<button class="like-heart"><span class="glyphicon glyphicon-heart"> </span></button>
-		<a class="song_url" data-id="{{this._id}}" href="{{this.audioFileId}}">
-			<img class="song-img img-responsive" src="{{this.coverImageId}}">
-		</a>
-		<p class="small">{{ this.title }} - {{ artistName this.ownerId }}</p>
-        <!--<span>{{> shareit }}</span>-->
-
-        {{#with FS.GetFile "images" this.coverImageId }}
-			<img class="song-img" src="{{this.url}}">
-            {{ /with }}
-
+    <div class="page-container container" id="content">
+	    <div class="row">
+		    <div id="title_block" class="col-md-12">
+			    <h2 id="page_title" class="pull-left">
+				    Latest Music
+			    </h2>
+			    <div id="page_menu" class="pull-right">
+				    <a class="btn btn-default to_dashboard" href="/dashboard">Go To Dashboard</a>
+			    </div>
 		    </div>
-		</div>
-            {{ /each }}
+	    </div>
+        <div class="row">
+        {{ #each songs }}
+            <div class="col-md-3">
+                <div class="single-song-wrapper">
+                    <!-- ToDO: Helper to seperate context for fixtures and for real file uploads -->
+                    {{#with FS.GetFile "audios" this.audioFileId }}
+                        {{ seshHelper1 .. }}
+		                <a class="song_url" data-id="{{this._id}}" href="{{this.url}}">{{ this.name }}</a>
+                        {{ seshHelper  }}
+                    {{ /with }}
+                    {{#with FS.GetFile "images" this.coverImageId }}
+							<img class="song-img img-responsive" src="{{this.url}}">
+                    {{ /with }}
+
+                    <button class="play-btn"><span class="glyphicon glyphicon-play"> </span></button>
+		            <button class="like-heart"><span class="glyphicon glyphicon-heart"> </span></button>
+
+                        <a class="song_url" data-id="{{this._id}}" href="{{this.audioFileId}}">
+			                <img class="song-img img-responsive" src="{{this.coverImageId}}">
+		                </a>
+		                <p class="small">{{ this.title }} - {{ artistName this.ownerId }}</p>
+                        <span>{{> shareit }}</span>
+
+		        </div>
+		    </div>
+        {{ /each }}
     </div>
 	</div>
 		</div>
