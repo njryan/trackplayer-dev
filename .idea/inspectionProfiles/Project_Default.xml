@@ -94,7 +94,7 @@
     <inspection_tool class="JSComparisonWithNaN" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSConsecutiveCommasInArrayLiteral" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSConstructorReturnsPrimitive" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="JSDeclarationsAtScopeStart" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="JSDeclarationsAtScopeStart" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="JSDeprecatedSymbols" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSDuplicatedDeclaration" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSJQueryEfficiency" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -116,7 +116,7 @@
       <group names="y,height,top,bottom" />
       <exclude classes="Math" />
     </inspection_tool>
-    <inspection_tool class="JSUndeclaredVariable" enabled="true" level="ERROR" enabled_by_default="true">
+    <inspection_tool class="JSUndeclaredVariable" enabled="false" level="ERROR" enabled_by_default="false">
       <option name="myCheckGlobalDefinitions" value="true" />
     </inspection_tool>
     <inspection_tool class="JSUndefinedPropertyAssignment" enabled="true" level="ERROR" enabled_by_default="true" />

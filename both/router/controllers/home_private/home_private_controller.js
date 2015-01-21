@@ -19,7 +19,8 @@ this.HomePrivateController = RouteController.extend({
 		var subs = [
 			Meteor.subscribe("all_songs"),
             Meteor.subscribe("images"),
-            Meteor.subscribe("audios")
+            Meteor.subscribe("audios"),
+            Meteor.subscribe("all_users")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
@@ -32,7 +33,7 @@ this.HomePrivateController = RouteController.extend({
 	data: function() {
 		return {
 			params: this.params || {},
-            songs: Songs.find({},{}),
+            //songs: Songs.find({},{}),
             images: Images.find({},{}),
             audios: Audios.find({},{})
 		};

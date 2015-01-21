@@ -13,11 +13,11 @@ Ads.attachSchema(new SimpleSchema({
     createdBy: {
         type: String,
         optional: true,
-        autoValue: function() {
+        /*autoValue: function() {
             if (this.userId) {
                 return this.userId;
             }
-        },
+        },*/
         autoform: {
             omit: true
         }
@@ -36,11 +36,19 @@ Ads.attachSchema(new SimpleSchema({
     genre: {
         type: String,
         label: "Genre",
-        allowedValues: ["Rap/Hip-Hop","jazz","country", "Pop", "Rock", "Reggae", "Classical", "EDM"],
+        allowedValues: ["rap", "jazz", "country", "pop", "rock", "reggae", "classical", "edm"],
         autoform: {
-            afFieldInput: {
-                firstOption: "(Select a Genre)"
-            }
+            type: "select",
+            options: [
+                {label: "Rap/Hip Hop", value: "rap"},
+                {label: "Jazz", value: "jazz"},
+                {label: "Country", value: "country"},
+                {label: "Pop", value: "pop"},
+                {label: "Rock", value: "rock"},
+                {label: "Reggae", value: "reggae"},
+                {label: "Classical", value: "classical"},
+                {label: "EDM", value: "edm"}
+            ]
         }
     }
 }));

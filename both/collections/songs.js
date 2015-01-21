@@ -10,11 +10,11 @@ Songs.attachSchema(new SimpleSchema({
         type: String,
         label: "Owner Id",
         optional: true,
-        autoValue: function() {
+        /*autoValue: function() {
             if (this.userId) {
                 return this.userId;
             }
-        }
+        }*/
     },
     createdAt: {
         type: Date,

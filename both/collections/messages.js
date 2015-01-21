@@ -27,12 +27,12 @@ Messages.attachSchema(new SimpleSchema({
     },
     createdBy: {
         type: String,
-        optional: true,
-        autoValue: function() {
+        optional: true
+        /*autoValue: function() {
             if (this.userId) {
                 return this.userId;
             }
-        }
+        }*/
     },
     read: {
         type: Boolean,

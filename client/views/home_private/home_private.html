@@ -1,37 +1,41 @@
 <template name="HomePrivate">
-	<div class="page-container container" id="content">
-		<div class="row">
-			<div id="title_block" class="col-md-12">
-				<h2 id="page_title" class="pull-left">
-					Latest Music
-				</h2>
-				<div id="page_menu" class="pull-right">
-                    <a class="btn btn-default to_dashboard" href="/dashboard">Go To Dashboard</a>
-				</div>
+<div id="home_private">
+<div class="page-container container" id="content">
+	<div class="row">
+		<div id="title_block" class="col-md-12">
+			<h2 id="page_title" class="pull-left">
+				Latest Music
+			</h2>
+			<div id="page_menu" class="pull-right">
+				<a class="btn btn-default to_dashboard" href="/dashboard">Go To Dashboard</a>
 			</div>
 		</div>
-        <div class="row">
-            {{ #each songs }}
-            <div class="col-md-3">
+	</div>
+    <div class="row">
+    {{ #each songs }}
+        <div class="col-md-3">
+            <div class="single-song-wrapper">
+    {{#with FS.GetFile "audios" this.audioFileId }}
+        {{ seshHelper1 .. }}
+		<a class="song_url" id="{{this._id}}" href="{{this.url}}">{{ this.name }}
+		</a>
+        {{ seshHelper  }}
+        {{ /with }}
 
-            {{#with FS.GetFile "audios" this.audioFileId }}
-                <a class="song_url" id="{{this._id}}" href="{{this.url}}">{{ this.name }}
-                </a>
-                {{ seshHelper this.url }}
-                {{ /with }}
+		<a class="song_url" id="{{this._id}}" href="{{this.audioFileId}}">
+			<img class="song-img img-thumbnail img-responsive" src="{{this.coverImageId}}">
+		</a>
+		<p class="small">{{ this.title }} - {{ artistName this.ownerId }}</p>
+        <span>{{> shareit }}</span>
 
-
-            {{#with FS.GetFile "images" this.coverImageId }}
-                <img class="song-img" src="{{this.url}}">
+        {{#with FS.GetFile "images" this.coverImageId }}
+			<img class="song-img" src="{{this.url}}">
             {{ /with }}
 
-
-
-                <h3 class="song-title">{{this.title}}</h3>
-                <h5>{{artistName}}</h5>
-            </div>
-            {{ /each }}
-
+		    </div>
 		</div>
+            {{ /each }}
+    </div>
 	</div>
-</template>
+		</div>
+		</template>

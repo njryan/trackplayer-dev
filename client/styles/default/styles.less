@@ -237,15 +237,23 @@ form#dataview-controls {
 
 
 // Home Private Page
-.song-img {
-  width:150px;
-  max-height: 150px;
+#home_private {
+  color:white;
+  .single-song-wrapper {
+    text-align: center;
+    > a {
+      background-color: #31708f;
+      padding: 5px;
+      .song-img {
+        //width: 90%;
+        max-height: 200px;
+      }
+    }
+    .song-title {
+
+    }
+  }
 }
-
-.song-title {
-
-}
-
 
 // Rez Radio Page
 #rez_row h4 {
@@ -328,18 +336,15 @@ form#dataview-controls {
 .share-buttons .shareit-twitter-colors {
   color: #fff;
   background: #4099FF;
-  padding: 4px;
   border-radius: 100%;
-  padding: 2px 5px;
+  padding: 3px 5px 0;
 }
 
 .share-buttons .shareit-facebook-colors {
   background: #3B5998;
   color: #fff;
-  padding: 4px;
   border-radius: 100%;
-  padding: 2px 8px;
-  margin-bottom:5px;
+  padding: 3px 8px 0;
 }
 
 

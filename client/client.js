@@ -170,17 +170,19 @@ ShareIt.configure({
 
 // Template Helper to Pull User FB Image
 Template.registerHelper('userFBImage', function() {
-        if(Meteor.user().services.facebook) {
-            return Meteor.user().services.facebook.id;
+    if(Meteor.user().services.facebook) {
+        return Meteor.user().services.facebook.id;
     }
+    return Meteor.userId();
 });
 
 
 // General Helpers
 
 // Console Log helper
+// ToDo: Make this a dynamic helper, passing in variables and automatically outputs the log
 cl = function(something){
-    console.log(something);
+    console.log('+something+: '+something);
 };
 
 
