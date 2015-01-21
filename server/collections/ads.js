@@ -12,7 +12,7 @@ Ads.allow({
 	}
 });
 
-/*Ads.before.insert(function(userId, doc) {
+Ads.before.insert(function(userId, doc) {
 	doc.createdAt = new Date();
 	doc.createdBy = userId;
 
@@ -42,4 +42,4 @@ Ads.after.update(function(userId, doc, fieldNames, modifier, options) {
 
 Ads.after.remove(function(userId, doc) {
 	
-});*/
+});

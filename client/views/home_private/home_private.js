@@ -12,15 +12,15 @@ Template.HomePrivate.events({
 		Router.go("", {});
 	},
     "click .song_url": function(e,t) {
-        cl("Song Url Clicked :"+this);
+        cl("Song Url Clicked :"+ t.name);
         var id;
         var url;
         e.preventDefault();
 	    e.stopPropagation();
-        url = e.target.href;
-	    cl(e.target.parentNode+''+ e.target.classList);
-        //id = e.target.getAttribute('data-id');
-        id = this.id;
+        url = e.target.parentNode.href;
+	    cl('parent: '+e.target.parentNode+'');
+        id = e.target.parentNode.getAttribute('data-id');
+        //id = this.id;
 	    cl("song change: "+url+' Id :'+id);
         playSong(id,url);
     }

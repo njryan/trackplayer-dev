@@ -125,7 +125,7 @@ _.each(Helpers, function (helper, key) {
 // Setting Up Account Ui and Social Media Integration
 Accounts.ui.config({
     requestPermissions: {
-        facebook: ['public_profile', 'email']
+        facebook: ['public_profile']
     },
     passwordSignupFields: 'USERNAME_AND_EMAIL',
     extraSignupFields: []
@@ -173,18 +173,17 @@ Template.registerHelper('userFBImage', function() {
     if(Meteor.user().services.facebook) {
         return Meteor.user().services.facebook.id;
     }
-    return Meteor.userId();
+    return '/images/anon-img.png';
 });
 
 
 // General Helpers
 
 // Console Log helper
-// ToDo: Make this a dynamic helper, passing in variables and automatically outputs the log
-cl = function(something){
-    console.log('+something+: '+something);
+// ToDo: Make this a dynamic helper, passing in variables and automatically outputs the log, Make accepts as many args are needed
+cl = function(output) {
+    console.log(output);
 };
-
 
 
 /*
@@ -239,28 +238,34 @@ playSong = function (_id, url) {
     if(typeof(soundManager) !== 'undefined'){
         soundManager.stopAll();
     }
-
-    //var currentSongObj;
+    if (!soundManager.canPlayURL(url)) cl("Bad UrL");
     if (!soundManager.getSoundById(_id)) {
         curSoundObj = soundManager.createSound({
                 id: _id,
                 url: url,
                 autoLoad: true,
                 stream: true,
-                autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
+                autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to
+                                // manually start it
                 onload: function () {
                     Session.set('curSoundObj', _id);
-                    console.log(_id + "loaded!");
+                    cl("loaded! "+_id);
                     this.setPosition(0); // Set Position to 0 on Load
                     //varDuration = this.duration
-                    Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click handler
+                    Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click
+                                                                 // handler
                     Session.set('currentPos', this.position); // initial position
-                    Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time once
+                    Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time
+                                                                                         // once
                 },
                 whileplaying: function () {
-                    Session.set('progress', (this.position * 100 / this.duration).toFixed(4)); // Display Current position in % for progress bar
+                    Session.set('progress', (this.position * 100 / this.duration).toFixed(4)); // Display Current
+                                                                                               // position in % for
+                                                                                               // progress bar
                     Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
-                }, // Optional callback to update playback position (you could use a Session var to update an element of the UI re-actively)
+                },
+                // Optional callback to update playback position (you could use a Session var to update an element
+                   // of the UI re-actively)
                 onplay: function () {
                     Session.set('playingClass', true);
                 },
@@ -286,9 +291,9 @@ playSong = function (_id, url) {
                     console.log("Error on SoundObj - onerror!");
                 }
             });
-            cl(curSoundObj);
+            cl('curSoundObj'+curSoundObj);
     } else {
-        cl("How did it get here....(else loop of playSong"+soundManager.getSoundById(_id));
+        cl("How did it get here.... else loop of playSong"+soundManager.getSoundById(_id));
         soundManager.togglePause(_id);
     }
 };

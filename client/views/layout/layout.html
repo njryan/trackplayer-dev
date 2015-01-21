@@ -8,11 +8,11 @@
 </template>
 
 <template name="PublicLayout">
-    <div id="wrap" class="public">
-        <div class="navbar navbar-fixed-top navbar-default" role="navigation">
-            <div class="navbar-container container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<div id="wrap" class="public">
+		<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+			<div class="navbar-container container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">
               Toggle navigation
             </span>
@@ -22,42 +22,42 @@
             </span>
             <span class="icon-bar">
             </span>
-                    </button>
-                    <a class="navbar-brand" href="{{pathFor 'home_private'}}">
-                        <img id="logo" src="/images/insonicpng.png">
-                    </a>
-                </div>
-                <div id="menu" class="collapse navbar-collapse">
+					</button>
+					<a class="navbar-brand" href="{{pathFor 'home_private'}}">
+						<img id="logo" src="/images/insonicpng.png">
+					</a>
+				</div>
+				<div id="menu" class="collapse navbar-collapse">
                     {{> PublicLayoutLeftMenu}}{{> PublicLayoutRightMenu}}
-                </div>
-            </div>
-        </div>
-        <div class="navbar-spacer">
-        </div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar-spacer">
+		</div>
 
         {{> yield}}
-    </div>
-    <div id="footer">
-        <div class="footer-container container">
-            <p class="text-muted">
-            </p>
-        </div>
-    </div>
+	</div>
+	<div id="footer">
+		<div class="footer-container container">
+			<p class="text-muted">
+			</p>
+		</div>
+	</div>
 
 </template>
 
 <template name="PublicLayoutLeftMenu">
-    <ul id="menu-items" class="nav navbar-nav">
-        <li id="menu-item-simple" class="{{menuItemClass 'home_public'}}">
-            <a href="{{pathFor 'home_public'}}">
-                Home
-            </a>
-        </li>
-    </ul>
+	<ul id="menu-items" class="nav navbar-nav">
+		<li id="menu-item-simple" class="{{menuItemClass 'home_public'}}">
+			<a href="{{pathFor 'home_public'}}">
+				Home
+			</a>
+		</li>
+	</ul>
 </template>
 
 <template name="PublicLayoutRightMenu">
-    <!-- <ul id="menu-items" class="nav navbar-nav navbar-right">
+	<!-- <ul id="menu-items" class="nav navbar-nav navbar-right">
     <li id="menu-item-simple" class="{{menuItemClass 'register'}}">
       <a href="{{pathFor 'register'}}">
 				Register
@@ -72,11 +72,11 @@
 </template>
 
 <template name="PrivateLayout">
-    <div id="wrap">
-        <div class="navbar navbar-fixed-top navbar-default" role="navigation">
-            <div class="navbar-container container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<div id="wrap">
+		<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+			<div class="navbar-container container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">
               Toggle navigation
             </span>
@@ -86,150 +86,150 @@
             </span>
             <span class="icon-bar">
             </span>
-                    </button>
-                    <a class="navbar-brand" href="{{pathFor 'home_private'}}">
-                        <img id="logo" src="/images/insonic-logo.png">
-                    </a>
-                </div>
-                <div id="menu" class="collapse navbar-collapse">
+					</button>
+					<a class="navbar-brand" href="{{pathFor 'home_private'}}">
+						<img id="logo" src="/images/insonic-logo.png">
+					</a>
+				</div>
+				<div id="menu" class="collapse navbar-collapse">
                     {{> PrivateLayoutLeftMenu}}{{> PrivateLayoutRightMenu}}
-                </div>
-            </div>
-        </div>
-        <div class="navbar-spacer">
-        </div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar-spacer">
+		</div>
 
         {{> yield}}
-    </div>
-    <div id="footer">
-        <div class="footer-container container">
-            <div class="navbar navbar-default navbar-fixed-bottom">
-                <div class="container">
-                    <div class="col-md-6">{{> PrivateLayoutBottomLeftMenu}}</div>
-                    <div class="col-md-6">{{> PlayerWrapper }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
+	</div>
+	<div id="footer">
+		<div class="footer-container container">
+			<div class="navbar navbar-default navbar-fixed-bottom">
+				<div class="container">
+					<div class="col-md-6">{{> PrivateLayoutBottomLeftMenu}}</div>
+					<div class="col-md-6">{{> PlayerWrapper }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </template>
 
 <template name="PrivateLayoutLeftMenu">
-    <ul id="menu-items" class="nav navbar-nav">
-        <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
-            <a href="{{pathFor 'dashboard'}}">
-                Dashboard
-            </a>
-        </li>
+	<ul id="menu-items" class="nav navbar-nav">
+		<li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+			<a href="{{pathFor 'dashboard'}}">
+				Dashboard
+			</a>
+		</li>
 
-    </ul>
+	</ul>
 </template>
 
 <template name="PrivateLayoutRightMenu">
+
 <ul id="menu-items" class="nav navbar-nav navbar-right">
 
-    <li id="menu-item-simple" class="{{menuItemClass 'songs'}}">
-        <a href="{{pathFor 'songs'}}" class="">
-            <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
-        </a>
-    </li>
-    <li id="menu-item-simple" class="{{menuItemClass 'new_messages'}}">
-        <a href="{{pathFor 'new_messages'}}" class="">
-            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-        </a>
-    </li>
-    <li id="menu-item-simple" class="{{menuItemClass 'requests'}}">
-        <a href="{{pathFor 'requests'}}" class="">
-            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-        </a>
-    </li>
-    {{> notificationsDropdown }}
-    <li id="menu-item-dropdown" class="dropdown ">
-        <a href="#" class="dropdown-toggle " data-toggle="dropdown">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New
-            <b class="caret">
-            </b>
-        </a>
-        <ul id="menu-items" class="dropdown-menu">
-            <li class="active">
+	<li id="menu-item-simple" class="{{menuItemClass 'songs'}}">
+		<a href="{{pathFor 'songs'}}">
+			<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+		</a>
+	</li>
+	<li id="menu-item-simple" class="{{menuItemClass 'new_messages'}}">
+		<a href="{{pathFor 'new_messages'}}">
+			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+		</a>
+	</li>
+	<li id="menu-item-simple" class="{{menuItemClass 'requests'}}">
+		<a href="{{pathFor 'requests'}}">
+			<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+		</a>
+	</li>
+{{> notificationsDropdown }}
+	<li id="menu-item-dropdown" class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New
+			<b class="caret">
+			</b>
+		</a>
+		<ul id="menu-items" class="dropdown-menu">
+			<li class="active">
                 {{#afModal class="btn btn-primary" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes"}}
-                    Song {{/afModal}}
-            </li>
-            <li class="active">
+					Song {{/afModal}}
+			</li>
+			<li class="active">
                 {{#afModal class="btn btn-primary" collection="Ads" operation="insert" omitFields="ownerId,createdAt"}}
-                    Performance Ad {{/afModal}}
-            </li>
-        </ul>
-    </li>
+					Performance Ad {{/afModal}}
+			</li>
+		</ul>
+	</li>
 
-    <li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
-        <a href="{{pathFor 'admin'}}" class="">
-            Admin
+	<li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
+		<a href="{{pathFor 'admin'}}" class="">
+			Admin
+		</a>
+	</li>
+    <li id="menu-item-dropdown" class="dropdown">
+        <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+
+    {{ #if currentUser.services.facebook }}
+	    <img id="nav_pro_pic" src="http://graph.facebook.com/{{ userFBImage }}/picture/?type=small" alt="...">
+    {{ currentUser.services.facebook.name }}
+    {{ else }}
+	    <img id="nav_pro_pic" src="/images/anon-img.png" alt="...">
+    {{ currentUser.username }}
+    {{ /if }}
+	<b class="caret">
+	</b>
         </a>
-    </li>
-<li id="menu-item-dropdown" class="dropdown ">
-<a href="#" class="dropdown-toggle " data-toggle="dropdown">
-
-{{ #if currentUser.services.facebook }}
-    <img id="nav_pro_pic" src="http://graph.facebook.com/{{ userFBImage }}/picture/?type=small" alt="...">
-{{ currentUser.services.facebook.name }}
-{{ else }}
-    <img id="nav_pro_pic" src="/images/anon-img.png" alt="...">
-{{ currentUser.username }}
-{{ /if }}
-    <b class="caret">
-    </b>
-</a>
-    <ul id="menu-items" class="dropdown-menu">
-        <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
-            <a href="{{pathFor 'dashboard'}}">
-                Dashboard
-            </a>
-        </li>
-        <li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
-            <a href="{{pathFor 'dashboard'}}">
-                Settings
-            </a>
-        </li>
-        <li id="menu-item-simple" class="{{menuItemClass 'logout'}}">
-            <a href="{{pathFor 'logout'}}">
-                Logout
-            </a>
-        </li>
-        <li id="menu-item-simple" class="">
-            ID - {{ currentUser.id }}
-        </li>
-    </ul>
+	<ul id="menu-items" class="dropdown-menu">
+		<li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+			<a href="{{pathFor 'dashboard'}}">
+				Dashboard
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+			<a href="{{pathFor 'dashboard'}}">
+				Settings
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'logout'}}">
+			<a href="{{pathFor 'logout'}}">
+				Logout
+			</a>
+		</li>
+		<li id="menu-item-simple" class="">
+			ID - {{ currentUser.id }}
+		</li>
+	</ul>
 </li>
-
 </ul>
 </template>
 
 <template name="PrivateLayoutBottomLeftMenu">
-    <ul id="menu-items" class="nav navbar-nav navbar-left">
-        <li id="menu-item-simple" class="{{menuItemClass 'spotlight'}}">
-            <a href="{{pathFor 'spotlight'}}" class="">
-                Spotlight
-            </a>
-        </li>
-        <li id="menu-item-simple" class="{{menuItemClass 'rez_radio'}}">
-            <a href="{{pathFor 'rez_radio'}}" class="">
-                Rez Radio
-            </a>
-        </li>
-        <li id="menu-item-simple" class="{{menuItemClass 'ads'}}">
-            <a href="{{pathFor 'ads'}}" class="">
-                Performance Ads
-            </a>
-        </li>
-    </ul>
+	<ul id="menu-items" class="nav navbar-nav navbar-left">
+		<li id="menu-item-simple" class="{{menuItemClass 'spotlight'}}">
+			<a href="{{pathFor 'spotlight'}}" class="">
+				Spotlight
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'rez_radio'}}">
+			<a href="{{pathFor 'rez_radio'}}" class="">
+				Rez Radio
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'ads'}}">
+			<a href="{{pathFor 'ads'}}" class="">
+				Performance Ads
+			</a>
+		</li>
+	</ul>
 </template>
 
 <template name="PlayerWrapper">
-    {{ #each song}}
-    {{> Player }}
-    {{ else }}
-        {{ playerCheck }}
-    {{> Player }}
-    {{ /each }}
+{{ #each song}}
+{{> Player }}
+{{ else }}
+{{ playerCheck }}
+{{> Player }}
+{{ /each }}
 </template>

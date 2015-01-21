@@ -22,11 +22,13 @@
         {{ seshHelper  }}
         {{ /with }}
 
-		<a class="song_url" id="{{this._id}}" href="{{this.audioFileId}}">
-			<img class="song-img img-thumbnail img-responsive" src="{{this.coverImageId}}">
+        <button class="play-btn"><span class="glyphicon glyphicon-play"> </span></button>
+		<button class="like-heart"><span class="glyphicon glyphicon-heart"> </span></button>
+		<a class="song_url" data-id="{{this._id}}" href="{{this.audioFileId}}">
+			<img class="song-img img-responsive" src="{{this.coverImageId}}">
 		</a>
 		<p class="small">{{ this.title }} - {{ artistName this.ownerId }}</p>
-        <span>{{> shareit }}</span>
+        <!--<span>{{> shareit }}</span>-->
 
         {{#with FS.GetFile "images" this.coverImageId }}
 			<img class="song-img" src="{{this.url}}">
