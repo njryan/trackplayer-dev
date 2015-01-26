@@ -9,6 +9,10 @@ Meteor.startup(function () {
 
     curSoundObj = null;
 
+    // Set constants for soundmanager
+    soundManager.useHighPerformance = true;
+    soundManager.useFastPolling = true;
+
 
 });
 
@@ -238,7 +242,8 @@ toggleMute = function (_id) {
           Session.set('mutedClass', true);
       }
       soundManager.toggleMute(_id);
-      cl('Mute Toggled');
+      soundManager._writeDebug(curSoundObj.id+' Muted? '+(curSoundObj.muted?'Yes - mute': 'No - not muted')+'.');
+      //cl('Mute Toggled');
   } else {
       cl("Cant mute, no song playing!");
   }
@@ -256,8 +261,8 @@ playSong = function (_id, url) {
         curSoundObj = soundManager.createSound({
             id: _id,
             url: url,
-            autoLoad: true,
-            stream: true,
+            autoLoad: false,
+            stream: false,
             autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
 
             onload: function () {
@@ -304,7 +309,7 @@ playSong = function (_id, url) {
             },
             whileloading: function() {
                 //cl('Debug Helper While Loading: '+this.id +' Playstate: '+this.playState+' ReadyState: '+this.readyState); // Debug helper
-                soundManager._writeDebug(this.id + ': loading ' + this.bytesLoaded + ' / ' + this.bytesTotal);
+                //soundManager._writeDebug(this.id + ': loading ' + this.bytesLoaded + ' / ' + this.bytesTotal);
 
             },
             ontimeout: function() {
@@ -319,8 +324,9 @@ playSong = function (_id, url) {
 };
 
 previousSong = function (_id) {
-    if (curSoundObj.position > 1) { //Song playing for over 1 second, set to beginning
+    if (curSoundObj.position !== 0) { //Song playing for over 1 second, set to beginning
         soundManager.setPosition(_id, 0);
+        cl("Song set back to position 0");
     } else {
         cl('ToDO: COnfig Playlist');
     }

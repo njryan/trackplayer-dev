@@ -15,8 +15,8 @@ Template.Player.events({
         }
     },
     'click .previous': function (event, template) {
-        console.log('Previous Clicked: ' + template + ' ' + event);
-        previousSong(this.id);
+        console.log('Previous Clicked: ' + this.id + ' ' + event.currentTarget);
+        previousSong(curSoundObj.id);
     },
     'click .sm2-progress-track': function (e, t) { // Seeking Handler
         e.stopPropagation();

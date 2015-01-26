@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="781a9533-a1ee-428a-a17d-d1503db2b7ff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/ads/ads.html" afterPath="$PROJECT_DIR$/client/views/ads/ads.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/both/collections/ads.js" afterPath="$PROJECT_DIR$/both/collections/ads.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/publish/ads.js" afterPath="$PROJECT_DIR$/server/publish/ads.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/both/router/controllers/ads/ads_controller.js" afterPath="$PROJECT_DIR$/both/router/controllers/ads/ads_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client.js" afterPath="$PROJECT_DIR$/client/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/lib/helpers.js" afterPath="$PROJECT_DIR$/client/lib/helpers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/home_private/home_private.html" afterPath="$PROJECT_DIR$/client/views/home_private/home_private.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/home_private/home_private.js" afterPath="$PROJECT_DIR$/client/views/home_private/home_private.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/layout/layout.html" afterPath="$PROJECT_DIR$/client/views/layout/layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/layout/layout.js" afterPath="$PROJECT_DIR$/client/views/layout/layout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/publish/messages.js" afterPath="$PROJECT_DIR$/server/publish/messages.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/both/router/controllers/messages/messages_controller.js" afterPath="$PROJECT_DIR$/both/router/controllers/messages/messages_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/layout/player/player.html" afterPath="$PROJECT_DIR$/client/views/layout/player/player.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/layout/player/player.js" afterPath="$PROJECT_DIR$/client/views/layout/player/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/styles/default/player.less" afterPath="$PROJECT_DIR$/client/styles/default/player.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="insonic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +33,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views/layout/player/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1290">
-              <caret line="69" column="71" selection-start-line="69" selection-start-column="71" selection-end-line="69" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1290">
+              <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -81,8 +66,8 @@
       <file leaf-file-name="client.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82300884" vertical-offset="4347" max-vertical-offset="5025">
-              <caret line="327" column="0" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.24336283" vertical-offset="0" max-vertical-offset="5115">
+              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -185,9 +170,9 @@
         <option value="$PROJECT_DIR$/client/views/layout/layout.html" />
         <option value="$PROJECT_DIR$/client/views/home_private/home_private.html" />
         <option value="$PROJECT_DIR$/client/views/home_private/home_private.js" />
-        <option value="$PROJECT_DIR$/client/views/layout/player/player.js" />
         <option value="$PROJECT_DIR$/client/views/layout/player/player.html" />
         <option value="$PROJECT_DIR$/client/styles/default/player.less" />
+        <option value="$PROJECT_DIR$/client/views/layout/player/player.js" />
         <option value="$PROJECT_DIR$/client/client.js" />
       </list>
     </option>
@@ -200,7 +185,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="23" />
+    <option name="x" value="-2" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="811" />
@@ -747,7 +732,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="23" width="1440" height="811" extended-state="6" />
+    <frame x="-2" y="23" width="1440" height="811" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1129,14 +1114,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/home_private/home_private.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/styles/default/styles.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8917683" vertical-offset="1275" max-vertical-offset="10605">
@@ -1156,14 +1133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/layout/player/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1290">
-          <caret line="69" column="71" selection-start-line="69" selection-start-column="71" selection-end-line="69" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/styles/default/player.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.125" vertical-offset="9030" max-vertical-offset="13935">
@@ -1172,10 +1141,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/home_private/home_private.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/layout/player/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1290">
+          <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82300884" vertical-offset="4347" max-vertical-offset="5025">
-          <caret line="327" column="0" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.24336283" vertical-offset="0" max-vertical-offset="5115">
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
           <folding />
         </state>
       </provider>
