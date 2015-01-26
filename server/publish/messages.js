@@ -4,9 +4,6 @@
  * TO DO: **SECURITY** - Limit fields displayed, and set parameter checks
  */
 
-Meteor.publish("messages", function() { // Out of Date, Should Delete
-	return Messages.find({}, {});
-});
 
 Meteor.publish("all_messages", function() {
 	return Messages.find({}, {});

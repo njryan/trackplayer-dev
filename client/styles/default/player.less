@@ -549,6 +549,10 @@
   background-image: none, url(../image/icomoon/entypo-25px-ffffff/SVG/volume.svg);
 }
 
+.sm2-volume-control.volume-shade.muted {
+  background-color:darkred;
+}
+
 .sm2-volume-control,
 .sm2-volume-shade {
   background-position: 42% 50%;
@@ -624,6 +628,13 @@
 }
 
 .playing.buffering .sm2-progress-ball .icon-overlay {
+  display: block;
+  -webkit-animation: spin 0.6s linear infinite;
+  animation: spin 0.6s linear infinite;
+}
+
+// Evan Hack
+.sm2-bar-ui .sm2-progress-ball.buffering > .icon-overlay {
   display: block;
   -webkit-animation: spin 0.6s linear infinite;
   animation: spin 0.6s linear infinite;

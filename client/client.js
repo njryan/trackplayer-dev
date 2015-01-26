@@ -134,32 +134,32 @@ ShareIt.configure({
     useTwitter: true,     // boolean (default: true)
                           // Whether to show the Twitter button
     useGoogle: false,      // boolean (default: true)
-                          // Whether to show the Google+ button
+    // Whether to show the Google+ button
     classes: "small btn", // string (default: 'large btn')
                           // The classes that will be placed on the sharing buttons, bootstrap by default.
     iconOnly: true,      // boolean (default: false)
-                          // Don't put text on the sharing buttons
+    // Don't put text on the sharing buttons
     applyColors: true     // boolean (default: true)
                           // apply classes to inherit each social networks background color
 });
 
 // Custom UI Helper for Profile Image
 /*UI.registerHelper("getImageUser", function (userId) {
-    var user= Meteor.users.findOne(userId);
-    if (user.services)
-    {
-        if (user.services.facebook)
-            return user.services.facebook.picture;
-        if (user.services.twitter)
-            return user.services.twitter.profile_image_url;
-        if (user.services.google)
-            return user.services.google.picture;
-    }
-    else
-    {
-        return "images/withOutPhoto.png";
-    }
-});*/
+ var user= Meteor.users.findOne(userId);
+ if (user.services)
+ {
+ if (user.services.facebook)
+ return user.services.facebook.picture;
+ if (user.services.twitter)
+ return user.services.twitter.profile_image_url;
+ if (user.services.google)
+ return user.services.google.picture;
+ }
+ else
+ {
+ return "images/withOutPhoto.png";
+ }
+ });*/
 
 
 
@@ -178,6 +178,11 @@ Template.registerHelper('userFBImage', function() {
 // ToDo: Make this a dynamic helper, passing in variables and automatically outputs the log, Make accepts as many args are needed
 cl = function(output) {
     console.log(output);
+};
+
+// Helper to console Log Objects clearly.
+clJ = function(output) {
+    console.log(JSON.stringify(output));
 };
 
 
@@ -225,6 +230,19 @@ setSeekPos = function (_id, e, barWidth) {
     curSoundObj.setPosition(seekPos);
 };
 
+toggleMute = function (_id) {
+  if (curSoundObj) {
+      if (curSoundObj.muted) {
+          Session.set('mutedClass', false);
+      } else {
+          Session.set('mutedClass', true);
+      }
+      soundManager.toggleMute(_id);
+      cl('Mute Toggled');
+  } else {
+      cl("Cant mute, no song playing!");
+  }
+};
 
 
 // Play song, or toggle pause if the song is already playing
@@ -233,60 +251,67 @@ playSong = function (_id, url) {
     if(typeof(soundManager) !== 'undefined'){
         soundManager.stopAll();
     }
-    if (!soundManager.canPlayURL(url)) cl("Bad UrL");
+    if (!soundManager.canPlayURL(url)) cl("Bad UrL"); // Check for proper URL
     if (!soundManager.getSoundById(_id)) {
         curSoundObj = soundManager.createSound({
-                id: _id,
-                url: url,
-                autoLoad: true,
-                stream: true,
-                autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to
-                                // manually start it
-                onload: function () {
-                    Session.set('curSoundObj', _id);
-                    cl("loaded! "+_id);
-                    this.setPosition(0); // Set Position to 0 on Load
-                    //varDuration = this.duration
-                    Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click
-                                                                 // handler
-                    Session.set('currentPos', this.position); // initial position
-                    Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time
-                                                                                         // once
-                },
-                whileplaying: function () {
-                    Session.set('progress', (this.position * 100 / this.duration).toFixed(4)); // Display Current
-                                                                                               // position in % for
-                                                                                               // progress bar
-                    Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
-                },
-                // Optional callback to update playback position (you could use a Session var to update an element
-                   // of the UI re-actively)
-                onplay: function () {
-                    Session.set('playingClass', true);
-                },
-                onpause: function () {
-                    Session.set('playingClass', false);
-                },
-                onresume: function () {
-                    Session.set('playingClass', true);
-                },
-                onfinish: function () {
-                    // remember to release audio resources
-                    soundManager.unload(_id);
-                    soundManager.destroySound(_id);
-                    Session.set('playingClass', false);
-                    curSoundObj = null;
-                    // maybe play next file from playlist?
-                    //playNext(doc._id);
-                    cl("done playing sound!");
-                },
-                onerror: function () {
-                    // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
-                    // Notify user if needed, disable sound-specific functionality etc.
-                    console.log("Error on SoundObj - onerror!");
-                }
-            });
-            cl('curSoundObj'+curSoundObj);
+            id: _id,
+            url: url,
+            autoLoad: true,
+            stream: true,
+            autoPlay: true, // start playing this song automatically instead of using soundManager.play(_id) to manually start it
+
+            onload: function () {
+                Session.set('curSoundObj', this.id);
+                cl("loaded! "+ this.id);
+                this.setPosition(0); // Set Position to 0 on Load
+                Session.set('currentDurRaw', this.duration); // Current Duration in milliseconds for seek click
+                Session.set('currentPos', this.position); // initial position
+                Session.set('currentDur', convertTime(this.durationEstimate, true)); // Set the total duration time
+                Session.set('mutedClass', false);
+            },
+            onbufferchange: function() {
+                soundManager._writeDebug(this.id+' Buffering '+(this.isBuffering?'started': 'stopped')+'.'); // debug to console
+
+                this.isBuffering? Session.set('bufferingClass', true) : Session.set('bufferingClass', false);
+            },
+            whileplaying: function () {
+                Session.set('progress', (this.position * 100 / this.duration)); // to round the decimals --> .toFixed(4)); // Display Current position in % for progress bar
+                Session.set('currentPos', convertTime(this.position, true)); // Update the Current Time String
+            },
+            onplay: function () {
+                Session.set('playingClass', true);
+            },
+            onpause: function () {
+                Session.set('playingClass', false);
+            },
+            onresume: function () {
+                Session.set('playingClass', true);
+            },
+            onfinish: function () {
+                // remember to release audio resources
+                soundManager.unload(_id);
+                soundManager.destroySound(_id);
+                Session.set('playingClass', false);
+                curSoundObj = null;
+                // maybe play next file from playlist?
+                //playNext(doc._id);
+                cl("done playing sound!");
+            },
+            onerror: function () {
+                // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
+                // Notify user if needed, disable sound-specific functionality etc.
+                console.log("Error on SoundObj - onerror!");
+            },
+            whileloading: function() {
+                //cl('Debug Helper While Loading: '+this.id +' Playstate: '+this.playState+' ReadyState: '+this.readyState); // Debug helper
+                soundManager._writeDebug(this.id + ': loading ' + this.bytesLoaded + ' / ' + this.bytesTotal);
+
+            },
+            ontimeout: function() {
+                cl('Error - ontimeout!');
+            }
+        });
+        cl('curSoundObj ID: '+curSoundObj.id + ' URL: '+curSoundObj.url);
     } else {
         cl("How did it get here.... else loop of playSong"+soundManager.getSoundById(_id));
         soundManager.togglePause(_id);
@@ -301,9 +326,4 @@ previousSong = function (_id) {
     }
 };
 
-/*
-soundManager.onerror = function() {
-    // soundManager init failed - ExternalInterface/security/JS error, or missing .SWF/old Flash plugin
-    // Notify user if needed, disable sound-specific functionality etc.
-    console.log("SOMETHING FUCKED UP!");
-};*/
+

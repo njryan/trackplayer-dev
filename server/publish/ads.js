@@ -1,6 +1,3 @@
-Meteor.publish("ads", function() {
-	return Ads.find({}, {});
-});
 
 Meteor.publish("all_ads", function() {
 	return Ads.find({}, {});

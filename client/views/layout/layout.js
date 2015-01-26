@@ -32,9 +32,9 @@ Template.layout.rendered = function() {
 
 // Initiating Code for the Audio Player - Currently Not in use
 Template.PlayerWrapper.helpers({
-    "playerCheck": function() {
+    /*"playerCheck": function() {
         cl('Player DIdnt Load!');
-    }
+    }*/
 });
 
 Template.PlayerWrapper.created = function() {

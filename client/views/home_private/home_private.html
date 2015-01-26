@@ -17,9 +17,9 @@
                 <div class="single-song-wrapper">
                     <!-- ToDO: Helper to seperate context for fixtures and for real file uploads -->
                     {{#with FS.GetFile "audios" this.audioFileId }}
-                        {{ seshHelper1 .. }}
+                        <!-- Sample Code for accessing parent context {{ seshHelper1 .. }}-->
 		                <a class="song_url" data-id="{{this._id}}" href="{{this.url}}">{{ this.name }}</a>
-                        {{ seshHelper  }}
+                        <!-- Helper (NOT WORKING){{ seshHelper  }}-->
                     {{ /with }}
                     {{#with FS.GetFile "images" this.coverImageId }}
 							<img class="song-img img-responsive" src="{{this.url}}">

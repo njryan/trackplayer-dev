@@ -61,5 +61,21 @@ Ads.attachSchema(new SimpleSchema({
                 {label: "EDM", value: "edm"}
             ]
         }
+    },
+    artistType: {
+        type: String,
+        label: "Artist Type",
+        allowedValues: ['producer', 'vocalist', 'band', 'engineer', 'musician', 'song_writer'],
+        autoform: {
+            type: "select",
+            options: [
+                {label: "Producer", value: "producer"},
+                {label: "Vocalist", value: "vocalist"},
+                {label: "Band / Group", value: "band"},
+                {label: "Recording Engineer", value: "engineer"},
+                {label: "Musician", value: "musician"},
+                {label: "Song Writer", value: "song_writer"}
+            ]
+        }
     }
 }));

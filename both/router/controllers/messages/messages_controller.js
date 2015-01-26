@@ -17,7 +17,6 @@ this.NewMessagesController = RouteController.extend({
 
 	isReady: function() {
 		var subs = [
-			Meteor.subscribe("messages"),
 			Meteor.subscribe("all_messages")
 		];
 		var ready = true;
@@ -31,7 +30,6 @@ this.NewMessagesController = RouteController.extend({
 	data: function() {
 		return {
 			params: this.params || {},
-			messages: Messages.find({}, {}),
 			all_messages: Messages.find({}, {})
 		};
 		/*DATA_FUNCTION*/
