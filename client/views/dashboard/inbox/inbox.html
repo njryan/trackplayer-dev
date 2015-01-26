@@ -110,9 +110,12 @@
             </th>
         </tr>
         </thead>
-        <tbody id="dataview-table-items">
+        <tbody id="dataview-table-items"><tr style="text-align:center;"><h2>Received</h2></tr>
         {{#each tableItems}} {{> DashboardInboxViewTableItems}} {{/each}}
         </tbody>
+	    <tbody id="dataview-table-items-sent"><tr style="text-align:center;"><h2>Sent</h2></tr>
+        {{#each sentItems}} {{> DashboardInboxViewTableItems}} {{/each}}
+	    </tbody>
     </table>
 </template>
 

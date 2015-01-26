@@ -100,6 +100,7 @@ if(Meteor.isClient) {
 
 	Meteor.subscribe("current_user_data");
 	Meteor.subscribe("profiles");
+    Meteor.subscribe('favorites');
 
 	Router.ensureLogged = function () {
 		if (!Meteor.user()) {

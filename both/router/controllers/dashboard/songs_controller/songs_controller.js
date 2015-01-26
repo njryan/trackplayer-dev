@@ -20,7 +20,8 @@ this.DashboardSongsController = RouteController.extend({
         var subs = [
             Meteor.subscribe("user_only_songs"),
             Meteor.subscribe("images"),
-            Meteor.subscribe("audios")
+            Meteor.subscribe("audios"),
+            Meteor.subscribe('favorites')
         ];
         var ready = true;
         _.each(subs, function(sub) {

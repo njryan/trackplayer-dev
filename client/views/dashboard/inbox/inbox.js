@@ -169,10 +169,10 @@ Template.DashboardInboxView.events({
 
 Template.DashboardInboxView.helpers({
     "isEmpty": function() {
-        return !this.my_received_messages || this.my_received_messages.count() == 0;
+        return !this.my_received_messages || this.my_received_messages.count() == 0 || !this.my_sent_messages || this.my_sent_messages.count() == 0;
     },
     "isNotEmpty": function() {
-        return this.my_received_messages && this.my_received_messages.count() > 0;
+        return ((this.my_received_messages && this.my_received_messages.count() > 0) || this.my_sent_messages && this.my_sent_messages.count() > 0  );
     },
     "isNotFound": function() {
         return this.my_received_messages && pageSession.get("DashboardInboxViewSearchString") && DashboardInboxViewItems(this.my_received_messages).length == 0;
@@ -217,7 +217,11 @@ Template.DashboardInboxViewTable.events({
 Template.DashboardInboxViewTable.helpers({
     "tableItems": function() {
         return DashboardInboxViewItems(this.my_received_messages);
+    },
+    "sentItems": function() {
+        return Messages.find({ownerId: Meteor.userId()});
     }
+
 });
 
 

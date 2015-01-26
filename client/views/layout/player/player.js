@@ -31,7 +31,7 @@ Template.Player.events({
                                }
                            }
 
-});
+                       });
 
 Template.Player.helpers({
                             song: [
@@ -59,5 +59,4 @@ Template.Player.helpers({
                              return userObj.userName;
                              }*/
 
-
-});
+                        });

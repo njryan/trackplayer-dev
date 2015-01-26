@@ -152,13 +152,17 @@
 			</b>
 		</a>
 		<ul id="menu-items" class="dropdown-menu">
-			<li class="active">
-                {{#afModal class="btn btn-primary" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes" title="New Song" prompt="Use this form to update your doc"}}
+			<li id="menu-item-simple" class="">
+                {{#afModal class="btn btn-md" collection="Songs" operation="insert" omitFields="author,ownerId,createdAt,likes" title="New Song" prompt="Use this form to update your doc"}}
 					Song {{/afModal}}
 			</li>
-			<li class="active">
-                {{#afModal class="btn btn-primary" collection="Ads" operation="insert" omitFields="ownerId,createdAt"}}
+			<li id="menu-item-simple" class="">
+                {{#afModal class="btn btn-md" collection="Ads" operation="insert" omitFields="ownerId,createdAt" title="New Ad"}}
 					Performance Ad {{/afModal}}
+			</li>
+			<li id="menu-item-simple" class="">
+                {{#afModal class="btn btn-md" collection="Messages" operation="insert" omitFields="ownerId,createdAt,read" title="New Message"}}
+					Send Message {{/afModal}}
 			</li>
 		</ul>
 	</li>
@@ -229,7 +233,7 @@
 {{ #each song}}
 {{> Player }}
 {{ else }}
-{{ playerCheck }}
+{{ playerCheck }} <!-- Not being used right now-->
 {{> Player }}
 {{ /each }}
 </template>

@@ -19,7 +19,6 @@ this.NewMessagesController = RouteController.extend({
 		var subs = [
 			Meteor.subscribe("messages"),
 			Meteor.subscribe("all_messages")
-			//Meteor.subscribe("favorites")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {

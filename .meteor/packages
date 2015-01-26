@@ -49,3 +49,4 @@ aldeed:clock
 cfs:autoform
 msavin:mongoinspector
 sacha:spin
+cfs:ejson-file

@@ -14,7 +14,7 @@ Meteor.publish("all_messages", function() {
 
 // Publish Messages "to: " for user inbox
 Meteor.publish("my_received_messages", function() {
-	return Messages.find({to:this.userId}, {});
+	return Messages.find({ to : this.userId }, {});
 });
 
 // Publish Messages from current user for user inbox

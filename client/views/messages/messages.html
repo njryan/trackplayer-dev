@@ -78,14 +78,14 @@
 				<th class="th-sortable" data-sort="to">
 					To
 				</th>
-				<th class="th-sortable" data-sort="subject">
+				<th class="th-sortable" data-sort="title">
 					Subject
 				</th>
-				<th class="th-sortable" data-sort="description">
-					Description
+				<th class="th-sortable" data-sort="ownerId">
+					From
 				</th>
-				<th class="th-sortable" data-sort="upload">
-					Upload File
+				<th class="th" data-sort="">
+					Body
 				</th>
 				<th>
 					&nbsp;
@@ -107,13 +107,13 @@
 			{{to}}
 		</td>
 		<td>
-			{{subject}}
+			{{title}}
 		</td>
 		<td>
-			{{description}}
+			{{ownerId}}
 		</td>
 		<td>
-			{{upload}}
+            {{body}}
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil" title="Edit">

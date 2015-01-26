@@ -9,12 +9,7 @@ Meteor.startup(function () {
 
     curSoundObj = null;
 
-    // Clock
-    FirstClock = new ReactiveClock("ExerciseClock");
-    FirstClock.start();
 
-
-    /* END THE TEST CODE */
 });
 
 App.logout = function () {
@@ -173,7 +168,7 @@ Template.registerHelper('userFBImage', function() {
     if(Meteor.user().services.facebook) {
         return '<img src="http://graph.facebook.com/'+Meteor.user().services.facebook.id+'/picture/?type=small" alt="...">';
     }
-    return '<img src="/images/anon-img.png">';
+    return '<img src="/images/'+'anon-img.png">'; // See if returns string or actual image
 });
 
 

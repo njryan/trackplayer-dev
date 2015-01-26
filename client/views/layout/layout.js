@@ -30,7 +30,7 @@ Template.layout.rendered = function() {
   // custom evan code to try to subscribe
 };
 
-// Initiating Code for the Audio Player
+// Initiating Code for the Audio Player - Currently Not in use
 Template.PlayerWrapper.helpers({
     "playerCheck": function() {
         cl('Player DIdnt Load!');
