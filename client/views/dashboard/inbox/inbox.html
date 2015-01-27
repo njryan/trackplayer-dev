@@ -10,21 +10,7 @@
 
 <template name="DashboardInboxView">
     <div id="my_inbox">
-        <div class="message_insert_form">
-            <div class="collapse" id="newMessageForm">
-                <div class="well well-sm">
-                  {{#autoForm collection="Messages" id="insertMessageForm" type="insert"}}
-                      <fieldset>
-                          <legend>New Message</legend>
-                        {{> afQuickField name='to'}} <!-- Make this an autocomplete / select for user names -->
-                        {{> afQuickField name='title'}}
-                        {{> afQuickField name='body'}}
-                      </fieldset>
-                      <button type="submit" class="btn btn-primary">Send</button><!-- Hook on submit to set certain fields auto -->
-                  {{/autoForm}}
-                </div>
-            </div><!-- /collapse -->
-        </div>
+        {{ > NewMessageDashboard }}
         <div id="dataview" class="">
             <h2 id="component-title">
                 My Messages
@@ -146,4 +132,22 @@
 			</span>
         </td>
     </tr>
+</template>
+
+<template name="NewMessageDashboard">
+    <div class="message_insert_form">
+        <div class="collapse" id="newMessageForm">
+            <div class="well well-sm">
+                {{#autoForm collection="Messages" id="insertMessageForm" type="insert"}}
+                    <fieldset>
+                        <legend>New Message</legend>
+                        {{> afQuickField name='to' type="select"}} <!-- Make this an autocomplete / select for user names -->
+                        {{> afQuickField name='title'}}
+                        {{> afQuickField name='body'}}
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary">Send</button><!-- Hook on submit to set certain fields auto -->
+                {{/autoForm}}
+            </div>
+        </div><!-- /collapse -->
+    </div>
 </template>

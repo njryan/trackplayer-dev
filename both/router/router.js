@@ -201,3 +201,7 @@ Router.map(function () {
 	this.route("dashboard.inbox", {path: "/dashboard/inbox", controller: "DashboardInboxController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});/*ROUTER_MAP*/
 });
+
+
+
+

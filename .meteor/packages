@@ -14,7 +14,6 @@ natestrauser:font-awesome
 perak:user-roles
 reactive-dict
 mizzao:bootboxjs
-mrt:moment
 anti:fake
 bengott:avatar
 aldeed:autoform
@@ -44,9 +43,11 @@ matb33:collection-hooks
 miro:preloader
 manuelschoebel:ms-seo
 msavin:sessioninspector
-miguelalarcos:afwrap-xautocomplete
-aldeed:clock
 cfs:autoform
 msavin:mongoinspector
 sacha:spin
 cfs:ejson-file
+momentjs:moment
+aldeed:console-me
+raix:handlebar-helpers
+ccorcos:transitioner

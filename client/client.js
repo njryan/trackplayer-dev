@@ -3,6 +3,7 @@ this.Helpers = {};
 
 Meteor.startup(function () {
     SimpleSchema.debug = true;
+    FS.debug = true;
 
     // Session Set Defaults
     Session.setDefault('curSoundObj', null);
@@ -13,7 +14,8 @@ Meteor.startup(function () {
     soundManager.useHighPerformance = true;
     soundManager.useFastPolling = true;
 
-
+    // subscribe to the server console logs
+    ConsoleMe.subscribe();
 });
 
 App.logout = function () {
@@ -119,6 +121,11 @@ _.each(Helpers, function (helper, key) {
 });
 
 // Create function for firing off notifications based on events -
+
+
+
+
+
 
 
 // Setting Up Account Ui and Social Media Integration

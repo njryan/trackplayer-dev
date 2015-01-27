@@ -6,9 +6,8 @@ Messages.attachSchema(new SimpleSchema({
         max: 200
     },
     to: {
-        type: String,
-        label: "To: ",
-        max: 200
+        type: [String],
+        label: "To:"
     },
     createdAt: {
         type: Date,

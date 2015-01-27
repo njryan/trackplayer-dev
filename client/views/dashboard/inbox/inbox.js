@@ -230,11 +230,11 @@ Template.DashboardInboxViewTableItems.rendered = function() {
 };
 
 Template.DashboardInboxViewTableItems.events({
-    "click td": function(e, t) {
+    /*"click td": function(e, t) {
         e.preventDefault();
         Router.go("messages.details", {messageId: this._id});
         return false;
-    },
+    },*/
 
     "click #delete-button": function(e, t) {
         e.preventDefault();
@@ -269,3 +269,16 @@ Template.DashboardInboxViewTableItems.events({
 Template.DashboardInboxViewTableItems.helpers({
 
 });
+
+
+Template.NewMessageDashboard.helpers({
+
+});
+
+Template.NewMessageDashboard.events({
+
+});
+
+Template.NewMessageDashboard.rendered = function(){
+
+};

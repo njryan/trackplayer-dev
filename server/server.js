@@ -9,6 +9,9 @@ Meteor.startup(function() {
 	//console.log(process.env);
 	FS.debug = true;
 
+    // Server console logs get outputted to the clients - remove for security
+    ConsoleMe.enabled = true;
+
 });
 
 Meteor.methods({
@@ -24,6 +27,7 @@ Meteor.methods({
 		if(options.profile) userOptions.profile = options.profile;
 		if(options.profile && options.profile.email) userOptions.email = options.profile.email;
 		console.log("Options: "+options.profile + userOptions);
+
 		Accounts.createUser(userOptions);
 	},
 	"updateUserAccount": function(userId, options) {
@@ -72,13 +76,17 @@ Meteor.methods({
 Accounts.onCreateUser(function (options, user) {
 	user.roles = ["user"];
 
+
 	if(options.profile) {
 		// Get FB Profile Image if signed in with FB
 		if (typeof(user.services.facebook) != "undefined") {
 			user.services.facebook.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
 		}
+        Notifications.insert({ title: 'Welcome to Insonic '+user.username, icon:'user-plus', class:'success', owner: user._id });
 		user.profile = options.profile;
 	}
+
+
 
 	return user;
 });
@@ -108,7 +116,7 @@ Users.before.update(function(userId, doc, fieldNames, modifier, options) {
 });
 
 Accounts.onLogin(function (info) {
-	//Notifications.new({ title: 'Welcome To Insonic!', message: 'Welcome to Insonic, '+user.username+'!', icon: 'bolt', owner: user._id });
+
 });
 
 Accounts.urls.resetPassword = function (token) {
